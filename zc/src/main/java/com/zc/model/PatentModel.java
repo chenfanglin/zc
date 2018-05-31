@@ -1,0 +1,106 @@
+package com.zc.model;
+
+public class PatentModel {
+
+	private String patentId;
+
+	private String patentName;
+
+	private int patentType;
+
+	private String patentStatus;
+
+	private String patentPrice;
+
+	private String industry;
+
+	private String industryName;
+
+	private int isBatch;
+
+	private String publishYear;
+
+	private String publishTime;
+
+	public String getPatentId() {
+		return patentId;
+	}
+
+	public void setPatentId(String patentId) {
+		this.patentId = patentId;
+	}
+
+	public String getPatentName() {
+		return patentName;
+	}
+
+	public void setPatentName(String patentName) {
+		this.patentName = patentName;
+	}
+
+	public int getPatentType() {
+		return patentType;
+	}
+
+	public void setPatentType(int patentType) {
+		this.patentType = patentType;
+	}
+
+	public String getPatentStatus() {
+		return patentStatus;
+	}
+
+	public void setPatentStatus(String patentStatus) {
+		this.patentStatus = patentStatus;
+	}
+
+	public String getPatentPrice() {
+		return patentPrice;
+	}
+
+	public void setPatentPrice(String patentPrice) {
+		this.patentPrice = patentPrice;
+	}
+
+	public String getIndustry() {
+		return industry;
+	}
+
+	public void setIndustry(String industry) {
+		this.industry = industry;
+	}
+
+	public String getIndustryName() {
+		return industryName;
+	}
+
+	public void setIndustryName(String industryName) {
+		this.industryName = industryName;
+	}
+
+	public int getIsBatch() {
+		return isBatch;
+	}
+
+	public void setIsBatch(int isBatch) {
+		this.isBatch = isBatch;
+	}
+
+	public String getPublishYear() {
+		return publishYear;
+	}
+
+	public void setPublishYear(String publishYear) {
+		this.publishYear = publishYear;
+	}
+
+	public String getPublishTime() {
+		return publishTime;
+	}
+
+	public void setPublishTime(String publishTime) {
+		this.publishTime = publishTime;
+	}
+	
+	
+}

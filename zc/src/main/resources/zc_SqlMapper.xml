@@ -1,0 +1,20 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zc.dao.PatentDao">
+	<resultMap id="baseResultMap" type="com.zc.model.PatentModel">
+		<result property="patentId" column="patent_id" />
+		<result property="patentName" column="patent_name" />
+		<result property="patentType" column="patent_type" />
+		<result property="patentStatus" column="patent_status" />
+		<result property="patentPrice" column="patent_price" />
+		<result property="industry" column="industry" />
+		<result property="industryName" column="industry_name" />
+		<result property="isBatch" column="is_batch" />
+		<result property="publishYear" column="publish_year" />
+		<result property="publishTime" column="publish_time" />
+	</resultMap>
+	<select id="queryPatentList" resultMap="baseResultMap">
+		select patent_name from t_patent;
+	</select>
+</mapper>
