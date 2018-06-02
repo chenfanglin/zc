@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 import com.zc.model.PatentModel;
 
 @Repository
-public interface PatentDao {
+public interface PatentDAO {
 
 	public List<PatentModel> queryPatentList();
 }
