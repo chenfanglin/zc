@@ -23,7 +23,7 @@ public class PatentController {
 	private PatentDAO patentDao;
 
 	@RequestMapping("/query_patent_list")
-	public Object test(HttpServletRequest request, HttpServletResponse response) throws Exception{
+	public Object queryPatentList(HttpServletRequest request, HttpServletResponse response) throws Exception{
 		String patent_type = request.getParameter("patent_type");
 		Map<String, String[]> map = request.getParameterMap();
 		logger.info("patent_type:" + patent_type);

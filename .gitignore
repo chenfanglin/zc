@@ -93,3 +93,4 @@ zc/target/lib/cglib-nodep-3.2.6.jar
 zc/target/lib/aspectjweaver-1.9.1.jar
 zc/target/zc-0.0.1-SNAPSHOT/WEB-INF/web.xml
 zc/target/zc-0.0.1-SNAPSHOT/index.jsp
+zc/target/classes/com/zc/controller/LoginController.class
