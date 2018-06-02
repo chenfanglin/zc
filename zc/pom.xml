@@ -16,6 +16,7 @@
 		<mysql.version>5.1.36</mysql.version>
 		<druid.version>1.0.18</druid.version>
 		<mapper.version>3.5.3</mapper.version>
+		<jacksondata.version>2.9.4</jacksondata.version>
 	</properties>
 	<dependencies>
 		<!-- 上传组件包 -->
@@ -153,6 +154,11 @@
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
 			<version>1.7.21</version>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>${jacksondata.version}</version>
 		</dependency>
 	</dependencies>
 	<build>

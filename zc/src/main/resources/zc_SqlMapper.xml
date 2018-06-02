@@ -1,7 +1,7 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.zc.dao.PatentDao">
+<mapper namespace="com.zc.dao.PatentDAO">
 	<resultMap id="baseResultMap" type="com.zc.model.PatentModel">
 		<result property="patentId" column="patent_id" />
 		<result property="patentName" column="patent_name" />

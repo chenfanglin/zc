@@ -8,6 +8,7 @@ create table t_patent(
 	`id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '主键,和业务无关,提高存取效率',
 	`patent_id` varchar(255) NOT NULL DEFAULT '' COMMENT '专利号',
 	`patent_name` varchar(255) NOT NULL DEFAULT '' COMMENT '专利名称',
+	`patent_url` varchar(255) NOT NULL DEFAULT '' COMMENT '专利落地页',
 	`patent_type` tinyint(4) NOT NULL DEFAULT '0' COMMENT '专利类型:0发明、1实用、2外观',
 	`patent_status` tinyint(4) NOT NULL DEFAULT '0' COMMENT '专利状态:0未下证、1下证、2未授权',
 	`patent_price` bigint(20) NOT NULL DEFAULT '0' COMMENT '专利价格',
