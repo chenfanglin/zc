@@ -1,6 +1,6 @@
-create database IF NOT EXISTS test_db default character set utf8mb4 collate utf8mb4_general_ci;
+create database IF NOT EXISTS patent_db default character set utf8mb4 collate utf8mb4_general_ci;
 
-use test_db;
+use patent_db;
 
 create table IF NOT EXISTS t_patent; 
 
