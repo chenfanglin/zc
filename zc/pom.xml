@@ -1,5 +1,4 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>www.zcwang.com</groupId>
@@ -36,21 +35,13 @@
 			<version>1.9</version>
 		</dependency>
 		<!--数据库连接池 -->
+		<!-- https://mvnrepository.com/artifact/com.mchange/c3p0 -->
 		<dependency>
-			<groupId>com.alibaba</groupId>
-			<artifactId>druid</artifactId>
-			<version>${druid.version}</version>
-			<exclusions>
-				<exclusion>
-					<groupId>com.alibaba</groupId>
-					<artifactId>jconsole</artifactId>
-				</exclusion>
-				<exclusion>
-					<groupId>com.alibaba</groupId>
-					<artifactId>tools</artifactId>
-				</exclusion>
-			</exclusions>
+			<groupId>com.mchange</groupId>
+			<artifactId>c3p0</artifactId>
+			<version>0.9.5.2</version>
 		</dependency>
+
 		<!-- https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api -->
 		<dependency>
 			<groupId>javax.servlet</groupId>

@@ -27,12 +27,12 @@ create table t_patent(
 create table IF NOT EXISTS t_users; 
 
 create table t_users(
-	`id` int(11) NOT NULL AUTO_INCREMENT COMMENT '主键,和业务无关,提高存取效率',
+	`user_id` int(11) NOT NULL AUTO_INCREMENT COMMENT '主键,和业务无关,提高存取效率',
 	`user_name` varchar(30) NOT NULL  DEFAULT '' COMMENT '用户名',
 	`user_qq` int(11) NOT NULL DEFAULT '0' COMMENT '用户qq',
 	`user_wx` varchar(30) NOT NULL DEFAULT '' COMMENT '用户wx',
 	`user_phone` varchar(30) NOT NULL DEFAULT '' COMMENT '用户手机号',
 	`user_email` varchar(30) NOT NULL DEFAULT '' COMMENT '用户邮箱',
 	`password` varchar(30) NOT NULL DEFAULT '' COMMENT '用户密码',
-	PRIMARY KEY (`id`)
+	PRIMARY KEY (`user_id`)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='用户表';
