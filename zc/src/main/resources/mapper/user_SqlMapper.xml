@@ -1,0 +1,16 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zc.dao.UserDAO">
+	<resultMap id="baseResultMap" type="com.zc.model.UserModel">
+		<result property="userId" column="user_id" />
+		<result property="userName" column="user_name" />
+		<result property="password" column="password" />
+	</resultMap>
+
+	<select id="queryUserInfo" parameterType="com.zc.model.UserModel"
+		resultMap="baseResultMap">
+		select user_id, user_name, password from t_users where
+		user_name = #userName#
+	</select>
+</mapper>

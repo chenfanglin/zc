@@ -6,7 +6,7 @@ public class PatentModel {
 
 	private String patentName;
 
-	private int patentType;
+	private Integer patentType;
 
 	private String patentStatus;
 
@@ -16,11 +16,15 @@ public class PatentModel {
 
 	private String industryName;
 
-	private int isBatch;
+	private Integer isBatch;
 
 	private String publishYear;
 
 	private String publishTime;
+
+	private String userQQ;
+
+	private String userWX;
 
 	public String getPatentId() {
 		return patentId;
@@ -101,6 +105,50 @@ public class PatentModel {
 	public void setPublishTime(String publishTime) {
 		this.publishTime = publishTime;
 	}
-	
-	
+
+	public String getUserQQ() {
+		return userQQ;
+	}
+
+	public void setUserQQ(String userQQ) {
+		this.userQQ = userQQ;
+	}
+
+	public String getUserWX() {
+		return userWX;
+	}
+
+	public void setUserWX(String userWX) {
+		this.userWX = userWX;
+	}
+
+	public PatentModel(String patentId, String patentName, int patentType, String patentStatus, String patentPrice,
+			String industry, String industryName, int isBatch, String publishYear, String publishTime, String userQQ,
+			String userWX) {
+		super();
+		this.patentId = patentId;
+		this.patentName = patentName;
+		this.patentType = patentType;
+		this.patentStatus = patentStatus;
+		this.patentPrice = patentPrice;
+		this.industry = industry;
+		this.industryName = industryName;
+		this.isBatch = isBatch;
+		this.publishYear = publishYear;
+		this.publishTime = publishTime;
+		this.userQQ = userQQ;
+		this.userWX = userWX;
+	}
+
+	public PatentModel() {
+	}
+
+	@Override
+	public String toString() {
+		return "PatentModel [patentId=" + patentId + ", patentName=" + patentName + ", patentType=" + patentType
+				+ ", patentStatus=" + patentStatus + ", patentPrice=" + patentPrice + ", industry=" + industry
+				+ ", industryName=" + industryName + ", isBatch=" + isBatch + ", publishYear=" + publishYear
+				+ ", publishTime=" + publishTime + ", userQQ=" + userQQ + ", userWX=" + userWX + "]";
+	}
+
 }

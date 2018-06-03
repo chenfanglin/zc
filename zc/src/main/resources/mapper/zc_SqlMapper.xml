@@ -1,0 +1,64 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zc.dao.PatentDAO">
+	<resultMap id="baseResultMap" type="com.zc.model.PatentModel">
+		<result property="patentId" column="patent_id" />
+		<result property="patentName" column="patent_name" />
+		<result property="patentType" column="patent_type" />
+		<result property="patentStatus" column="patent_status" />
+		<result property="patentPrice" column="patent_price" />
+		<result property="industry" column="industry" />
+		<result property="industryName" column="industry_name" />
+		<result property="isBatch" column="is_batch" />
+		<result property="publishYear" column="publish_year" />
+		<result property="publishTime" column="publish_time" />
+		<result property="userQQ" column="user_qq" />
+		<result property="userWX" column="user_wx" />
+	</resultMap>
+	<select id="queryPatentList" parameterType="com.zc.req.BaseRequest"
+		resultMap="baseResultMap">
+		select
+		patent_id,patent_name,patent_type,patent_status,patent_price,industry,industry_name,is_batch
+		publish_time,user_qq,user_wx from t_patent where 1=1
+		<if test="patentType != null">
+			patent_type = #{patentType} AND
+		</if>
+		<if test="patentStatus != null">
+			patent_status = #{patentStatus} AND
+		</if>
+		<if test="minPatentPrice != null">
+			patent_price >= #{minPatentPrice} AND
+		</if>
+		<if test="maxPatentPrice != null">
+			patent_price >= #{maxPatentPrice} AND
+		</if>
+		<if test="industry != null">
+			industry = #{industry} AND
+		</if>
+		<if test="isBatch != null">
+			is_batch = #{isBatch} AND
+		</if>
+		<if test="publishYear != null">
+			publish_year = #{publishYear} AND
+		</if>
+		<if test="keyword != null">
+			patent_name like "%"#{keyword}"%"
+		</if>
+		order by ${sort} ${order}
+		limit #{pageIndex},#{pageSize}
+	</select>
+
+	<select id="queryPatentCount" parameterType="com.zc.req.BaseRequest"
+		resultMap="baseResultMap">
+		select count(*) from t_patent where show = 0;
+	</select>
+
+	<insert id="insertParent" parameterType="com.zc.model.PatentModel">
+		insert into
+		t_patent(patent_id,patent_name,patent_type,patent_status,patent_price,industry,industry_name,
+		is_batch,publish_year,publish_time,user_qq,user_wx)
+		values(#{patentId},#{patentName},#{patentType},#{patentStatus},
+		#{patentPrice},#{industry},#{industryName},#{isBatch},#{publishYear},#{publishTime},#{userQQ},#{userWX});
+	</insert>
+</mapper>

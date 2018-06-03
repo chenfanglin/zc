@@ -66,7 +66,7 @@
 		<!--指定实体类所在的包，用于别名处理 -->
 		<property name="typeAliasesPackage" value="com.zc.model" />
 		<property name="mapperLocations"
-			value="classpath:zc_SqlMapper.xml" />
+			value="classpath:mapper/*.xml" />
 	</bean>
 
 	<!--定义Mapper扫描器 -->
