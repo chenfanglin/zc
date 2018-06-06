@@ -8,9 +8,9 @@
 		<result property="password" column="password" />
 	</resultMap>
 
-	<select id="queryUserInfo" parameterType="com.zc.model.UserModel"
-		resultMap="baseResultMap">
-		select user_id, user_name, password from t_users where
-		user_name = #userName#
+	<select id="queryUserInfo"
+		parameterType="com.zc.model.UserModel" resultMap="baseResultMap">
+		SELECT `user_id`,`user_name`,
+		`password` FROM `t_users` WHERE `user_name` = #{userName}
 	</select>
 </mapper>

@@ -1,0 +1,108 @@
+html,body {
+	height: 100%;
+}
+.login-error{display:none;width:330px;margin:0 auto;color:red;}
+.box {
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#6699FF', endColorstr='#6699FF'); /*  IE */
+/* 	background-image:linear-gradient(bottom, #6699FF 0%, #6699FF 100%); */
+/* 	background-image:-o-linear-gradient(bottom, #6699FF 0%, #6699FF 100%); */
+/* 	background-image:-moz-linear-gradient(bottom, #6699FF 0%, #6699FF 100%); */
+/* 	background-image:-webkit-linear-gradient(bottom, #6699FF 0%, #6699FF 100%); */
+/* 	background-image:-ms-linear-gradient(bottom, #6699FF 0%, #6699FF 100%); */
+	background-image:url("../images/login2015.jpg");
+	
+	margin: 0 auto;
+	position: relative;
+	width: 100%;
+	height: 100%;
+}
+.login-box {
+	width: 100%;
+	max-width:500px;
+	height: 400px;
+	position: absolute;
+	top: 50%;
+
+	margin-top: -200px;
+	/*设置负值，为要定位子盒子的一半高度*/
+	
+}
+@media screen and (min-width:500px){
+	.login-box {
+		left: 50%;
+		/*设置负值，为要定位子盒子的一半宽度*/
+		margin-left: -250px;
+	}
+}	
+
+.form {
+	width: 100%;
+	max-width:500px;
+	height: 275px;
+	margin: 25px auto 0px auto;
+	padding-top: 25px;
+}	
+.login-content {
+	height: 330px;
+	width: 100%;
+	max-width:500px;
+	background-color: rgba(255, 250, 2550, .6);
+	float: left;
+}		
+	
+	
+.input-group {
+	margin: 0px 0px 30px 0px !important;
+}
+.form-control,
+.input-group {
+	height: 40px;
+}
+
+.form-group {
+	margin-bottom: 0px !important;
+}
+.login-title {
+	padding: 20px 10px;
+	background-color: rgba(0, 0, 0, .6);
+}
+.login-title h1 {
+	margin-top: 10px !important;
+}
+.login-title small {
+	color: #fff;
+}
+
+.link p {
+	line-height: 20px;
+	margin-top: 30px;
+}
+.btn-sm {
+	padding: 8px 24px !important;
+	font-size: 16px !important;
+}
+
+.input-group-addon.verifyCode {
+  width:40px;
+  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACkAAAApCAIAAAAnApehAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAbJJREFUeNrslouKgkAUhsdLM5WkVLbtJdjY93+lliK7uNqWiealGXccLdlgKVMIljmQ/Xh+++hcGIXJZAIeFCJ4XHA2Z3M2Z/83tvxnQul1FVmoDEiO3vbbO5Zgy/3hQEP1FKWNJGxYwc3sNpRFgAPHdoJK3Kama01JhgAEJWrO6hV7nleJLan6Hf0+x2D00YGR+2lYhVJf3vUWONizFUiVdJFmCrP0XbNW/PmEEEwIVew7SfJ7BBDMbqbqlM6MVef8HPZiamdqs5xtMuWu526eNuenrhTp2tjacNRpMBW7humoT28qJAd7tZEGr10Ewu3S8piHpZkS5ZrYsAEhzCX9IIggxDiVMs0ALJ098Le7BrazMf1s0UlML1t77Ut0AeijW8vcAxzmHoEplhYyN/Wo1dhs3nDoB0e52VYU9rtCQ1Ea+RYhRUGFokQvoEYk1dLv/jBfna7+3LlWz8JYx45FcRSBODqpK8GMYRQiQFIzrNhv03Au1ZXYfy32xXSWZSesga3eeNyreEbTMcXl2O7O11AHimL1o4xE/m5fquYHy5ha/J2Jszmbszmbs2+IHwEGAPi65rbj8pmiAAAAAElFTkSuQmCC");
+}
+.get-verifyCode {
+  display: inline-block;
+  width: 121px;
+  background-color: #4bd083;
+  height: 40px;
+  position: absolute;
+  top: 0;
+  right:15px;
+  line-height: 40px;
+  text-align: center;
+  font-family: 微软雅黑;
+  font-size: 14px;
+  color: #fff;
+  letter-spacing: 1px;
+  cursor: pointer;
+  border-radius: 2px;
+}
+.get-verifyCode:hover {
+  background-color: #3FC577;
+}

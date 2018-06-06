@@ -37,5 +37,15 @@ create table t_users(
 	PRIMARY KEY (`user_id`)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='用户表';
 
+create table IF NOT EXISTS t_menu; 
+
+create table t_menu(
+	`menu_id` int(11) NOT NULL AUTO_INCREMENT COMMENT '菜单id',
+	`menu_logo` varchar(30) NOT NULL  DEFAULT '' COMMENT '菜单图标',
+	`menu_name` varchar(20) NOT NULL DEFAULT '0' COMMENT '菜单名称',
+	`menu_path` varchar(30) NOT NULL DEFAULT '' COMMENT '菜单路径',
+	PRIMARY KEY (`menu_id`)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='菜单表';
+
 insert into t_patent(patent_id,patent_name,patent_type,patent_status,patent_price,industry,industry_name,is_batch,publish_year,user_qq,user_wx) values ('201806061538','专利测试01',0,0,1000,1,'农业',0,2018,'1476264241','testwx');
 insert into t_patent(patent_id,patent_name,patent_type,patent_status,patent_price,industry,industry_name,is_batch,publish_year,user_qq,user_wx) values ('201806061555','专利测试02',1,1,10000,2,'计算机',1,2018,'110','119');

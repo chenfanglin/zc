@@ -1,0 +1,15 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zc.dao.MenuDAO">
+	<resultMap id="baseResultMap" type="com.zc.model.MenuModel">
+		<result property="menuID" column="menu_id" />
+		<result property="menuLogo" column="menu_logo" />
+		<result property="menuName" column="menu_name" />
+		<result property="menuPath" column="menu_path" />
+	</resultMap>
+
+	<select id="queryMenuList" resultMap="baseResultMap">
+		select menu_id,menu_logo,menu_name,menu_path from t_menu
+	</select>
+</mapper>
