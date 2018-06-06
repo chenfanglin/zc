@@ -82,13 +82,6 @@ public class PatentModel {
 		this.industryName = industryName;
 	}
 
-	public int getIsBatch() {
-		return isBatch;
-	}
-
-	public void setIsBatch(int isBatch) {
-		this.isBatch = isBatch;
-	}
 
 	public String getPublishYear() {
 		return publishYear;
@@ -122,8 +115,20 @@ public class PatentModel {
 		this.userWX = userWX;
 	}
 
-	public PatentModel(String patentId, String patentName, int patentType, String patentStatus, String patentPrice,
-			String industry, String industryName, int isBatch, String publishYear, String publishTime, String userQQ,
+	public Integer getIsBatch() {
+		return isBatch;
+	}
+
+	public void setIsBatch(Integer isBatch) {
+		this.isBatch = isBatch;
+	}
+
+	public void setPatentType(Integer patentType) {
+		this.patentType = patentType;
+	}
+
+	public PatentModel(String patentId, String patentName, Integer patentType, String patentStatus, String patentPrice,
+			String industry, String industryName, Integer isBatch, String publishYear, String publishTime, String userQQ,
 			String userWX) {
 		super();
 		this.patentId = patentId;

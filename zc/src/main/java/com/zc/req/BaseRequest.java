@@ -56,13 +56,6 @@ public class BaseRequest {
 		this.keyword = keyword;
 	}
 
-	public int getPatentType() {
-		return patentType;
-	}
-
-	public void setPatentType(int patentType) {
-		this.patentType = patentType;
-	}
 
 	public String getPatentStatus() {
 		return patentStatus;
@@ -96,13 +89,6 @@ public class BaseRequest {
 		this.industry = industry;
 	}
 
-	public int getIsBatch() {
-		return isBatch;
-	}
-
-	public void setIsBatch(int isBatch) {
-		this.isBatch = isBatch;
-	}
 
 	public String getPublishYear() {
 		return publishYear;
@@ -150,6 +136,14 @@ public class BaseRequest {
 
 	public void setIsBatch(Integer isBatch) {
 		this.isBatch = isBatch;
+	}
+
+	public Integer getPatentType() {
+		return patentType;
+	}
+
+	public Integer getIsBatch() {
+		return isBatch;
 	}
 
 	@Override

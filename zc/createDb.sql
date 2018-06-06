@@ -19,7 +19,7 @@ create table t_patent(
 	`publish_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
 	`user_qq` int(11) NOT NULL DEFAULT '0' COMMENT '用户qq',
 	`user_wx` varchar(30) NOT NULL DEFAULT '' COMMENT '用户wx',
-	`show` tinyint(4) NOT NULL DEFAULT '0' COMMENT '是否显示:0显示,1不显示',
+	`is_show` tinyint(4) NOT NULL DEFAULT '0' COMMENT '是否显示:0显示,1不显示',
 	PRIMARY KEY (`id`),
 	INDEX `patentId` (`patent_id`)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='专利表';
@@ -36,3 +36,6 @@ create table t_users(
 	`password` varchar(30) NOT NULL DEFAULT '' COMMENT '用户密码',
 	PRIMARY KEY (`user_id`)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='用户表';
+
+insert into t_patent(patent_id,patent_name,patent_type,patent_status,patent_price,industry,industry_name,is_batch,publish_year,user_qq,user_wx) values ('201806061538','专利测试01',0,0,1000,1,'农业',0,2018,'1476264241','testwx');
+insert into t_patent(patent_id,patent_name,patent_type,patent_status,patent_price,industry,industry_name,is_batch,publish_year,user_qq,user_wx) values ('201806061555','专利测试02',1,1,10000,2,'计算机',1,2018,'110','119');

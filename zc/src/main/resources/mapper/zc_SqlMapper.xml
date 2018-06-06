@@ -19,7 +19,7 @@
 	<select id="queryPatentList" parameterType="com.zc.req.BaseRequest"
 		resultMap="baseResultMap">
 		select
-		patent_id,patent_name,patent_type,patent_status,patent_price,industry,industry_name,is_batch
+		patent_id,patent_name,patent_type,patent_status,patent_price,industry,industry_name,is_batch,
 		publish_time,user_qq,user_wx from t_patent where 1=1
 		<if test="patentType != null">
 			patent_type = #{patentType} AND
@@ -49,9 +49,8 @@
 		limit #{pageIndex},#{pageSize}
 	</select>
 
-	<select id="queryPatentCount" parameterType="com.zc.req.BaseRequest"
-		resultMap="baseResultMap">
-		select count(*) from t_patent where show = 0;
+	<select id="queryPatentCount" resultType="java.lang.Integer">
+		select count(*) from t_patent where `is_show` = 0;
 	</select>
 
 	<insert id="insertParent" parameterType="com.zc.model.PatentModel">
