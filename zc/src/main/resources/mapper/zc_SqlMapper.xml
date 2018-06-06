@@ -5,6 +5,7 @@
 	<resultMap id="baseResultMap" type="com.zc.model.PatentModel">
 		<result property="patentId" column="patent_id" />
 		<result property="patentName" column="patent_name" />
+		<result property="patentUrl" column="patent_url" />
 		<result property="patentType" column="patent_type" />
 		<result property="patentStatus" column="patent_status" />
 		<result property="patentPrice" column="patent_price" />
@@ -16,10 +17,10 @@
 		<result property="userQQ" column="user_qq" />
 		<result property="userWX" column="user_wx" />
 	</resultMap>
-	<select id="queryPatentList" parameterType="com.zc.req.BaseRequest"
-		resultMap="baseResultMap">
+	<select id="queryPatentList"
+		parameterType="com.zc.req.BaseRequest" resultMap="baseResultMap">
 		select
-		patent_id,patent_name,patent_type,patent_status,patent_price,industry,industry_name,is_batch,
+		patent_id,patent_name,patent_url,patent_type,patent_status,patent_price,industry,industry_name,is_batch,
 		publish_time,user_qq,user_wx from t_patent where 1=1
 		<if test="patentType != null">
 			patent_type = #{patentType} AND
@@ -50,14 +51,16 @@
 	</select>
 
 	<select id="queryPatentCount" resultType="java.lang.Integer">
-		select count(*) from t_patent where `is_show` = 0;
+		select count(*) from
+		t_patent where `is_show` = 0;
 	</select>
 
-	<insert id="insertParent" parameterType="com.zc.model.PatentModel">
+	<insert id="insertParent"
+		parameterType="com.zc.model.PatentModel">
 		insert into
-		t_patent(patent_id,patent_name,patent_type,patent_status,patent_price,industry,industry_name,
+		t_patent(patent_id,patent_name,patent_url,patent_type,patent_status,patent_price,industry,industry_name,
 		is_batch,publish_year,publish_time,user_qq,user_wx)
-		values(#{patentId},#{patentName},#{patentType},#{patentStatus},
+		values(#{patentId},#{patentName},#{patentUrl},#{patentType},#{patentStatus},
 		#{patentPrice},#{industry},#{industryName},#{isBatch},#{publishYear},#{publishTime},#{userQQ},#{userWX});
 	</insert>
 </mapper>

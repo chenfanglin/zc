@@ -30,7 +30,7 @@ public class MainAspect {
 			commonResponse.setContent(obj);
 		} catch (ServerException e) {
 			commonResponse.setStatusCode(e.getStatusCode());
-			commonResponse.setContent(ResourceHandler.get(e.getStatusCode()));
+			commonResponse.setContent(ResourceHandler.get(String.valueOf(e.getStatusCode())));
 			e.printStackTrace();
 		} catch (Exception e) {
 			commonResponse.setStatusCode(StatusCode.SERVER_ERROR);

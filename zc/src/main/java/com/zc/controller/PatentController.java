@@ -1,5 +1,7 @@
 package com.zc.controller;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -57,28 +59,40 @@ public class PatentController {
 	 */
 	@RequestMapping("/add_patent")
 	public Object addPatent(HttpServletRequest request, HttpServletResponse response) throws ServerException {
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		String currentDate = sdf.format(new Date());
 		String patentId = request.getParameter("patent_id");
-		String patentName = request.getParameter("patent_name");
+		String patentName = StringUtil.isEmpty(request.getParameter("patent_name")) ? ""
+				: request.getParameter("patent_name");
 		String patentType = request.getParameter("patent_type");
-		String patentStatus = request.getParameter("patent_status");
-		String patentPrice = request.getParameter("patent_price");
-		String publishYear = request.getParameter("publish_year");
-		String publishTime = request.getParameter("publish_time");
-		String industry = request.getParameter("industry");
-		String industryName = request.getParameter("industry_name");
+		String patentUrl = request.getParameter("patent_url");
+		String patentStatus = StringUtil.isEmpty(request.getParameter("patent_status")) ? "0"
+				: request.getParameter("patent_status");
+		String patentPrice = StringUtil.isEmpty(request.getParameter("patent_price")) ? "0"
+				: request.getParameter("patent_price");
+		String publishYear = StringUtil.isEmpty(request.getParameter("publish_year")) ? "2018"
+				: request.getParameter("publish_year");
+		String publishTime = StringUtil.isEmpty(request.getParameter("publish_time")) ? currentDate
+				: request.getParameter("publish_time");
+		String industry = StringUtil.isEmpty(request.getParameter("industry")) ? "0" : request.getParameter("industry");
+		String industryName = StringUtil.isEmpty(request.getParameter("industry_name")) ? ""
+				: request.getParameter("industry_name");
 		String isBatch = request.getParameter("is_batch");
-		String userQQ = request.getParameter("user_qq");
-		String userWX = request.getParameter("user_wx");
-		PatentModel patentModel = new PatentModel(patentId, patentName, Integer.parseInt(patentType), patentStatus,
+		String userQQ = StringUtil.isEmpty(request.getParameter("user_qq")) ? "0" : request.getParameter("user_qq");
+		String userWX = StringUtil.isEmpty(request.getParameter("user_wx")) ? "" : request.getParameter("user_wx");
+		if (StringUtil.isEmpty(patentId) || StringUtil.isEmpty(patentType) || StringUtil.isEmpty(isBatch) || StringUtil.isEmpty(patentUrl)) {
+			throw new ServerException(StatusCode.PARAM_ERROR);
+		}
+		PatentModel patentModel = new PatentModel(patentId, patentName,patentUrl, Integer.parseInt(patentType), patentStatus,
 				patentPrice, industry, industryName, Integer.parseInt(isBatch), publishYear, publishTime, userQQ,
 				userWX);
+		logger.info("录入专利列表:" + patentModel);
 		patentDAO.insertParent(patentModel);
 		return "success";
 	}
 
 	@RequestMapping("/upload_patent")
 	public Object uploadPatentExcel(HttpServletRequest request, HttpServletResponse response) throws ServerException {
-
 		return "";
 	}
 
@@ -88,7 +102,7 @@ public class PatentController {
 	 * @param request
 	 * @return
 	 */
-	private BaseRequest buildPatentParameter(HttpServletRequest request) throws ServerException{
+	private BaseRequest buildPatentParameter(HttpServletRequest request) throws ServerException {
 		try {
 			String patentType = request.getParameter("patent_type");
 			String patentStatus = request.getParameter("patent_status");
@@ -102,18 +116,19 @@ public class PatentController {
 			String order = request.getParameter("order");
 			String pageNum = request.getParameter("page_num");
 			String pageSize = request.getParameter("page_size");
-			sort = StringUtil.isEmpty(sort) ? "publish_time" :  sort;
-			order = StringUtil.isEmpty(order) ? "desc" :  order;
+			sort = StringUtil.isEmpty(sort) ? "publish_time" : sort;
+			order = StringUtil.isEmpty(order) ? "desc" : order;
 			int num = StringUtil.isEmpty(pageNum) || "0".equals(pageNum) ? 1 : Integer.parseInt(pageNum);
 			int size = StringUtil.isEmpty(pageSize) ? 50 : Integer.parseInt(pageSize);
 			int pageIndex = (num - 1) * size < 0 ? 0 : (num - 1) * size;
-			BaseRequest baseRequest = new BaseRequest(StringUtil.isEmpty(patentType) ? null : Integer.parseInt(patentType), patentStatus, minPatentPrice,
-					maxPatentPrice, industry, StringUtil.isEmpty(isBatch) ? null : Integer.parseInt(isBatch), publishYear, keyword, sort, order, pageIndex,
-					size);
+			BaseRequest baseRequest = new BaseRequest(
+					StringUtil.isEmpty(patentType) ? null : Integer.parseInt(patentType), patentStatus, minPatentPrice,
+					maxPatentPrice, industry, StringUtil.isEmpty(isBatch) ? null : Integer.parseInt(isBatch),
+					publishYear, keyword, sort, order, pageIndex, size);
 			return baseRequest;
 		} catch (Exception e) {
 			throw new ServerException(StatusCode.PARAM_ERROR);
 		}
-		
+
 	}
 }

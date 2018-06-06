@@ -6,6 +6,8 @@ public class PatentModel {
 
 	private String patentName;
 
+	private String patentUrl;
+
 	private Integer patentType;
 
 	private String patentStatus;
@@ -82,7 +84,6 @@ public class PatentModel {
 		this.industryName = industryName;
 	}
 
-
 	public String getPublishYear() {
 		return publishYear;
 	}
@@ -127,12 +128,13 @@ public class PatentModel {
 		this.patentType = patentType;
 	}
 
-	public PatentModel(String patentId, String patentName, Integer patentType, String patentStatus, String patentPrice,
-			String industry, String industryName, Integer isBatch, String publishYear, String publishTime, String userQQ,
-			String userWX) {
+	public PatentModel(String patentId, String patentName, String patentUrl, Integer patentType, String patentStatus,
+			String patentPrice, String industry, String industryName, Integer isBatch, String publishYear,
+			String publishTime, String userQQ, String userWX) {
 		super();
 		this.patentId = patentId;
 		this.patentName = patentName;
+		this.patentUrl = patentUrl;
 		this.patentType = patentType;
 		this.patentStatus = patentStatus;
 		this.patentPrice = patentPrice;
@@ -148,12 +150,21 @@ public class PatentModel {
 	public PatentModel() {
 	}
 
+	public String getPatentUrl() {
+		return patentUrl;
+	}
+
+	public void setPatentUrl(String patentUrl) {
+		this.patentUrl = patentUrl;
+	}
+
 	@Override
 	public String toString() {
-		return "PatentModel [patentId=" + patentId + ", patentName=" + patentName + ", patentType=" + patentType
-				+ ", patentStatus=" + patentStatus + ", patentPrice=" + patentPrice + ", industry=" + industry
-				+ ", industryName=" + industryName + ", isBatch=" + isBatch + ", publishYear=" + publishYear
-				+ ", publishTime=" + publishTime + ", userQQ=" + userQQ + ", userWX=" + userWX + "]";
+		return "PatentModel [patentId=" + patentId + ", patentName=" + patentName + ", patentUrl=" + patentUrl
+				+ ", patentType=" + patentType + ", patentStatus=" + patentStatus + ", patentPrice=" + patentPrice
+				+ ", industry=" + industry + ", industryName=" + industryName + ", isBatch=" + isBatch
+				+ ", publishYear=" + publishYear + ", publishTime=" + publishTime + ", userQQ=" + userQQ + ", userWX="
+				+ userWX + "]";
 	}
 
 }

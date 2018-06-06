@@ -30,7 +30,7 @@ public class ResourceHandler {
 		logger.info("load config:" + map);
 	}
 	
-	public static String get(Object key) {
+	public static String get(String key) {
 		return map.get(key);
 	}
 
