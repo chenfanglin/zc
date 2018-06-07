@@ -20,7 +20,7 @@ create table t_patent(
 	`is_batch_name` varchar(20) NOT NULL DEFAULT '0' COMMENT '是否批量:0不批量,1批量',
 	`publish_year` int(11) NOT NULL DEFAULT '0' COMMENT '发布年份',
 	`publish_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
-	`user_qq` int(11) NOT NULL DEFAULT '0' COMMENT '用户qq',
+	`user_qq` bigint(20) NOT NULL DEFAULT '0' COMMENT '用户qq',
 	`user_wx` varchar(30) NOT NULL DEFAULT '' COMMENT '用户wx',
 	`is_show` tinyint(4) NOT NULL DEFAULT '0' COMMENT '是否显示:0显示,1不显示',
 	PRIMARY KEY (`id`),

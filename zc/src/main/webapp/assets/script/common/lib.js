@@ -37,7 +37,7 @@ function updatePassword() {
 	$.ajax({
 		url : 'update_pwd.do',
 		data : {
-			'oldpassword' : inputoldPassword,
+			'old_password' : inputoldPassword,
 			'password' : inputnewPassword
 		},
 		method : "post",
@@ -45,7 +45,7 @@ function updatePassword() {
 		success : function(data) {
 			if (data.statusCode == 4) {
 				window.open("login.jsp");
-			} else if (data.statusCode == 9) {
+			} else if (data.statusCode == 402) {
 				$.messager.popup('原始密码错误');
 			} else {
 				$.messager.popup('修改成功');

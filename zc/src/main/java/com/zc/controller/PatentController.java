@@ -60,6 +60,48 @@ public class PatentController {
 	 */
 	@RequestMapping("/add_patent")
 	public Object addPatent(HttpServletRequest request, HttpServletResponse response) throws ServerException {
+		PatentModel patentModel = buildPatentModel(request);
+		logger.info("录入专利:" + patentModel);
+		patentDAO.insertParent(patentModel);
+		return "success";
+	}
+
+	/**
+	 * 删除专利
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws ServerException
+	 */
+	@RequestMapping("/del_patent")
+	public Object delPatent(HttpServletRequest request, HttpServletResponse response) throws ServerException {
+		String patentId = request.getParameter("patent_id");
+		patentDAO.delParent(patentId);
+		return "success";
+	}
+	
+	/**
+	 * 修改专利
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws ServerException
+	 */
+	@RequestMapping("/update_patent")
+	public Object updatePatent(HttpServletRequest request, HttpServletResponse response) throws ServerException {
+		PatentModel patentModel = buildPatentModel(request);
+		logger.info("修改专利:" + patentModel);
+		patentDAO.updateParent(patentModel);
+		return "success";
+	}
+
+	/**
+	 * 参数组装
+	 * @param request
+	 * @return
+	 * @throws ServerException
+	 */
+	private PatentModel buildPatentModel(HttpServletRequest request) throws ServerException{
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		String currentDate = sdf.format(new Date());
 		String patentId = request.getParameter("patent_id");
@@ -91,14 +133,7 @@ public class PatentController {
 		PatentModel patentModel = new PatentModel(patentId, patentName,patentUrl, Integer.parseInt(patentType),patentTypeName, patentStatus,patentStatusName,
 				patentPrice, industry, industryName, Integer.parseInt(isBatch), isBatchName, publishYear, publishTime, userQQ,
 				userWX);
-		logger.info("录入专利列表:" + patentModel);
-		patentDAO.insertParent(patentModel);
-		return "success";
-	}
-
-	@RequestMapping("/upload_patent")
-	public Object uploadPatentExcel(HttpServletRequest request, HttpServletResponse response) throws ServerException {
-		return "";
+		return patentModel;
 	}
 
 	/**
@@ -127,7 +162,7 @@ public class PatentController {
 			int size = StringUtil.isEmpty(pageSize) ? 50 : Integer.parseInt(pageSize);
 			int pageIndex = (num - 1) * size < 0 ? 0 : (num - 1) * size;
 			BaseRequest baseRequest = new BaseRequest(
-					StringUtil.isEmpty(patentType) ? null : Integer.parseInt(patentType), patentStatus, minPatentPrice,
+					StringUtil.isEmpty(patentType) ? null : Integer.parseInt(patentType), StringUtil.isEmpty(patentStatus) ? null : patentStatus, minPatentPrice,
 					maxPatentPrice, industry, StringUtil.isEmpty(isBatch) ? null : Integer.parseInt(isBatch),
 					publishYear, keyword, sort, order, pageIndex, size);
 			return baseRequest;
