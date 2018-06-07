@@ -1,7 +1,5 @@
 package com.zc.dao;
 
-import java.util.List;
-
 import org.springframework.stereotype.Repository;
 
 import com.zc.model.UserModel;
@@ -11,4 +9,5 @@ public interface UserDAO {
 
 	public UserModel queryUserInfo(UserModel userModel);
 
+	public void updatePwd(UserModel userModel);
 }

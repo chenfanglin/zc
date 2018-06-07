@@ -13,4 +13,10 @@
 		SELECT `user_id`,`user_name`,
 		`password` FROM `t_users` WHERE `user_name` = #{userName}
 	</select>
+	
+	<select id="updatePwd"
+		parameterType="com.zc.model.UserModel" resultMap="baseResultMap">
+		update `t_users` set `password` = #{password} WHERE `user_name` = #{userName}
+	</select>
+	
 </mapper>

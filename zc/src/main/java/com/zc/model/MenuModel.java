@@ -1,6 +1,13 @@
 package com.zc.model;
 
-public class MenuModel {
+import java.io.Serializable;
+
+public class MenuModel implements Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	private Integer menuID;
 

@@ -26,6 +26,7 @@ import tk.mybatis.mapper.util.StringUtil;
 public class PatentController {
 
 	private static final Logger logger = LoggerFactory.getLogger(PatentController.class);
+	
 	@Autowired
 	private PatentDAO patentDAO;
 
@@ -65,9 +66,12 @@ public class PatentController {
 		String patentName = StringUtil.isEmpty(request.getParameter("patent_name")) ? ""
 				: request.getParameter("patent_name");
 		String patentType = request.getParameter("patent_type");
+		String patentTypeName = request.getParameter("patent_type_name");
 		String patentUrl = request.getParameter("patent_url");
 		String patentStatus = StringUtil.isEmpty(request.getParameter("patent_status")) ? "0"
 				: request.getParameter("patent_status");
+		String patentStatusName = StringUtil.isEmpty(request.getParameter("patent_status_name")) ? "0"
+				: request.getParameter("patent_status_name");
 		String patentPrice = StringUtil.isEmpty(request.getParameter("patent_price")) ? "0"
 				: request.getParameter("patent_price");
 		String publishYear = StringUtil.isEmpty(request.getParameter("publish_year")) ? "2018"
@@ -78,13 +82,14 @@ public class PatentController {
 		String industryName = StringUtil.isEmpty(request.getParameter("industry_name")) ? ""
 				: request.getParameter("industry_name");
 		String isBatch = request.getParameter("is_batch");
+		String isBatchName = request.getParameter("is_batch_name");
 		String userQQ = StringUtil.isEmpty(request.getParameter("user_qq")) ? "0" : request.getParameter("user_qq");
 		String userWX = StringUtil.isEmpty(request.getParameter("user_wx")) ? "" : request.getParameter("user_wx");
 		if (StringUtil.isEmpty(patentId) || StringUtil.isEmpty(patentType) || StringUtil.isEmpty(isBatch) || StringUtil.isEmpty(patentUrl)) {
 			throw new ServerException(StatusCode.PARAM_ERROR);
 		}
-		PatentModel patentModel = new PatentModel(patentId, patentName,patentUrl, Integer.parseInt(patentType), patentStatus,
-				patentPrice, industry, industryName, Integer.parseInt(isBatch), publishYear, publishTime, userQQ,
+		PatentModel patentModel = new PatentModel(patentId, patentName,patentUrl, Integer.parseInt(patentType),patentTypeName, patentStatus,patentStatusName,
+				patentPrice, industry, industryName, Integer.parseInt(isBatch), isBatchName, publishYear, publishTime, userQQ,
 				userWX);
 		logger.info("录入专利列表:" + patentModel);
 		patentDAO.insertParent(patentModel);
@@ -111,7 +116,7 @@ public class PatentController {
 			String publishYear = request.getParameter("publish_year");
 			String industry = request.getParameter("industry");
 			String isBatch = request.getParameter("is_batch");
-			String keyword = request.getParameter("keyword");
+			String keyword = StringUtil.isEmpty(request.getParameter("keyword")) ? null : request.getParameter("keyword");
 			String sort = request.getParameter("sort");
 			String order = request.getParameter("order");
 			String pageNum = request.getParameter("page_num");

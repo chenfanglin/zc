@@ -1,5 +1,7 @@
 package com.zc.model;
 
+import java.text.SimpleDateFormat;
+
 public class PatentModel {
 
 	private String patentId;
@@ -10,7 +12,11 @@ public class PatentModel {
 
 	private Integer patentType;
 
+	private String patentTypeName;
+
 	private String patentStatus;
+
+	private String patentStatusName;
 
 	private String patentPrice;
 
@@ -19,6 +25,8 @@ public class PatentModel {
 	private String industryName;
 
 	private Integer isBatch;
+
+	private String isBatchName;
 
 	private String publishYear;
 
@@ -93,6 +101,12 @@ public class PatentModel {
 	}
 
 	public String getPublishTime() {
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		try {
+			return sdf.format(sdf.parse(publishTime));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return publishTime;
 	}
 
@@ -128,25 +142,6 @@ public class PatentModel {
 		this.patentType = patentType;
 	}
 
-	public PatentModel(String patentId, String patentName, String patentUrl, Integer patentType, String patentStatus,
-			String patentPrice, String industry, String industryName, Integer isBatch, String publishYear,
-			String publishTime, String userQQ, String userWX) {
-		super();
-		this.patentId = patentId;
-		this.patentName = patentName;
-		this.patentUrl = patentUrl;
-		this.patentType = patentType;
-		this.patentStatus = patentStatus;
-		this.patentPrice = patentPrice;
-		this.industry = industry;
-		this.industryName = industryName;
-		this.isBatch = isBatch;
-		this.publishYear = publishYear;
-		this.publishTime = publishTime;
-		this.userQQ = userQQ;
-		this.userWX = userWX;
-	}
-
 	public PatentModel() {
 	}
 
@@ -158,13 +153,60 @@ public class PatentModel {
 		this.patentUrl = patentUrl;
 	}
 
+	public String getPatentTypeName() {
+		return patentTypeName;
+	}
+
+	public void setPatentTypeName(String patentTypeName) {
+		this.patentTypeName = patentTypeName;
+	}
+
+	public String getPatentStatusName() {
+		return patentStatusName;
+	}
+
+	public void setPatentStatusName(String patentStatusName) {
+		this.patentStatusName = patentStatusName;
+	}
+
+	public String getIsBatchName() {
+		return isBatchName;
+	}
+
+	public void setIsBatchName(String isBatchName) {
+		this.isBatchName = isBatchName;
+	}
+
 	@Override
 	public String toString() {
 		return "PatentModel [patentId=" + patentId + ", patentName=" + patentName + ", patentUrl=" + patentUrl
-				+ ", patentType=" + patentType + ", patentStatus=" + patentStatus + ", patentPrice=" + patentPrice
-				+ ", industry=" + industry + ", industryName=" + industryName + ", isBatch=" + isBatch
+				+ ", patentType=" + patentType + ", patentTypeName=" + patentTypeName + ", patentStatus=" + patentStatus
+				+ ", patentStatusName=" + patentStatusName + ", patentPrice=" + patentPrice + ", industry=" + industry
+				+ ", industryName=" + industryName + ", isBatch=" + isBatch + ", isBatchName=" + isBatchName
 				+ ", publishYear=" + publishYear + ", publishTime=" + publishTime + ", userQQ=" + userQQ + ", userWX="
 				+ userWX + "]";
+	}
+
+	public PatentModel(String patentId, String patentName, String patentUrl, Integer patentType, String patentTypeName,
+			String patentStatus, String patentStatusName, String patentPrice, String industry, String industryName,
+			Integer isBatch, String isBatchName, String publishYear, String publishTime, String userQQ, String userWX) {
+		super();
+		this.patentId = patentId;
+		this.patentName = patentName;
+		this.patentUrl = patentUrl;
+		this.patentType = patentType;
+		this.patentTypeName = patentTypeName;
+		this.patentStatus = patentStatus;
+		this.patentStatusName = patentStatusName;
+		this.patentPrice = patentPrice;
+		this.industry = industry;
+		this.industryName = industryName;
+		this.isBatch = isBatch;
+		this.isBatchName = isBatchName;
+		this.publishYear = publishYear;
+		this.publishTime = publishTime;
+		this.userQQ = userQQ;
+		this.userWX = userWX;
 	}
 
 }

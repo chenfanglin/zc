@@ -6,13 +6,13 @@ $(function() {
 function initPages() {
 	// 初始化日期控件
 	initDateSelect();
-	initSelectFilter();
+//	initSelectFilter();
 	var heightWin = $(window).height() - 120;
 	var cardView = false;
 	if ($(window).width() <= 768) {
 		cardView = true;
 	}
-	$('#newGameData').bootstrapTable({
+	$('#patentData').bootstrapTable({
 		cardView : cardView,
 		undefinedText : "",
 		cache : false,
@@ -23,13 +23,13 @@ function initPages() {
 		pageList : [ 10, 25, 50, 100, 200 ],
 		sidePagination : "server",
 		onPageChange : function(pageNumber, pageSize) {
-			var options = $("#newGameData").bootstrapTable('getOptions');
+			var options = $("#patentData").bootstrapTable('getOptions');
 			var name = options.sortName;
 			var order = options.sortOrder;
 			getData(pageNumber, pageSize, name, order);
 		},
 		onSort : function(name, order) {
-			var options = $("#newGameData").bootstrapTable('getOptions');
+			var options = $("#patentData").bootstrapTable('getOptions');
 			var pageNumber = options.pageNumber;
 			var pageSize = options.pageSize;
 			getData(pageNumber, pageSize, name, order);
@@ -46,7 +46,7 @@ function initPages() {
 			}
 		}
 	});
-	$('#inputflag').val(0);
+//	$('#inputflag').val(0);
 	getData(1, 50);
 }
 
@@ -54,12 +54,14 @@ function initPages() {
  * 服务端分页，通过ajax获取请求数据
  */
 function getData(pageNumber, pageSize, sortName, order) {
-	var queryParam = buildCondition(pageNumber, pageSize, sortName, order);
-	$('#newGameData').bootstrapTable("showLoading");
+	var keyValue = $('#serachGames').val();
+	$('#patentData').bootstrapTable("showLoading");
 	$.ajax({
-		url : 'queryNewGames.do',
+		url : '../query_patent_list.do',
 		data : {
-			'queryParam' : JSON.stringify(queryParam)
+			'page_num' : pageNumber,
+			'page_size' : pageSize,
+			'keyword' : keyValue
 		},
 		method : "post",
 		async : true,
@@ -69,62 +71,24 @@ function getData(pageNumber, pageSize, sortName, order) {
 			} else {
 				var datasource = {
 					total : data.content.totalRecord,
-					rows : data.content.newGame
+					rows : data.content.data
 				};
-				$('#newGameData').bootstrapTable("hideLoading");
-				$('#newGameData').bootstrapTable('load', datasource);
+				$('#patentData').bootstrapTable("hideLoading");
+				$('#patentData').bootstrapTable('load', datasource);
 				addActiveClass();
 			}
 		}
 	});
 }
 
-//初始化选择条件
-function initSelectFilter(){
-	$.ajax({
-		url : 'getNewGameSelect.do',
-		method : "post",
-		data : {
-			'type' : 0,
-			'parentID' : 0,
-		},
-		async : false,
-		success : function(data) {
-			var gameType = data.content.gameType;
-			var gameSource = data.content.gameSource;
-			var option = setOption(gameSource);
-			$("#gameSourceSelect").html(option.join(""));
-			option = setOption(gameType);
-			$("#gameTypeSelect").html(option.join(""));
-			option = setOption(gameType,1);
-			option.splice(1,1);
-			$("#inputGameTypeSelect").html(option.join(""));
-		}
-	});
-}
 
 function bindEvent() {
-	window.artEvents = {
-			'click .edit': function (e, value, row, index) {
-				openArt(row);
-			}
-		};
-	window.playEvents = {
-			'click .edit': function (e, value, row, index) {
-				openPlay(row);
-			}
-		};
-	window.themeEvents = {
-			'click .edit': function (e, value, row, index) {
-				openTheme(row);
-			}
-		};
-	window.gameEvents = {
-		'click .gameName' : function(e, value, row, index) {
-			$("#editGameInfo").modal({backdrop: 'static', keyboard: false});
-			viewGameInfo(row);
-		}
-	};
+	$('#createPatent').click(function(){
+		openCreatePatent();
+	});
+	$('#addPatent').click(function(){
+		addPatent();
+	});
 	// 查询
 	$("#confirm").click(function(e){
 		query();
@@ -195,58 +159,11 @@ function bindEvent() {
 	$('#deleteGame').click(function(){
 		deleteGame();
 	});
-	$('#addNewGame').click(function(){
-		addNewGame();
-	});
-	$('#createGame').click(function(){
-		openCreateGame();
-	});
-	// 按钮下拉菜单
-	$('#btnMenu').click(function(e){
-		queryByMenu(e);
-	});
+	
+	
 }
 
-// 保存游戏基础信息
-function saveGameInfo(){
-	var newGame = {
-			'id' : Number.parseInt($('#inputGameID').val()),
-			'gameName' : $('#inputGameName').val(),
-			'companyName' : $('#inputCompany').val(),
-			'version' : $('#inputVersion').val(),
-			'device' : $("#inputDevice").find("option:selected").text(),
-			'network' : $('#inputNetwork').val(),
-			'networkName' : $('#inputNetwork').find("option:selected").text(),
-			'clientSize' : $('#inputClientSize').val(),
-			'gameSource' : $('#inputGameSource').val(),
-	};
-	saveGameData('saveNewGameInfo.do',newGame);
-}
 
-// 保存游戏游戏分类
-
-function saveGameSort(){
-	var newGame = {
-			'id' : Number.parseInt($('#inputGameID').val()),
-			'gameRank' : $('#inputGameRank').val(),
-			'gameRankName' : $('#inputGameRank').find("option:selected").text(),
-			'screenType' : $('#inputScreenType').val(),
-			'screenTypeName' : $('#inputScreenType').find("option:selected").text(),
-			'screenDirection' : $('#inputScreenDirection').val(),
-			'perspective' : $('#inputPerspective').val(),
-			'styleArea' : $('#inputStyleArea').val(),
-			'gameType' : $('#inputGameTypeSelect').val() == null ? '' : $('#inputGameTypeSelect').val(),
-			'gameTypeName' : $('#inputGameTypeSelect').find("option:selected").text(),
-			'detailType' : $('#inputDetailTypeSelect').val() == null ? '' : $('#inputDetailTypeSelect').val(),
-			'homogenization' : $('#inputTzhSelect').val() == null ? '' : $('#inputTzhSelect').val(),
-			'gameTheme' : $('#inputGameTheme').val(),
-			'gameThemeName' : $('#inputGameTheme').find("option:selected").text(),
-			'ipinfo' : $('#inputIP').val(),
-			'authorize' : $('#inputAuthorize').val(),
-			'remark' : $('#remarkInfo').val().replace(new RegExp("\n","gm"),"<br>")
-	};
-	saveGameData('saveGameSort.do',newGame);
-}
 
 function saveGameData(url,newGame){
 	$.ajax({
@@ -265,8 +182,8 @@ function saveGameData(url,newGame){
             } else {
 				$.messager.popup("保存成功");
 				$("#editGameInfo").modal('hide');
-//				refreshTable($('#newGameData'));
-				var data = $('#newGameData').bootstrapTable('getData');
+//				refreshTable($('#patentData'));
+				var data = $('#patentData').bootstrapTable('getData');
 				$.each(data, function(index) {
                     if (this.id == newGame.id) {
                     	if (newGame.device) {
@@ -277,7 +194,7 @@ function saveGameData(url,newGame){
                     	this.gameTypeName = newGame.gameTypeName;
                     	this.gameThemeName = newGame.gameThemeName;
                     	this.gameRankName = newGame.gameRankName;
-                        $("#newGameData").bootstrapTable('updateRow', {index: index, row: this})
+                        $("#patentData").bootstrapTable('updateRow', {index: index, row: this})
                     }
                 })
 			}
@@ -514,8 +431,8 @@ function saveGameTags(url,gameData,name){
             } else {
             	$.messager.popup("保存成功");
 				$("#monitorModal").modal('hide');
-//				refreshTable($('#newGameData'));
-				var data = $('#newGameData').bootstrapTable('getData');
+//				refreshTable($('#patentData'));
+				var data = $('#patentData').bootstrapTable('getData');
 				$.each(data, function(index) {
                     if (this.id == gameData.gameID) {
                     	if (gameData.flag == 0) {
@@ -528,7 +445,7 @@ function saveGameTags(url,gameData,name){
                     		this.gameThemeTagName = name;
                             this.gameThemeTag = gameData.gameTags;
                     	}
-                        $("#newGameData").bootstrapTable('updateRow', {index: index, row: this})
+                        $("#patentData").bootstrapTable('updateRow', {index: index, row: this})
                     }
                 })
             }
@@ -537,7 +454,7 @@ function saveGameTags(url,gameData,name){
 }
 
 function query(){
-	var options = $("#newGameData").bootstrapTable('getOptions');
+	var options = $("#patentData").bootstrapTable('getOptions');
 	var name = options.sortName;
 	var order = options.sortOrder;
 	var pageNumber = options.pageNumber;
@@ -684,14 +601,9 @@ function addSelectClass(gameTags){
 	} 
 }
 
-function queryChartData(startDate,endDate){
-	var id = $('#inputGameID').val();
-	lineMonitorCharts("getPlayerRates.do","evaluation",startDate,endDate,id);
-}
-
 // 导出游戏数据
 function exportExcel(){
-	var options = $("#newGameData").bootstrapTable('getOptions');
+	var options = $("#patentData").bootstrapTable('getOptions');
 	var name = options.sortName;
 	var order = options.sortOrder;
 	var pageNumber = options.pageNumber;
@@ -765,31 +677,34 @@ function buildCondition(pageNumber,pageSize,sortName,order){
 	};
 	return queryParam;
 }
-// 打开游戏
-function openCreateGame(){
-	$("#addGameModal").modal({backdrop: 'static', keyboard: false});
-	$("#publishTime").datetimepicker({format: 'yyyy-mm-dd',todayBtn: true,autoclose: true,todayHighlight: 1,startView: 2,minView: 2});
+
+function openCreatePatent(){
+	$("#addPatentModal").modal({backdrop: 'static', keyboard: false});
+	$("#publishTime").datetimepicker({format: 'yyyy-mm-dd HH:mm:ss',todayBtn: true,autoclose: true,todayHighlight: 1,startView: 2,minView: 2});
 	$('#publishTime').val('');
-	$('#inputNewGameName').val('');
-	$('#inputCompanyName').val('');
-	$('#inputDeviceType').val('');
-	$('#inputGameSummary').val('');
 }
 
-// 新增游戏
-function addNewGame(){
-	var newGame = {
-		'gameName' : $('#inputNewGameName').val(),
-		'publishDate' : $('#publishTime').val(),
-		'companyName' : $('#inputCompanyName').val(),
-		'device' : $('#inputDeviceType').find("option:selected").text(),
-		'summary' : $('#inputGameSummary').val()
-	};
+// 新增专利
+function addPatent(){
 	$.ajax({
-		url : 'addNewGame.do',
+		url : '../add_patent.do',
 		data : {
-			'flag' : Number.parseInt($('#inputflag').val()),
-			'newGame' : JSON.stringify(newGame)
+			'patent_id' : $('#inputPatentId').val(),
+			'publish_time' : $('#publishTime').val(),
+			'patent_name' : $('#inputPatentName').val(),
+			'patent_type' : $('#inputPatentType').val(),
+			'patent_type_name' : $('#inputPatentType').find("option:selected").text(),
+			'patent_price' : $('#inputPatentPrice').val(),
+			'patent_status' : $('#inputPatentStatus').val(),
+			'patent_status_name' : $('#inputPatentStatus').find("option:selected").text(),
+			'is_batch' : $('#inputIsBatch').val(),
+			'is_batch_name' : $('#inputIsBatch').find("option:selected").text(),
+			'industry' : $('#inputIndustry').val(),
+			'industry_name' : $('#inputIndustry').find("option:selected").text(),
+			'user_qq' : $('#inputQQ').val(),
+			'user_wx' : $('#inputWX').val(),
+			'publish_year' : $('#inputPublishYear').val(),
+			'patent_url' : $('#inputPatentUrl').val()
 		},
 		method : "post",
 		async : true,
@@ -800,8 +715,8 @@ function addNewGame(){
             	window.open("login.jsp");
             } else {
 				$.messager.popup("添加成功");
-				$("#addGameModal").modal('hide');
-				refreshTable($('#newGameData'));
+				$("#addPatentModal").modal('hide');
+				refreshTable($('#patentData'));
 			}
 		}
 	});
@@ -809,7 +724,7 @@ function addNewGame(){
 
 //删除游戏
 function deleteGame(){
-	var selectDatas = $('#newGameData').bootstrapTable('getSelections');
+	var selectDatas = $('#patentData').bootstrapTable('getSelections');
 	if (selectDatas.length > 0) {
 		$.messager.confirm("", "确定删除所选游戏信息？", function() { 
 			$.ajax({
@@ -827,7 +742,7 @@ function deleteGame(){
 		            	window.open("login.jsp");
 		            } else {
 						$.messager.popup("删除成功");
-						refreshTable($('#newGameData'));
+						refreshTable($('#patentData'));
 					}
 				}
 			});
@@ -837,248 +752,4 @@ function deleteGame(){
 	}
 	
 }
-//查询按钮
-function queryByMenu(e){
-	var value = $(e.target).text();
-	$('#dropdownBtn').text(value).append('<span class="caret">');
-	if (value == '新品游戏') {
-		$('#inputflag').val(0);
-	} else {
-		$('#inputflag').val(1);
-	}
-	query();
-}
 
-/**
- * 曲线图
- */
-function lineMonitorCharts(url, id, startDate,endDate,gameIDs) {
-	var chart = new Highcharts.Chart({
-		chart : {
-			renderTo : id,
-			plotBackgroundColor : null,
-			defaultSeriesType: 'spline',
-			plotBorderWidth : null,
-			plotShadow : false,
-		},
-		title : {
-			text : null,
-		},
-		credits : {
-			enabled : false
-		// 禁用版权信息
-		},
-		yAxis : {
-			title : {
-				text : '分数'
-			},
-			plotLines : [ {
-				value : 0,
-				width : 1,
-				color : '#808080'
-			} ]
-		},
-		tooltip : {
-			crosshairs : true,
-			shared : true,
-			valueSuffix : '分'
-		},
-		plotOptions : {
-			line : {
-				dataLabels : {
-					enabled : true
-				},
-				enableMouseTracking : true
-			}
-		}
-	});
-	var categoriesData = [];
-	var seriesData = [];
-	var queryParam = {
-		'startDate' : startDate,
-		'endDate' : endDate,
-		'id' : gameIDs
-	};
-	chart.showLoading();
-	$.ajax({
-		url : url,
-		dataType : "json",
-		data : {
-			'queryParam' : JSON.stringify(queryParam)
-		},
-		type : 'post',
-		async : true,
-		success : function(data) {
-			if (data.statusCode == 200) {
-				chart.hideLoading();
-				categoriesData = data.content.dateLists;
-				seriesData = data.content.graphDataModel;
-				var seriesDatas = [];
-				for (var i = 0; i < seriesData.length; i++) {
-					var lineData = {
-						name : seriesData[i].name,
-						data : seriesData[i].dataRank
-					};
-					chart.addSeries(lineData);
-					seriesDatas.push(lineData);
-				}
-				chart.xAxis[0].setCategories(categoriesData);
-			}
-		}
-	});
-}
-
-// 下载量
-function lineDownloadCharts(url, id, startDate,endDate,gameIDs) {
-	var chart = new Highcharts.Chart({
-		chart : {
-			renderTo : id,
-			plotBackgroundColor : null,
-			defaultSeriesType: 'spline',
-			plotBorderWidth : null,
-			plotShadow : false,
-		},
-		title : {
-			text : null,
-		},
-		credits : {
-			enabled : false
-		// 禁用版权信息
-		},
-		yAxis : {
-			title : {
-				text : '次数'
-			},
-			plotLines : [ {
-				value : 0,
-				width : 1,
-				color : '#808080'
-			} ]
-		},
-		tooltip : {
-			crosshairs : true,
-			shared : true,
-			valueSuffix : '次'
-		},
-		plotOptions : {
-			line : {
-				dataLabels : {
-					enabled : true
-				},
-				enableMouseTracking : true
-			}
-		}
-	});
-	var categoriesData = [];
-	var seriesData = [];
-	var queryParam = {
-		'startDate' : startDate,
-		'endDate' : endDate,
-		'id' : gameIDs
-	};
-	chart.showLoading();
-	$.ajax({
-		url : url,
-		dataType : "json",
-		data : {
-			'queryParam' : JSON.stringify(queryParam)
-		},
-		type : 'post',
-		async : true,
-		success : function(data) {
-			if (data.statusCode == 200) {
-				chart.hideLoading();
-				categoriesData = data.content.dateLists;
-				seriesData = data.content.graphDataModel;
-				var seriesDatas = [];
-				for (var i = 0; i < seriesData.length; i++) {
-					var lineData = {
-						name : seriesData[i].name,
-						data : seriesData[i].dataRank
-					};
-					chart.addSeries(lineData);
-					seriesDatas.push(lineData);
-				}
-				chart.xAxis[0].setCategories(categoriesData);
-			}
-		}
-	});
-}
-
-// 榜单排名
-function lineGameTopsCharts(url, id, startDate,endDate,gameID,channelID) {
-	var chart = new Highcharts.Chart({
-		chart : {
-			renderTo : id,
-			plotBackgroundColor : null,
-			defaultSeriesType: 'spline',
-			plotBorderWidth : null,
-			plotShadow : false,
-		},
-		title : {
-			text : null,
-		},
-		credits : {
-			enabled : false
-		// 禁用版权信息
-		},
-		yAxis : {
-			title : {
-				text : '名次'
-			},
-			plotLines : [ {
-				value : 0,
-				width : 1,
-				color : '#808080'
-			} ]
-		},
-		tooltip : {
-			crosshairs : true,
-			shared : true,
-			valueSuffix : '名'
-		},
-		plotOptions : {
-			line : {
-				dataLabels : {
-					enabled : true
-				},
-				enableMouseTracking : true
-			}
-		}
-	});
-	var categoriesData = [];
-	var seriesData = [];
-	var queryParam = {
-		'startDate' : startDate,
-		'endDate' : endDate,
-		'id' : gameID,
-		'channelID' : channelID
-	};
-	chart.showLoading();
-	$.ajax({
-		url : url,
-		dataType : "json",
-		data : {
-			'queryParam' : JSON.stringify(queryParam)
-		},
-		type : 'post',
-		async : true,
-		success : function(data) {
-			if (data.statusCode == 200) {
-				chart.hideLoading();
-				categoriesData = data.content.dateLists;
-				seriesData = data.content.graphDataModel;
-				var seriesDatas = [];
-				for (var i = 0; i < seriesData.length; i++) {
-					var lineData = {
-						name : seriesData[i].name,
-						data : seriesData[i].dataRank
-					};
-					chart.addSeries(lineData);
-					seriesDatas.push(lineData);
-				}
-				chart.xAxis[0].setCategories(categoriesData);
-			}
-		}
-	});
-}

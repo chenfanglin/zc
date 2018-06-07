@@ -35,7 +35,7 @@ function updatePassword() {
 	}
 	$(".check-error").hide();
 	$.ajax({
-		url : 'updatePwd.do',
+		url : 'update_pwd.do',
 		data : {
 			'oldpassword' : inputoldPassword,
 			'password' : inputnewPassword
@@ -59,38 +59,6 @@ function loginout() {
 	$.messager.confirm("", "确定退出系统？", function() {
 		location.href = 'loginout.do';
 	});
-}
-// 审核
-function formatterBtn(value, row, index) {
-	if (value == 1) {
-		return '<button onclick=check("'+row.uid+'") type="button" class="btn btn-primary btn-xs">审核</button>';
-	}
-}
-// 游戏题材
-function formatterThemes(value, row, index) {
-	return ''
-			+ value
-			+ '<a class="edit" href="javascript:void(0)" title="题材"><i class="glyphicon glyphicon-pencil"></i></a>';
-}
-
-// 游戏标签
-function formatterTags(value, row, index) {
-	if (value) {
-		return ''
-		+ value
-		+ '<a class="edit" href="javascript:void(0)" title="标签"><i class="glyphicon glyphicon-pencil"></i></a>';
-	} else {
-		return '<a class="edit" href="javascript:void(0)" title="标签"><i class="glyphicon glyphicon-pencil"></i></a>';
-	}
-	
-}
-// 处理
-function formatterDealwith(value, row, index) {
-	if (value == 0) {
-		return '<button type="button" class="btn btn-primary btn-xs">未处理</button>';
-	} else {
-		return '<button type="button" class="btn btn-primary btn-xs">已处理</button>';
-	}
 }
 
 /**

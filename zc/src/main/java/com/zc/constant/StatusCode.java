@@ -11,4 +11,7 @@ public class StatusCode {
 	public static final int PASSWORD_ERROE = 402;
 	
 	public static final int USER_NOT_EXIST = 403;
+	
+	public static final int NOT_LOGIN = 4;
+	
 }
