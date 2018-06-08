@@ -136,9 +136,9 @@ function formatterLoginStatus(value, row, index) {
 		return '<span class="glyphicon glyphicon-star btn-grayed"></span>';
 	}
 }
-// 实时分渠道
+
 function formatterSwitch(value, row, index) {
-	if (value == 0) {
+	if (row.isShow == 1) {
 		// 未开通（未发放）
 		return '<input class="channelSwitch" type="checkbox"/>';
 	} else {

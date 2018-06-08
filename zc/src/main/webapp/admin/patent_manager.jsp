@@ -102,7 +102,10 @@
 									<th data-sortable="false" data-width="5%"
 									data-field="userWX">联系微信</th>
 								<th data-sortable="false" data-align="center" data-width="5%"
-									data-formatter="formatterCUD" data-events="patentEvents">操作</th>
+									data-formatter="formatterSwitch" data-events="showEvents">专利显示状态</th>
+								<th data-sortable="false" data-align="center" data-width="5%"
+									data-formatter="formatterEdit" data-events="patentEvents">操作</th>
+									
 							</tr>
 						</thead>
 					</table>

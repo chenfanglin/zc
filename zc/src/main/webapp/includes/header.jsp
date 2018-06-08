@@ -19,7 +19,7 @@
 		<span class="sr-only">切换导航</span> <span class="icon-bar"></span>
 		<span class="icon-bar"></span> <span class="icon-bar"></span>
 	</button>
-	<a class="navbar-brand" href="customerInfo.jsp?menuID=2">
+	<a class="navbar-brand" href="patent_manager.jsp">
 	<img src="../assets/images/logo.png"></a>
 </div>
 <ul class="nav navbar-right top-nav">

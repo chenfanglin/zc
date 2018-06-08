@@ -35,6 +35,8 @@ public class PatentModel {
 	private String userQQ;
 
 	private String userWX;
+	
+	private Integer isShow;
 
 	public String getPatentId() {
 		return patentId;
@@ -207,6 +209,14 @@ public class PatentModel {
 		this.publishTime = publishTime;
 		this.userQQ = userQQ;
 		this.userWX = userWX;
+	}
+
+	public Integer getIsShow() {
+		return isShow;
+	}
+
+	public void setIsShow(Integer isShow) {
+		this.isShow = isShow;
 	}
 
 }

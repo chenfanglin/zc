@@ -63,6 +63,7 @@ function getData(pageNumber, pageSize, sortName, order) {
 			'patent_type' : patentType,
 			'patent_status' : patentStatus,
 			'is_batch' : isBatch,
+			'flag':"admin",
 			'page_num' : pageNumber,
 			'page_size' : pageSize,
 			'keyword' : keyValue
@@ -79,6 +80,7 @@ function getData(pageNumber, pageSize, sortName, order) {
 				};
 				$('#patentData').bootstrapTable("hideLoading");
 				$('#patentData').bootstrapTable('load', datasource);
+				$('.channelSwitch').bootstrapSwitch('size','small');
 				addActiveClass();
 			}
 		}
@@ -116,6 +118,32 @@ function bindEvent() {
 	    	delPatentInfo(row);
 	    }
 	};
+	// 
+	window.showEvents = {
+		'switchChange.bootstrapSwitch .channelSwitch': function (e, value, row, index) {
+			if (e.target.checked == true) {
+				changePatentStatus(row.patentId, 0, "开启成功");
+			} else {
+				changePatentStatus(row.patentId, 1, "关闭成功");
+			}
+		}
+	};
+}
+
+//开通关闭
+function changePatentStatus(patentId,isShow,message){
+	$.ajax({
+		url : '../del_patent.do',
+		data : {
+			"patent_id" : patentId,
+			"is_show":isShow
+		},
+		method : "post",
+		async : true,
+		success : function(data) {
+			$.messager.popup(message);
+		}
+	});
 }
 
 /**
@@ -188,6 +216,11 @@ function openUpdatePatent(rowData) {
 	$('#inputWX1').val(rowData.userWX);
 	$('#inputPublishYear1').val(rowData.publishYear);
 	$('#inputPatentUrl1').val(rowData.patentUrl);
+	if (rowData.isShow == 0) {
+		$("#pluginswitch").bootstrapSwitch('state', true,true);
+	} else {
+		$("#pluginswitch").bootstrapSwitch('state', false,true);
+	}
 }
 
 /**

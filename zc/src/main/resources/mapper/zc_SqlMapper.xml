@@ -19,12 +19,16 @@
 		<result property="publishTime" column="publish_time" />
 		<result property="userQQ" column="user_qq" />
 		<result property="userWX" column="user_wx" />
+		<result property="isShow" column="is_show" />
 	</resultMap>
 	<select id="queryPatentList"
 		parameterType="com.zc.req.BaseRequest" resultMap="baseResultMap">
 		select
 		patent_id,patent_name,patent_url,patent_type,patent_type_name,patent_status,patent_status_name,patent_price,industry,industry_name,is_batch,is_batch_name,
-		publish_time,publish_year,user_qq,user_wx from t_patent where `is_show` = 0
+		publish_time,publish_year,user_qq,user_wx,is_show from t_patent where 1 = 1
+		<if test="flag == null">
+			AND `is_show` = 0
+		</if>
 		<if test="patentType != null">
 			AND patent_type = #{patentType}
 		</if>
@@ -67,9 +71,9 @@
 		#{patentPrice},#{industry},#{industryName},#{isBatch},#{isBatchName},#{publishYear},#{publishTime},#{userQQ},#{userWX});
 	</insert>
 
-	<update id="delParent" parameterType="java.lang.String">
+	<update id="delParent" parameterType="com.zc.model.PatentModel">
 		update t_patent set
-		`is_show` = 1 where patent_id = #{patentId};
+		`is_show` = #{isShow} where patent_id = #{patentId};
 	</update>
 	
 	<update id="updateParent" parameterType="com.zc.model.PatentModel">

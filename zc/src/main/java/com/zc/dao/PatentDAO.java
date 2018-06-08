@@ -17,7 +17,7 @@ public interface PatentDAO {
 	
 	public void insertParent(PatentModel patentModel) throws ServerException;
 	
-	public void delParent(String patentId) throws ServerException;
+	public void delParent(PatentModel model) throws ServerException;
 	
 	public void updateParent(PatentModel patentModel) throws ServerException;
 }

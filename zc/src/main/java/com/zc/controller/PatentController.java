@@ -76,7 +76,11 @@ public class PatentController {
 	@RequestMapping("/del_patent")
 	public Object delPatent(HttpServletRequest request, HttpServletResponse response) throws ServerException {
 		String patentId = request.getParameter("patent_id");
-		patentDAO.delParent(patentId);
+		String isShow = request.getParameter("is_show");
+		PatentModel model = new PatentModel();
+		model.setPatentId(patentId);
+		model.setIsShow(Integer.parseInt(isShow));
+		patentDAO.delParent(model);
 		return "success";
 	}
 	
@@ -152,6 +156,7 @@ public class PatentController {
 			String industry = request.getParameter("industry");
 			String isBatch = request.getParameter("is_batch");
 			String keyword = StringUtil.isEmpty(request.getParameter("keyword")) ? null : request.getParameter("keyword");
+			String flag = request.getParameter("flag");
 			String sort = request.getParameter("sort");
 			String order = request.getParameter("order");
 			String pageNum = request.getParameter("page_num");
@@ -164,7 +169,7 @@ public class PatentController {
 			BaseRequest baseRequest = new BaseRequest(
 					StringUtil.isEmpty(patentType) ? null : Integer.parseInt(patentType), StringUtil.isEmpty(patentStatus) ? null : patentStatus, minPatentPrice,
 					maxPatentPrice, industry, StringUtil.isEmpty(isBatch) ? null : Integer.parseInt(isBatch),
-					publishYear, keyword, sort, order, pageIndex, size);
+					publishYear, keyword, flag, sort, order, pageIndex, size);
 			return baseRequest;
 		} catch (Exception e) {
 			throw new ServerException(StatusCode.PARAM_ERROR);

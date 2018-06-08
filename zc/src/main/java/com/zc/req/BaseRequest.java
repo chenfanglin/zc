@@ -17,6 +17,8 @@ public class BaseRequest {
 	private String publishYear;
 
 	private String keyword;
+	
+	private String flag;
 
 	private String sort;
 
@@ -27,7 +29,7 @@ public class BaseRequest {
 	private Integer pageSize = 50;
 
 	public BaseRequest(Integer patentType, String patentStatus, String minPatentPrice, String maxPatentPrice,
-			String industry, Integer isBatch, String publishYear, String keyword, String sort, String order,
+			String industry, Integer isBatch, String publishYear, String keyword, String flag, String sort, String order,
 			Integer pageIndex, Integer pageSize) {
 		super();
 		this.patentType = patentType;
@@ -38,6 +40,7 @@ public class BaseRequest {
 		this.isBatch = isBatch;
 		this.publishYear = publishYear;
 		this.keyword = keyword;
+		this.flag = flag;
 		this.sort = sort;
 		this.order = order;
 		this.pageIndex = pageIndex;
@@ -144,6 +147,14 @@ public class BaseRequest {
 
 	public Integer getIsBatch() {
 		return isBatch;
+	}
+
+	public String getFlag() {
+		return flag;
+	}
+
+	public void setFlag(String flag) {
+		this.flag = flag;
 	}
 
 	@Override
