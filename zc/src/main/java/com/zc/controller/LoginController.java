@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.zc.constant.StatusCode;
@@ -19,6 +20,7 @@ import com.zc.model.MenuModel;
 import com.zc.model.UserModel;
 
 @Controller
+@CrossOrigin(origins = "*", maxAge = 3600)
 public class LoginController {
 
 	@Autowired

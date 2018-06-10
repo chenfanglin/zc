@@ -11,6 +11,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.zc.constant.StatusCode;
@@ -23,6 +24,7 @@ import com.zc.req.BaseRequest;
 import tk.mybatis.mapper.util.StringUtil;
 
 @Controller
+@CrossOrigin(origins = "*", maxAge = 3600)
 public class PatentController {
 
 	private static final Logger logger = LoggerFactory.getLogger(PatentController.class);
