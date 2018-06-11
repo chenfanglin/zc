@@ -35,6 +35,8 @@ public class UploadService {
 	@Async("uploadThreadPool")
 	public void parseUploadData(String realPath) {
 		List<Map<String, String>> datalist = ExcelUtil.readExcelData(realPath);
-		System.out.println(datalist);
+		for (Map<String, String> map : datalist) {
+			map.get("");
+		}
 	}
 }
