@@ -11,6 +11,7 @@ public class ServerUtil {
 	
 	public static void writeToResponse(HttpServletResponse response, int httpStatusCode, String body) {
 		response.setContentType(CONTENT_TYPE_JSON);
+		response.setHeader("Access-Control-Allow-Origin", "*");
 		response.setStatus(httpStatusCode);
 		PrintWriter writer = null;
 		try {

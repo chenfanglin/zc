@@ -19,6 +19,32 @@
 			</list>
 		</property>
 	</bean>
+	<!-- 文件上传 -->
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"> 
+        <property name="maxUploadSize" value="9000000"/> 
+    </bean>
+    
+    <!-- mail template for alarm -->
+	<bean id="mailTemplate" class="com.zc.common.MailTemplate">
+		<constructor-arg ref="mailSender" />
+		<constructor-arg value="1476264241@qq.com" />
+		<property name="fromName" value="江西集睿系统邮件" />
+		<property name="maxRetryTime" value="2" />
+		<property name="retryIdle" value="2000" />
+	</bean>
+    <!-- 邮件 -->
+    <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+		<property name="host" value="smtp.exmail.qq.com" />
+		<property name="javaMailProperties">
+			<props>
+				<prop key="mail.smtp.auth">true</prop>
+				<prop key="mail.smtp.timeout">25000</prop>
+			</props>
+		</property>
+		<property name="username" value="1476264241@qq.com" />
+		<property name="password" value="cfl19921023" />
+	</bean>
+	
 	<!--配置数据源 -->
 	<bean id="zc-dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
 		destroy-method="close">

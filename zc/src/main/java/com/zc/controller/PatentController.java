@@ -20,6 +20,7 @@ import com.zc.exception.ServerException;
 import com.zc.model.PageDataModel;
 import com.zc.model.PatentModel;
 import com.zc.req.BaseRequest;
+import com.zc.req.PatentParam;
 
 import tk.mybatis.mapper.util.StringUtil;
 
@@ -42,11 +43,11 @@ public class PatentController {
 	 */
 	@RequestMapping("/query_patent_list")
 	public Object queryPatentList(HttpServletRequest request, HttpServletResponse response) throws ServerException {
-		BaseRequest baseRequest = buildPatentParameter(request);
+		PatentParam baseRequest = buildPatentParameter(request);
 		logger.info("查询专利列表:" + baseRequest);
 		PageDataModel pageDataModel = new PageDataModel();
 		List<PatentModel> list = patentDAO.queryPatentList(baseRequest);
-		int totalRecord = patentDAO.queryPatentCount(baseRequest);
+		int totalRecord = patentDAO.queryPatentCount();
 		pageDataModel.setTotalRecord(totalRecord);
 		pageDataModel.setData(list);
 		return pageDataModel;
@@ -100,7 +101,7 @@ public class PatentController {
 		patentDAO.updateParent(patentModel);
 		return "success";
 	}
-
+	
 	/**
 	 * 参数组装
 	 * @param request
@@ -148,7 +149,7 @@ public class PatentController {
 	 * @param request
 	 * @return
 	 */
-	private BaseRequest buildPatentParameter(HttpServletRequest request) throws ServerException {
+	private PatentParam buildPatentParameter(HttpServletRequest request) throws ServerException {
 		try {
 			String patentType = request.getParameter("patent_type");
 			String patentStatus = request.getParameter("patent_status");
@@ -168,7 +169,7 @@ public class PatentController {
 			int num = StringUtil.isEmpty(pageNum) || "0".equals(pageNum) ? 1 : Integer.parseInt(pageNum);
 			int size = StringUtil.isEmpty(pageSize) ? 50 : Integer.parseInt(pageSize);
 			int pageIndex = (num - 1) * size < 0 ? 0 : (num - 1) * size;
-			BaseRequest baseRequest = new BaseRequest(
+			PatentParam baseRequest = new PatentParam(
 					StringUtil.isEmpty(patentType) ? null : Integer.parseInt(patentType), StringUtil.isEmpty(patentStatus) ? null : patentStatus, minPatentPrice,
 					maxPatentPrice, industry, StringUtil.isEmpty(isBatch) ? null : Integer.parseInt(isBatch),
 					publishYear, keyword, flag, sort, order, pageIndex, size);

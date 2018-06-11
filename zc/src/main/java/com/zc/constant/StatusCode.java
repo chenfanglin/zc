@@ -14,4 +14,5 @@ public class StatusCode {
 	
 	public static final int NOT_LOGIN = 4;
 	
+	public static final int READY_UPLOAD = 9000;
 }

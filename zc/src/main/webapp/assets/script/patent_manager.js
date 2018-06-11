@@ -90,7 +90,10 @@ function getData(pageNumber, pageSize, sortName, order) {
 
 function bindEvent() {
 	$('#createPatent').click(function(){
-		openCreatePatent(undefined);
+		openCreatePatent();
+	});
+	$('#uploadPatent').click(function(){
+		openUploadPatent();
 	});
 	$('#addPatent').click(function(){
 		addPatent();
@@ -128,6 +131,9 @@ function bindEvent() {
 			}
 		}
 	};
+	$("#uploadPatents").on("fileuploaded", function (event, data, previewId, index) {
+		$.messager.popup(data.response.content);
+    });
 }
 
 //开通关闭
@@ -194,6 +200,24 @@ function query(){
 function openCreatePatent(){
 	$("#addPatentModal").modal({backdrop: 'static', keyboard: false});
 	$("#publishTime").datetimepicker({format: 'yyyy-mm-dd HH:mm:ss',todayBtn: true,autoclose: true,todayHighlight: 1,startView: 2,minView: 2});
+}
+
+/**
+ * 打开上传专利面板
+ * @returns
+ */
+function openUploadPatent(){
+	$("#uploadPatentModal").modal({backdrop: 'static', keyboard: false});
+	$('#uploadPatents').fileinput({
+		enctype: 'multipart/form-data',
+        showUpload: true, //是否显示上传按钮
+        showCaption: false,//是否显示标题
+        uploadUrl: "upload_patents.do", //上传的地址
+        uploadAsync: true,
+        maxFileCount : 1,
+        maxFileSize : 50000,// 不能大于500k
+        allowedFileExtensions : ['xls', 'xlsx'],//接收的文件后缀
+    });
 }
 
 /**

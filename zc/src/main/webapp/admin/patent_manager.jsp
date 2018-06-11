@@ -75,6 +75,11 @@
 					<span class="glyphicon glyphicon-plus">新增专利</span>
 				</button>
 			</div>
+			<div class="pull-right btngroup-right-padding">
+				<button type="button" id="uploadPatent" class="btn btn-success">
+					<span class="glyphicon glyphicon-plus">批量上传</span>
+				</button>
+			</div>
 		</div>
 		<div id="page-wrapper">
 			<div class="container-fluid">
@@ -330,6 +335,32 @@
 						<button type="button" id="updatePatent" class="btn btn-primary">确定</button>
 						<button type="button" class="btn btn-info" data-dismiss="modal">取消</button>
 					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<!-- 批量上传-->
+	<div class="modal bs-example-modal-lg" id="uploadPatentModal" tabindex="-1"
+		role="dialog" aria-labelledby="uploadPatentLabel" aria-hidden="true">
+		<div class="modal-dialog" style="width: 50%">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-hidden="true">&times;</button>
+					<h5 class="modal-title" id="uploadPatentLabel">批量上传</h5>
+				</div>
+				<div class="modal-body">
+					<form class="form-horizontal">
+						<div class="form-group">
+							<div style="margin-left: 6%">
+								<div class="col-sm-6">
+									<input id="uploadPatents" type="file" class="file-loading"
+										name="uploadPatents">
+								</div>
+							</div>
+						</div>
+					</form>
 				</div>
 			</div>
 		</div>

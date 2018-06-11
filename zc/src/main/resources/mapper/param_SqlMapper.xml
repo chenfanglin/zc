@@ -1,0 +1,17 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zc.dao.ParamDAO">
+	<resultMap id="baseResultMap" type="com.zc.model.KeyValue">
+		<result property="key" column="param_id" />
+		<result property="value" column="param_name" />
+	</resultMap>
+	<select id="queryKeyValues"
+		parameterType="com.zc.req.ParamRequest" resultMap="baseResultMap">
+		select `param_id`,`param_name` from `t_params` where param_status = 0
+		AND `param_type` = #{paramType}
+		<if test="sort != null and order != null">
+			order by ${sort} ${order}
+		</if>
+	</select>
+</mapper>

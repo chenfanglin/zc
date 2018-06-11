@@ -22,7 +22,7 @@
 		<result property="isShow" column="is_show" />
 	</resultMap>
 	<select id="queryPatentList"
-		parameterType="com.zc.req.BaseRequest" resultMap="baseResultMap">
+		parameterType="com.zc.req.PatentParam" resultMap="baseResultMap">
 		select
 		patent_id,patent_name,patent_url,patent_type,patent_type_name,patent_status,patent_status_name,patent_price,industry,industry_name,is_batch,is_batch_name,
 		publish_time,publish_year,user_qq,user_wx,is_show from t_patent where 1 = 1

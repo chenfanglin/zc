@@ -2,45 +2,15 @@ package com.zc.req;
 
 public class BaseRequest {
 
-	private Integer patentType;
+	protected String sort;
 
-	private String patentStatus;
+	protected String order;
 
-	private String minPatentPrice;
+	protected Integer pageIndex = 0;
 
-	private String maxPatentPrice;
+	protected Integer pageSize = 50;
 
-	private String industry;
-
-	private Integer isBatch;
-
-	private String publishYear;
-
-	private String keyword;
-	
-	private String flag;
-
-	private String sort;
-
-	private String order;
-
-	private Integer pageIndex = 0;
-
-	private Integer pageSize = 50;
-
-	public BaseRequest(Integer patentType, String patentStatus, String minPatentPrice, String maxPatentPrice,
-			String industry, Integer isBatch, String publishYear, String keyword, String flag, String sort, String order,
-			Integer pageIndex, Integer pageSize) {
-		super();
-		this.patentType = patentType;
-		this.patentStatus = patentStatus;
-		this.minPatentPrice = minPatentPrice;
-		this.maxPatentPrice = maxPatentPrice;
-		this.industry = industry;
-		this.isBatch = isBatch;
-		this.publishYear = publishYear;
-		this.keyword = keyword;
-		this.flag = flag;
+	public BaseRequest(String sort, String order, Integer pageIndex, Integer pageSize) {
 		this.sort = sort;
 		this.order = order;
 		this.pageIndex = pageIndex;
@@ -49,56 +19,6 @@ public class BaseRequest {
 
 	public BaseRequest() {
 
-	}
-
-	public String getKeyword() {
-		return keyword;
-	}
-
-	public void setKeyword(String keyword) {
-		this.keyword = keyword;
-	}
-
-
-	public String getPatentStatus() {
-		return patentStatus;
-	}
-
-	public void setPatentStatus(String patentStatus) {
-		this.patentStatus = patentStatus;
-	}
-
-	public String getMinPatentPrice() {
-		return minPatentPrice;
-	}
-
-	public void setMinPatentPrice(String minPatentPrice) {
-		this.minPatentPrice = minPatentPrice;
-	}
-
-	public String getMaxPatentPrice() {
-		return maxPatentPrice;
-	}
-
-	public void setMaxPatentPrice(String maxPatentPrice) {
-		this.maxPatentPrice = maxPatentPrice;
-	}
-
-	public String getIndustry() {
-		return industry;
-	}
-
-	public void setIndustry(String industry) {
-		this.industry = industry;
-	}
-
-
-	public String getPublishYear() {
-		return publishYear;
-	}
-
-	public void setPublishYear(String publishYear) {
-		this.publishYear = publishYear;
 	}
 
 	public String getSort() {
@@ -133,35 +53,11 @@ public class BaseRequest {
 		this.pageSize = pageSize;
 	}
 
-	public void setPatentType(Integer patentType) {
-		this.patentType = patentType;
-	}
-
-	public void setIsBatch(Integer isBatch) {
-		this.isBatch = isBatch;
-	}
-
-	public Integer getPatentType() {
-		return patentType;
-	}
-
-	public Integer getIsBatch() {
-		return isBatch;
-	}
-
-	public String getFlag() {
-		return flag;
-	}
-
-	public void setFlag(String flag) {
-		this.flag = flag;
-	}
-
 	@Override
 	public String toString() {
-		return "BaseRequest [patentType=" + patentType + ", patentStatus=" + patentStatus + ", minPatentPrice="
-				+ minPatentPrice + ", maxPatentPrice=" + maxPatentPrice + ", industry=" + industry + ", isBatch="
-				+ isBatch + ", publishYear=" + publishYear + ", keyword=" + keyword + ", sort=" + sort + ", order="
-				+ order + ", pageIndex=" + pageIndex + ", pageSize=" + pageSize + "]";
+		return "BaseRequest [sort=" + sort + ", order=" + order + ", pageIndex=" + pageIndex + ", pageSize=" + pageSize
+				+ "]";
 	}
+
+
 }
