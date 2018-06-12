@@ -27,7 +27,7 @@ public class ParamController {
 	public Object getPublishYearList(HttpServletRequest request, HttpServletResponse response) throws ServerException {
 		ParamRequest param = new ParamRequest();
 		param.setParamType(Constant.PUBLISH_YEAR_TYPE);
-		param.setSort("create_time");
+		param.setSort("param_name");
 		param.setOrder("desc");
 		List<KeyValue> list = paramDAO.queryKeyValues(param);
 		return list;

@@ -86,8 +86,8 @@ public class ExcelUtil {
 					Date date = cell.getDateCellValue();
 					cellValue = DateUtil.getDateStr(date);
 				} else {
-					if (cell.toString().endsWith("E12") && cell.toString().indexOf(".") > -1) {
-						String repStr = cell.toString().replace(".", "");
+					if (cell.toString().contains("E") && cell.toString().indexOf(".") > -1) {
+						String repStr = cell.toString().trim().replace(".", "").replaceAll(" ", "");
 						cellValue = repStr.substring(0, repStr.length() - 3);
 					}
 				}
@@ -133,7 +133,10 @@ public class ExcelUtil {
 //		 patentModel.setPatentId(patentId);
 //		 System.out.println(map);
 //		 }
-		String repStr = "2.013100843347E12".replace(".", "");
+		int start = "1300(会员1100)".indexOf("(");
+		System.out.println("260000裸价".replaceAll("裸价", ""));
+		System.out.println("2.013100843347E11".contains("E"));
+		String repStr = "2.013100843347E11".replace(".", "");
 		System.out.println(repStr.substring(0, repStr.length() - 3).substring(0,4));
 	}
 }

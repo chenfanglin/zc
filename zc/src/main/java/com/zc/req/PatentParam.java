@@ -23,6 +23,15 @@ public class PatentParam extends BaseRequest {
 	public PatentParam() {
 	}
 
+	@Override
+	public String toString() {
+		return "PatentParam [patentType=" + patentType + ", patentStatus=" + patentStatus + ", minPatentPrice="
+				+ minPatentPrice + ", maxPatentPrice=" + maxPatentPrice + ", industry=" + industry + ", isBatch="
+				+ isBatch + ", publishYear=" + publishYear + ", keyword=" + keyword + ", flag=" + flag + ", sort="
+				+ sort + ", order=" + order + ", pageIndex=" + pageIndex + ", pageSize=" + pageSize + "]";
+	}
+
+
 	public PatentParam(Integer patentType, String patentStatus, String minPatentPrice, String maxPatentPrice,
 			String industry, Integer isBatch, String publishYear, String keyword, String flag, String sort,
 			String order, Integer pageIndex, Integer pageSize) {

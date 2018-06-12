@@ -33,7 +33,7 @@ public class UploadController {
 	
 	@RequestMapping("/admin/upload_patents")
 	public Object batchUploadPatents(HttpServletRequest request, HttpServletResponse response) throws ServerException {
-		MultipartHttpServletRequest r = (MultipartHttpServletRequest) request;
+ 		MultipartHttpServletRequest r = (MultipartHttpServletRequest) request;
 		Map<String, MultipartFile> fileMap = r.getFileMap();
 		for (Map.Entry<String, MultipartFile> entry : fileMap.entrySet()) {
 			MultipartFile myfile = entry.getValue();
@@ -43,8 +43,9 @@ public class UploadController {
 			try {
 				FileUtils.copyInputStreamToFile(myfile.getInputStream(),
 						new File(realPath, myfile.getOriginalFilename()));
-				logger.info("文件存储目录:" + realPath);
-				uploadService.parseUploadData(realPath);
+				String filePath =  realPath + "/" + myfile.getOriginalFilename();
+				logger.info("文件存储目录:" + filePath);
+				uploadService.parseUploadData(filePath);
 			} catch (IOException e) {
 				logger.info("专利列表上传异常:" + e);
 			}

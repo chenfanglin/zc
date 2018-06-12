@@ -88,7 +88,7 @@
 		publish_year,publish_time,seller_contact,`patentee`,sales_status,`contact`)
 		values(#{patentId},#{patentName},#{patentType},#{patentTypeName},#{patentStatus},#{patentStatusName},
 		#{patentPrice},#{publishYear},#{publishTime},#{sellerContact},#{patentee},#{salesStatus},#{contact})
-		ON DUPLICATE KEY UPDATE set patentName = #{patentName},patent_type = #{patentType},patent_type_name = #{patentTypeName},patent_status = #{patentStatus},
+		ON DUPLICATE KEY UPDATE patent_name = #{patentName},patent_type = #{patentType},patent_type_name = #{patentTypeName},patent_status = #{patentStatus},
 		patent_status_name = #{patentStatusName},patent_price = #{patentPrice},
 		publish_year = #{publishYear},publish_time = #{publishTime},seller_contact = #{sellerContact},`patentee` = #{patentee},sales_status = #{salesStatus},`contact` = #{contact}
 	</update>

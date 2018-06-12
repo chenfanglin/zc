@@ -11,4 +11,6 @@ import com.zc.req.ParamRequest;
 public interface ParamDAO {
 
 	public List<KeyValue> queryKeyValues(ParamRequest paramRequest);
+	
+	public void updateParams(ParamRequest paramRequest);
 }

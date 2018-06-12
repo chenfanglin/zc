@@ -231,6 +231,24 @@ public class PatentModel {
 		this.isShow = isShow;
 	}
 
+	public PatentModel(String patentId, String patentName, Integer patentType, String patentTypeName,
+			String patentStatus, String patentStatusName, String patentPrice, String publishYear, String publishTime,
+			String sellerContact, String patentee, String salesStatus, String contact) {
+		this.patentId = patentId;
+		this.patentName = patentName;
+		this.patentType = patentType;
+		this.patentTypeName = patentTypeName;
+		this.patentStatus = patentStatus;
+		this.patentStatusName = patentStatusName;
+		this.patentPrice = patentPrice;
+		this.publishYear = publishYear;
+		this.publishTime = publishTime;
+		this.sellerContact = sellerContact;
+		this.patentee = patentee;
+		this.salesStatus = salesStatus;
+		this.contact = contact;
+	}
+
 	public String getSellerContact() {
 		return sellerContact;
 	}

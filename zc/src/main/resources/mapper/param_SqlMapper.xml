@@ -14,4 +14,12 @@
 			order by ${sort} ${order}
 		</if>
 	</select>
+
+	<update id="updateParams"
+		parameterType="com.zc.req.ParamRequest">
+		insert into `t_params`(`param_type`,`param_name`)
+		values(#{paramType},#{paramName}) ON DUPLICATE KEY UPDATE 
+		`update_time` = now()
+	</update>
+
 </mapper>
