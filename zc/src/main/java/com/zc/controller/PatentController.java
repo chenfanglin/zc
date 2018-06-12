@@ -65,7 +65,7 @@ public class PatentController {
 	public Object addPatent(HttpServletRequest request, HttpServletResponse response) throws ServerException {
 		PatentModel patentModel = buildPatentModel(request);
 		logger.info("录入专利:" + patentModel);
-		patentDAO.insertParent(patentModel);
+		patentDAO.insertPatent(patentModel);
 		return "success";
 	}
 
@@ -83,7 +83,7 @@ public class PatentController {
 		PatentModel model = new PatentModel();
 		model.setPatentId(patentId);
 		model.setIsShow(Integer.parseInt(isShow));
-		patentDAO.delParent(model);
+		patentDAO.delPatent(model);
 		return "success";
 	}
 	
@@ -98,7 +98,7 @@ public class PatentController {
 	public Object updatePatent(HttpServletRequest request, HttpServletResponse response) throws ServerException {
 		PatentModel patentModel = buildPatentModel(request);
 		logger.info("修改专利:" + patentModel);
-		patentDAO.updateParent(patentModel);
+		patentDAO.updatePatent(patentModel);
 		return "success";
 	}
 	

@@ -18,7 +18,9 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.zc.constant.Constant;
 import com.zc.controller.UploadController;
+import com.zc.model.PatentModel;
 
 public class ExcelUtil {
 
@@ -37,11 +39,11 @@ public class ExcelUtil {
 			int colNum = row.getPhysicalNumberOfCells();
 			String[] keyArray = new String[colNum];
 			for (int i = 0; i < colNum; i++) {
-				keyArray[i] = (String) getCellFormatValue(row.getCell((short) i));
+				keyArray[i] = (String) getCellFormatValue(row.getCell(i));
 			}
 			int rowNum = sheet.getLastRowNum();
 			// 正文内容应该从第二行开始,第一行为表头的标题
-			for (int i = 2; i <= rowNum; i++) {
+			for (int i = 1; i <= rowNum; i++) {
 				Map<String, String> dataMap = new HashMap<>();
 				row = sheet.getRow(i);
 				if (row != null) {
@@ -49,7 +51,7 @@ public class ExcelUtil {
 					while (j < colNum) {
 						// 这里把列循环到Map
 						if (row.getCell((short) j) != null) {
-							value = (String) getCellFormatValue(row.getCell((short) j));
+							value = (String) getCellFormatValue(row.getCell(j));
 							dataMap.put(keyArray[j], value);
 						}
 						j++;
@@ -58,7 +60,7 @@ public class ExcelUtil {
 					dataList.add(dataMap);
 				}
 			}
-			logger.info("解析realPath={}完成.",realPath);
+			logger.info("解析realPath={}完成.", realPath);
 			try {
 				if (is != null)
 					is.close();
@@ -79,23 +81,19 @@ public class ExcelUtil {
 			// 判断cell类型
 			switch (cell.getCellTypeEnum()) {
 			case NUMERIC: {
-//				cellValue = String.valueOf(cell.getNumericCellValue());
 				cellValue = cell.toString();
 				if (cell.toString().length() == 10 && cell.toString().indexOf("-") > -1) {
 					Date date = cell.getDateCellValue();
 					cellValue = DateUtil.getDateStr(date);
+				} else {
+					if (cell.toString().endsWith("E12") && cell.toString().indexOf(".") > -1) {
+						String repStr = cell.toString().replace(".", "");
+						cellValue = repStr.substring(0, repStr.length() - 3);
+					}
 				}
 				break;
 			}
 			case FORMULA: {
-				// 判断cell是否为日期格式
-//				if (DateUtil.isCellDateFormatted(cell)) {
-////					 转换为日期格式YYYY-mm-dd
-//					cellValue = cell.getDateCellValue();
-//				} else {
-//					// 数字
-//					cellValue = String.valueOf(cell.getNumericCellValue());
-//				}
 				cellValue = cell.toString();
 				break;
 			}
@@ -124,11 +122,18 @@ public class ExcelUtil {
 	}
 
 	public static void main(String[] args) {
-		List<Map<String, String>> datalist = readExcelData(
-				"F:\\new-workspace\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp2\\wtpwebapps\\zc\\upload\\2018持续更新数据库（6月8日）.xlsx");
-//		System.out.println(datalist.size());
-		 for (Map<String, String> map : datalist) {
-			 System.out.println(map);
-		 }
+//		 List<Map<String, String>> datalist = readExcelData(
+//		 "F:\\new-workspace\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp2\\wtpwebapps\\zc\\upload\\2018持续更新数据库（6月8日）.xlsx");
+//		// System.out.println(datalist.size());
+//		// List<Map<String, String>> datalist = ExcelUtil.readExcelData(realPath);
+//		 for (Map<String, String> map : datalist) {
+//		 PatentModel patentModel = new PatentModel();
+//		
+//		 String patentId = map.get(Constant.PATENT_ID);
+//		 patentModel.setPatentId(patentId);
+//		 System.out.println(map);
+//		 }
+		String repStr = "2.013100843347E12".replace(".", "");
+		System.out.println(repStr.substring(0, repStr.length() - 3).substring(0,4));
 	}
 }

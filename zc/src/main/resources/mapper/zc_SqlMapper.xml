@@ -62,7 +62,7 @@
 		t_patent where `is_show` = 0;
 	</select>
 
-	<insert id="insertParent"
+	<insert id="insertPatent"
 		parameterType="com.zc.model.PatentModel">
 		insert into
 		t_patent(patent_id,patent_name,patent_url,patent_type,patent_type_name,patent_status,patent_status_name,patent_price,industry,industry_name,
@@ -71,14 +71,25 @@
 		#{patentPrice},#{industry},#{industryName},#{isBatch},#{isBatchName},#{publishYear},#{publishTime},#{userQQ},#{userWX});
 	</insert>
 
-	<update id="delParent" parameterType="com.zc.model.PatentModel">
+	<update id="delPatent" parameterType="com.zc.model.PatentModel">
 		update t_patent set
 		`is_show` = #{isShow} where patent_id = #{patentId};
 	</update>
 	
-	<update id="updateParent" parameterType="com.zc.model.PatentModel">
+	<update id="updatePatent" parameterType="com.zc.model.PatentModel">
 		update t_patent set patent_id = #{patentId},patent_name = #{patentName},patent_url = #{patentUrl},patent_type = #{patentType},patent_type_name = #{patentTypeName},
 		patent_status = #{patentStatus},patent_status_name = #{patentStatusName},patent_price = #{patentPrice},industry = #{industry},industry_name = #{industryName},
 		is_batch = #{isBatch},is_batch_name = #{isBatchName},publish_year = #{publishYear},publish_time = #{publishTime},user_qq = #{userQQ},user_wx = #{userWX} where patent_id = #{patentId};
+	</update>
+	
+	<update id="savePatents" parameterType="com.zc.model.PatentModel">
+		insert into
+		t_patent(patent_id,patent_name,patent_type,patent_type_name,patent_status,patent_status_name,patent_price,
+		publish_year,publish_time,seller_contact,`patentee`,sales_status,`contact`)
+		values(#{patentId},#{patentName},#{patentType},#{patentTypeName},#{patentStatus},#{patentStatusName},
+		#{patentPrice},#{publishYear},#{publishTime},#{sellerContact},#{patentee},#{salesStatus},#{contact})
+		ON DUPLICATE KEY UPDATE set patentName = #{patentName},patent_type = #{patentType},patent_type_name = #{patentTypeName},patent_status = #{patentStatus},
+		patent_status_name = #{patentStatusName},patent_price = #{patentPrice},
+		publish_year = #{publishYear},publish_time = #{publishTime},seller_contact = #{sellerContact},`patentee` = #{patentee},sales_status = #{salesStatus},`contact` = #{contact}
 	</update>
 </mapper>

@@ -15,9 +15,11 @@ public interface PatentDAO {
 	
 	public int queryPatentCount() throws ServerException;
 	
-	public void insertParent(PatentModel patentModel) throws ServerException;
+	public void insertPatent(PatentModel patentModel) throws ServerException;
 	
-	public void delParent(PatentModel model) throws ServerException;
+	public void delPatent(PatentModel model) throws ServerException;
 	
-	public void updateParent(PatentModel patentModel) throws ServerException;
+	public void updatePatent(PatentModel patentModel) throws ServerException;
+	
+	public void savePatents(PatentModel patentModel) throws ServerException;
 }

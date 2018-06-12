@@ -18,9 +18,12 @@ public class Constant {
 	
 	public static final String PATENT_TYPE = "类型";
 	
+	public static final String PUBLISH_TIME = "创建日期";
+	
 	public static final String PATENTEE = "专利权人";
 	
 	public static final String SALES_STATUS = "销售状态";
 	
 	public static final String CONTACT = "联系人";
+	
 }

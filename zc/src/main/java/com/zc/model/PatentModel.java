@@ -35,7 +35,15 @@ public class PatentModel {
 	private String userQQ;
 
 	private String userWX;
-	
+
+	private String sellerContact;
+
+	private String patentee;
+
+	private String salesStatus;
+
+	private String contact;
+
 	private Integer isShow;
 
 	public String getPatentId() {
@@ -192,7 +200,6 @@ public class PatentModel {
 	public PatentModel(String patentId, String patentName, String patentUrl, Integer patentType, String patentTypeName,
 			String patentStatus, String patentStatusName, String patentPrice, String industry, String industryName,
 			Integer isBatch, String isBatchName, String publishYear, String publishTime, String userQQ, String userWX) {
-		super();
 		this.patentId = patentId;
 		this.patentName = patentName;
 		this.patentUrl = patentUrl;
@@ -209,6 +216,51 @@ public class PatentModel {
 		this.publishTime = publishTime;
 		this.userQQ = userQQ;
 		this.userWX = userWX;
+	}
+
+	public PatentModel(String patentId, String patentName, String patentUrl, Integer patentType, String patentTypeName,
+			String patentStatus, String patentStatusName, String patentPrice, String industry, String industryName,
+			Integer isBatch, String isBatchName, String publishYear, String publishTime, String userQQ, String userWX,
+			String sellerContact, String patentee, String salesStatus, String contact, Integer isShow) {
+		this(patentId, patentName, patentUrl, patentType, patentTypeName, patentStatus, patentStatusName, patentPrice,
+				industry, industryName, isBatch, isBatchName, publishYear, publishTime, userQQ, userWX);
+		this.sellerContact = sellerContact;
+		this.patentee = patentee;
+		this.salesStatus = salesStatus;
+		this.contact = contact;
+		this.isShow = isShow;
+	}
+
+	public String getSellerContact() {
+		return sellerContact;
+	}
+
+	public void setSellerContact(String sellerContact) {
+		this.sellerContact = sellerContact;
+	}
+
+	public String getPatentee() {
+		return patentee;
+	}
+
+	public void setPatentee(String patentee) {
+		this.patentee = patentee;
+	}
+
+	public String getSalesStatus() {
+		return salesStatus;
+	}
+
+	public void setSalesStatus(String salesStatus) {
+		this.salesStatus = salesStatus;
+	}
+
+	public String getContact() {
+		return contact;
+	}
+
+	public void setContact(String contact) {
+		this.contact = contact;
 	}
 
 	public Integer getIsShow() {
