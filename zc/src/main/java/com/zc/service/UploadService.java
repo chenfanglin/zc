@@ -1,5 +1,6 @@
 package com.zc.service;
 
+import java.util.Calendar;
 import java.util.List;
 import java.util.Map;
 
@@ -8,11 +9,12 @@ import javax.annotation.Resource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import com.zc.common.MailTemplate;
+import com.zc.common.ResourceHandler;
 import com.zc.constant.Constant;
 import com.zc.dao.ParamDAO;
 import com.zc.dao.PatentDAO;
@@ -37,9 +39,6 @@ public class UploadService {
 	@Autowired
 	private ParamDAO paramDAO;
 	
-	@Value("${admin_email}")
-	private String adminEmail;
-
 	/**
 	 * 异步解析excel数据
 	 * 
@@ -71,14 +70,28 @@ public class UploadService {
 				String patentStatus = getPatentStatus(patentStatusName);
 				Integer patentType = getPatentType(patentTypeName.trim());
 				String price = getPatentPrice(patentPrice);
+				if ("000".equals(price.trim())) {
+					price = "0";
+				}
 				if (StringUtil.isNotEmpty(patentId)) {
 					PatentModel patentModel = new PatentModel(patentId, patentName, patentType, patentTypeName.trim(), patentStatus,
 							patentStatusName, price, publishYear, publishTime, sellerContact, patentee, salesStatus, contact);
+					logger.info("清洗过后的专利数据:" + patentModel);
 					patentDAO.savePatents(patentModel);
-					ParamRequest paramRequest = new ParamRequest();
-					paramRequest.setParamType(Constant.PUBLISH_YEAR_TYPE);
-					paramRequest.setParamName(publishYear);
-					paramDAO.updateParams(paramRequest);
+					try {
+						int year = Integer.parseInt(publishYear);
+						Calendar calendar = Calendar.getInstance();
+						int currentYear = calendar.get(Calendar.YEAR);
+						if (year <= currentYear && year >= 1970) {
+							ParamRequest paramRequest = new ParamRequest();
+							paramRequest.setParamType(Constant.PUBLISH_YEAR_TYPE);
+							paramRequest.setParamName(publishYear);
+							paramDAO.updateParams(paramRequest);
+						}
+					} catch (Exception e) {
+						logger.error("垃圾数据不入库:"+e);
+					}
+					
 				}
 			} catch (Exception e) {
 				logger.error("数据导入异常:"+e);
@@ -86,8 +99,9 @@ public class UploadService {
 		}
 		logger.info("excel数据开始入库完成,耗时={}",(System.currentTimeMillis()-start));
 		try {
-			mailTemplate.sendTextMail(adminEmail, "江西集睿系统邮件", "数据已经导入完成.");
-			logger.info("系统通知邮件发送成功{}",adminEmail);
+			String[] adminEmails = StringUtils.commaDelimitedListToStringArray(ResourceHandler.get("admin_email"));
+			mailTemplate.sendTextMail(adminEmails, "江西集睿系统邮件", "数据已经导入完成.");
+			logger.info("系统通知邮件发送成功{}", adminEmails.toString());
 		} catch (Exception e) {
 			logger.error("系统通知邮件发送失败:" + e);
 		}
@@ -104,6 +118,9 @@ public class UploadService {
 			patentPrice = patentPrice.trim();
 			if (patentPrice.contains("万")) {
 				patentPrice = patentPrice.replace("万", "0000");
+				if (patentPrice.indexOf(".") > -1) {
+					patentPrice = patentPrice.replaceAll(".", "");
+				}
 				return patentPrice.replaceAll("裸价", "");
 			} else if (patentPrice.contains("裸价")) {
 				patentPrice = patentPrice.replaceAll("裸价", "");
@@ -125,6 +142,9 @@ public class UploadService {
 				if (patentPrice.indexOf(".") > -1) {
 					patentPrice = patentPrice.replaceAll(".", "");
 				}
+				if (patentPrice.indexOf("裸") > -1) {
+					patentPrice = patentPrice.replaceAll("裸", "");
+				}
 				return patentPrice;
 			} else if (patentPrice.contains("(") || patentPrice.contains("（")) {
 				int startIndex = patentPrice.indexOf("(");
@@ -134,18 +154,29 @@ public class UploadService {
 					startIndex = patentPrice.indexOf("（");
 					patentPrice = patentPrice.substring(0, startIndex);
 				}
+				if (patentPrice.indexOf(".") > -1) {
+					patentPrice = patentPrice.replaceAll(".", "");
+				}
 				return patentPrice;
 			} else if (patentPrice.contains("元")) {
+				if (patentPrice.indexOf(".") > -1) {
+					patentPrice = patentPrice.replaceAll(".", "");
+				}
 				return patentPrice.replaceAll("元", "");
 			} else if (patentPrice.contains("裸")) {
+				if (patentPrice.indexOf(".") > -1) {
+					patentPrice = patentPrice.replaceAll(".", "");
+				}
 				return patentPrice.replaceAll("裸", "");
 			} else if (patentPrice.contains("包恢复")) {
+				if (patentPrice.indexOf(".") > -1) {
+					patentPrice = patentPrice.replaceAll(".", "");
+				}
 				return patentPrice.replaceAll("包恢复", "");
 			} else if (patentPrice.indexOf(".") > -1) {
 				patentPrice = patentPrice.replaceAll(".", "")+"000";
 				return patentPrice;
-			}
-			else {
+			} else {
 				return "0";
 			}
 		} else {

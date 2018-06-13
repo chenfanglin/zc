@@ -35,6 +35,7 @@
     <!-- 邮件 -->
     <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
 		<property name="host" value="smtp.qq.com" />
+		<property name="port" value="587" />
 		<property name="javaMailProperties">
 			<props>
 				<prop key="mail.smtp.auth">true</prop>

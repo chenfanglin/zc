@@ -215,7 +215,7 @@ function openUploadPatent(){
         uploadUrl: "upload_patents.do", //上传的地址
         uploadAsync: true,
         maxFileCount : 1,
-        maxFileSize : 50000,// 不能大于500k
+        maxFileSize : 500000,//
         allowedFileExtensions : ['xls', 'xlsx'],//接收的文件后缀
     });
 }
@@ -240,17 +240,33 @@ function openUpdatePatent(rowData) {
 	$('#inputWX1').val(rowData.userWX);
 	$('#inputPublishYear1').val(rowData.publishYear);
 	$('#inputPatentUrl1').val(rowData.patentUrl);
-	if (rowData.isShow == 0) {
-		$("#pluginswitch").bootstrapSwitch('state', true,true);
-	} else {
-		$("#pluginswitch").bootstrapSwitch('state', false,true);
-	}
+	
+	$('#inputPatentee1').val(rowData.patentee);
+	$('#inputSalesStatus1').val(rowData.salesStatus);
+	$('#inputSellerContact1').val(rowData.sellerContact);
+	$('#inputContact1').val(rowData.contact);
 }
 
 /**
  * 修改专利
  */
 function updatePatent() {
+	var patentTypeName = $('#inputPatentType1').find("option:selected").text();
+	if (patentTypeName == '请选择') {
+		patentTypeName = "";
+	}
+	var patent_status_name = $('#inputPatentStatus1').find("option:selected").text();
+	if (patent_status_name == '请选择') {
+		patent_status_name = "";
+	}
+	var is_batch_name = $('#inputIsBatch1').find("option:selected").text();
+	if (is_batch_name == '请选择') {
+		is_batch_name = "";
+	}
+	var industry_name = $('#inputIndustry1').find("option:selected").text();
+	if (industry_name == '请选择') {
+		industry_name = "";
+	}
 	$.ajax({
 		url : '../update_patent.do',
 		data : {
@@ -258,18 +274,22 @@ function updatePatent() {
 			'publish_time' : $('#publishTime1').val(),
 			'patent_name' : $('#inputPatentName1').val(),
 			'patent_type' : $('#inputPatentType1').val(),
-			'patent_type_name' : $('#inputPatentType1').find("option:selected").text(),
+			'patent_type_name' : patentTypeName,
 			'patent_price' : $('#inputPatentPrice1').val(),
 			'patent_status' : $('#inputPatentStatus1').val(),
-			'patent_status_name' : $('#inputPatentStatus1').find("option:selected").text(),
+			'patent_status_name' : patent_status_name,
 			'is_batch' : $('#inputIsBatch1').val(),
-			'is_batch_name' : $('#inputIsBatch1').find("option:selected").text(),
+			'is_batch_name' : is_batch_name,
 			'industry' : $('#inputIndustry1').val(),
-			'industry_name' : $('#inputIndustry1').find("option:selected").text(),
+			'industry_name' : industry_name,
 			'user_qq' : $('#inputQQ1').val(),
 			'user_wx' : $('#inputWX1').val(),
 			'publish_year' : $('#inputPublishYear1').val(),
-			'patent_url' : $('#inputPatentUrl1').val()
+			'patent_url' : $('#inputPatentUrl1').val(),
+			'patentee' : $('#inputPatentee1').val(),
+			'sales_status' : $('#inputSalesStatus1').val(),
+			'seller_contact' : $('#inputSellerContact1').val(),
+			'contact' : $('#inputContact1').val()
 		},
 		method : "post",
 		async : true,
@@ -289,6 +309,22 @@ function updatePatent() {
 
 // 新增专利
 function addPatent(){
+	var patentTypeName = $('#inputPatentType').find("option:selected").text();
+	if (patentTypeName == '请选择') {
+		patentTypeName = "";
+	}
+	var patent_status_name = $('#inputPatentStatus').find("option:selected").text();
+	if (patent_status_name == '请选择') {
+		patent_status_name = "";
+	}
+	var is_batch_name = $('#inputIsBatch').find("option:selected").text();
+	if (is_batch_name == '请选择') {
+		is_batch_name = "";
+	}
+	var industry_name = $('#inputIndustry').find("option:selected").text();
+	if (industry_name == '请选择') {
+		industry_name = "";
+	}
 	$.ajax({
 		url : '../add_patent.do',
 		data : {
@@ -296,18 +332,22 @@ function addPatent(){
 			'publish_time' : $('#publishTime').val(),
 			'patent_name' : $('#inputPatentName').val(),
 			'patent_type' : $('#inputPatentType').val(),
-			'patent_type_name' : $('#inputPatentType').find("option:selected").text(),
+			'patent_type_name' : patentTypeName,
 			'patent_price' : $('#inputPatentPrice').val(),
 			'patent_status' : $('#inputPatentStatus').val(),
-			'patent_status_name' : $('#inputPatentStatus').find("option:selected").text(),
+			'patent_status_name' : patent_status_name,
 			'is_batch' : $('#inputIsBatch').val(),
-			'is_batch_name' : $('#inputIsBatch').find("option:selected").text(),
+			'is_batch_name' : is_batch_name,
 			'industry' : $('#inputIndustry').val(),
-			'industry_name' : $('#inputIndustry').find("option:selected").text(),
+			'industry_name' : industry_name,
 			'user_qq' : $('#inputQQ').val(),
 			'user_wx' : $('#inputWX').val(),
 			'publish_year' : $('#inputPublishYear').val(),
-			'patent_url' : $('#inputPatentUrl').val()
+			'patent_url' : $('#inputPatentUrl').val(),
+			'patentee' : $('#inputPatentee').val(),
+			'sales_status' : $('#inputSalesStatus').val(),
+			'seller_contact' : $('#inputSellerContact').val(),
+			'contact' : $('#inputContact').val()
 		},
 		method : "post",
 		async : true,

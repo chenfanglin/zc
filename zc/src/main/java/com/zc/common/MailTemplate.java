@@ -146,11 +146,9 @@ public class MailTemplate {
 			} finally {
 				if (r) {
 					Object[] args = { firstNano, result, isMime ? "HTML" : "TEXT", i + 1, to, subject, content };
-					log.info("发送成功:" + args);
+					log.info("发送成功:" + args.toString());
 				} else {
-					Object[] args = { firstNano, result, isMime ? "HTML" : "TEXT", i + 1, to, subject,
-							null == ex ? "OK" : ex.getMessage() };
-					log.info("发送失败:" + args);
+					log.info("发送失败:" + ex);
 				}
 			}
 			if (r || ex instanceof NullPointerException) {

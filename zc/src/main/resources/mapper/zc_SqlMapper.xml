@@ -19,13 +19,17 @@
 		<result property="publishTime" column="publish_time" />
 		<result property="userQQ" column="user_qq" />
 		<result property="userWX" column="user_wx" />
+		<result property="sellerContact" column="seller_contact" />
+		<result property="contact" column="contact" />
+		<result property="patentee" column="patentee" />
+		<result property="salesStatus" column="sales_status" />
 		<result property="isShow" column="is_show" />
 	</resultMap>
 	<select id="queryPatentList"
 		parameterType="com.zc.req.PatentParam" resultMap="baseResultMap">
 		select
 		patent_id,patent_name,patent_url,patent_type,patent_type_name,patent_status,patent_status_name,patent_price,industry,industry_name,is_batch,is_batch_name,
-		publish_time,publish_year,user_qq,user_wx,is_show from t_patent where 1 = 1
+		publish_time,publish_year,user_qq,user_wx,seller_contact,`patentee`,sales_status,`contact`,is_show from t_patent where 1 = 1
 		<if test="flag == null">
 			AND `is_show` = 0
 		</if>
@@ -66,9 +70,9 @@
 		parameterType="com.zc.model.PatentModel">
 		insert into
 		t_patent(patent_id,patent_name,patent_url,patent_type,patent_type_name,patent_status,patent_status_name,patent_price,industry,industry_name,
-		is_batch,is_batch_name,publish_year,publish_time,user_qq,user_wx)
+		is_batch,is_batch_name,publish_year,publish_time,user_qq,user_wx,seller_contact,`patentee`,sales_status,`contact`)
 		values(#{patentId},#{patentName},#{patentUrl},#{patentType},#{patentTypeName},#{patentStatus},#{patentStatusName},
-		#{patentPrice},#{industry},#{industryName},#{isBatch},#{isBatchName},#{publishYear},#{publishTime},#{userQQ},#{userWX});
+		#{patentPrice},#{industry},#{industryName},#{isBatch},#{isBatchName},#{publishYear},#{publishTime},#{userQQ},#{userWX},#{sellerContact},#{patentee},#{salesStatus},#{contact});
 	</insert>
 
 	<update id="delPatent" parameterType="com.zc.model.PatentModel">
@@ -79,7 +83,8 @@
 	<update id="updatePatent" parameterType="com.zc.model.PatentModel">
 		update t_patent set patent_id = #{patentId},patent_name = #{patentName},patent_url = #{patentUrl},patent_type = #{patentType},patent_type_name = #{patentTypeName},
 		patent_status = #{patentStatus},patent_status_name = #{patentStatusName},patent_price = #{patentPrice},industry = #{industry},industry_name = #{industryName},
-		is_batch = #{isBatch},is_batch_name = #{isBatchName},publish_year = #{publishYear},publish_time = #{publishTime},user_qq = #{userQQ},user_wx = #{userWX} where patent_id = #{patentId};
+		is_batch = #{isBatch},is_batch_name = #{isBatchName},publish_year = #{publishYear},publish_time = #{publishTime},user_qq = #{userQQ},user_wx = #{userWX},
+		seller_contact = #{sellerContact},`patentee` = #{patentee},sales_status = #{salesStatus},`contact` = #{contact} where patent_id = #{patentId};
 	</update>
 	
 	<update id="savePatents" parameterType="com.zc.model.PatentModel">

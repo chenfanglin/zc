@@ -18,13 +18,9 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.zc.constant.Constant;
-import com.zc.controller.UploadController;
-import com.zc.model.PatentModel;
-
 public class ExcelUtil {
 
-	private static final Logger logger = LoggerFactory.getLogger(UploadController.class);
+	private static final Logger logger = LoggerFactory.getLogger(ExcelUtil.class);
 
 	public static List<Map<String, String>> readExcelData(String realPath) {
 		List<Map<String, String>> dataList = new ArrayList<>();
@@ -82,7 +78,7 @@ public class ExcelUtil {
 			switch (cell.getCellTypeEnum()) {
 			case NUMERIC: {
 				cellValue = cell.toString();
-				if (cell.toString().length() == 10 && cell.toString().indexOf("-") > -1) {
+				if (cell.toString().length() >= 10 && cell.toString().length() <= 16 && cell.toString().indexOf("-") > -1) {
 					Date date = cell.getDateCellValue();
 					cellValue = DateUtil.getDateStr(date);
 				} else {

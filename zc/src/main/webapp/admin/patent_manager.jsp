@@ -87,10 +87,10 @@
 					<table id="patentData">
 						<thead>
 							<tr>
-								<th data-sortable="false" data-width="6%"
+								<th data-sortable="false" data-width="5%"
 									data-field="patentId">专利号</th>
-								<th data-sortable="false" data-width="8%" data-field="patentName">专利名称</th>
-								<th data-sortable="false" data-width="11%"
+								<th data-sortable="false" data-width="7%" data-field="patentName">专利名称</th>
+								<th data-sortable="false" data-width="5%"
 									data-field="patentTypeName">专利类型</th>
 								<th data-sortable="false" data-width="5%" data-field="patentStatusName">专利状态</th>
 								<th data-sortable="false" data-width="5%" data-field="patentPrice">专利价格</th>
@@ -102,6 +102,14 @@
 									data-field="publishYear">年份</th>
 								<th data-sortable="false" data-width="5%"
 									data-field="publishTime">发布时间</th>
+								<th data-sortable="false" data-width="5%"
+									data-field="patentee">专利权人</th>
+								<th data-sortable="false" data-width="5%"
+									data-field="salesStatus">销售状态</th>
+								<th data-sortable="false" data-width="5%"
+									data-field="sellerContact">卖家联系人</th>
+								<th data-sortable="false" data-width="5%"
+									data-field="contact">联系人</th>
 								<th data-sortable="false" data-width="5%"
 									data-field="userQQ">联系QQ</th>
 									<th data-sortable="false" data-width="5%"
@@ -217,6 +225,31 @@
 									placeholder="跳转链接">
 							</div>
 						</div>
+						
+						<div class="form-group">
+							<label for="inputPatentee" class="col-sm-2 control-label">专利权人:</label>
+							<div class="col-sm-4">
+								<input type="text" class="form-control" id="inputPatentee"
+									placeholder="专利权人">
+							</div>
+							<label for="inputSalesStatus" class="col-sm-2 control-label">销售状态:</label>
+							<div class="col-sm-4">
+								<input type="text" class="form-control" id="inputSalesStatus"
+									placeholder="销售状态">
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="inputSellerContact" class="col-sm-2 control-label">卖家联系人:</label>
+							<div class="col-sm-4">
+								<input type="text" class="form-control" id="inputSellerContact"
+									placeholder="卖家联系人">
+							</div>
+							<label for="inputContact" class="col-sm-2 control-label">联系人:</label>
+							<div class="col-sm-4">
+								<input type="text" class="form-control" id="inputContact"
+									placeholder="联系人">
+							</div>
+						</div>
 					</form>
 				</div>
 				<div class="modal-footer">
@@ -328,6 +361,31 @@
 									placeholder="跳转链接">
 							</div>
 						</div>
+						
+						<div class="form-group">
+							<label for="inputPatentee1" class="col-sm-2 control-label">专利权人:</label>
+							<div class="col-sm-4">
+								<input type="text" class="form-control" id="inputPatentee1"
+									placeholder="专利权人">
+							</div>
+							<label for="inputSalesStatus1" class="col-sm-2 control-label">销售状态:</label>
+							<div class="col-sm-4">
+								<input type="text" class="form-control" id="inputSalesStatus1"
+									placeholder="销售状态">
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="inputSellerContact1" class="col-sm-2 control-label">卖家联系人:</label>
+							<div class="col-sm-4">
+								<input type="text" class="form-control" id="inputSellerContact1"
+									placeholder="卖家联系人">
+							</div>
+							<label for="inputContact1" class="col-sm-2 control-label">联系人:</label>
+							<div class="col-sm-4">
+								<input type="text" class="form-control" id="inputContact1"
+									placeholder="联系人">
+							</div>
+						</div>
 					</form>
 				</div>
 				<div class="modal-footer">
@@ -370,7 +428,7 @@
 	<%@ include file="../includes/footer.jsp"%>
 	<script src="../assets/bootstrap/js/bootstrap-datetimepicker.min.js"></script>
 	<script src="../assets/bootstrap/js/fileinput.js"></script>
-	<script src="../assets/script/patent_manager.js"></script>
+	<script src="../assets/script/patent_manager.js?v=20180613001"></script>
 </body>
 
 </html>

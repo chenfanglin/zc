@@ -187,6 +187,7 @@ public class PatentModel {
 		this.isBatchName = isBatchName;
 	}
 
+
 	@Override
 	public String toString() {
 		return "PatentModel [patentId=" + patentId + ", patentName=" + patentName + ", patentUrl=" + patentUrl
@@ -194,7 +195,8 @@ public class PatentModel {
 				+ ", patentStatusName=" + patentStatusName + ", patentPrice=" + patentPrice + ", industry=" + industry
 				+ ", industryName=" + industryName + ", isBatch=" + isBatch + ", isBatchName=" + isBatchName
 				+ ", publishYear=" + publishYear + ", publishTime=" + publishTime + ", userQQ=" + userQQ + ", userWX="
-				+ userWX + "]";
+				+ userWX + ", sellerContact=" + sellerContact + ", patentee=" + patentee + ", salesStatus="
+				+ salesStatus + ", contact=" + contact + ", isShow=" + isShow + "]";
 	}
 
 	public PatentModel(String patentId, String patentName, String patentUrl, Integer patentType, String patentTypeName,
@@ -221,14 +223,13 @@ public class PatentModel {
 	public PatentModel(String patentId, String patentName, String patentUrl, Integer patentType, String patentTypeName,
 			String patentStatus, String patentStatusName, String patentPrice, String industry, String industryName,
 			Integer isBatch, String isBatchName, String publishYear, String publishTime, String userQQ, String userWX,
-			String sellerContact, String patentee, String salesStatus, String contact, Integer isShow) {
+			String sellerContact, String patentee, String salesStatus, String contact) {
 		this(patentId, patentName, patentUrl, patentType, patentTypeName, patentStatus, patentStatusName, patentPrice,
 				industry, industryName, isBatch, isBatchName, publishYear, publishTime, userQQ, userWX);
 		this.sellerContact = sellerContact;
 		this.patentee = patentee;
 		this.salesStatus = salesStatus;
 		this.contact = contact;
-		this.isShow = isShow;
 	}
 
 	public PatentModel(String patentId, String patentName, Integer patentType, String patentTypeName,

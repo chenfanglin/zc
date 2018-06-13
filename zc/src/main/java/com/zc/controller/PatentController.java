@@ -19,7 +19,6 @@ import com.zc.dao.PatentDAO;
 import com.zc.exception.ServerException;
 import com.zc.model.PageDataModel;
 import com.zc.model.PatentModel;
-import com.zc.req.BaseRequest;
 import com.zc.req.PatentParam;
 
 import tk.mybatis.mapper.util.StringUtil;
@@ -114,9 +113,9 @@ public class PatentController {
 		String patentId = request.getParameter("patent_id");
 		String patentName = StringUtil.isEmpty(request.getParameter("patent_name")) ? ""
 				: request.getParameter("patent_name");
-		String patentType = request.getParameter("patent_type");
-		String patentTypeName = request.getParameter("patent_type_name");
-		String patentUrl = request.getParameter("patent_url");
+		String patentType = StringUtil.isEmpty(request.getParameter("patent_type")) ? "-1" : request.getParameter("patent_type");
+		String patentTypeName = StringUtil.isEmpty(request.getParameter("patent_type_name")) ? "" : request.getParameter("patent_type_name");
+		String patentUrl = StringUtil.isEmpty(request.getParameter("patent_url")) ? "" : request.getParameter("patent_url");
 		String patentStatus = StringUtil.isEmpty(request.getParameter("patent_status")) ? "0"
 				: request.getParameter("patent_status");
 		String patentStatusName = StringUtil.isEmpty(request.getParameter("patent_status_name")) ? "0"
@@ -130,16 +129,21 @@ public class PatentController {
 		String industry = StringUtil.isEmpty(request.getParameter("industry")) ? "0" : request.getParameter("industry");
 		String industryName = StringUtil.isEmpty(request.getParameter("industry_name")) ? ""
 				: request.getParameter("industry_name");
-		String isBatch = request.getParameter("is_batch");
-		String isBatchName = request.getParameter("is_batch_name");
-		String userQQ = StringUtil.isEmpty(request.getParameter("user_qq")) ? "0" : request.getParameter("user_qq");
+		String isBatch = StringUtil.isEmpty(request.getParameter("is_batch")) ? "-1" : request.getParameter("is_batch");
+		String isBatchName = StringUtil.isEmpty(request.getParameter("is_batch_name")) ? "" : request.getParameter("is_batch_name");
+		String userQQ = StringUtil.isEmpty(request.getParameter("user_qq")) ? "" : request.getParameter("user_qq");
 		String userWX = StringUtil.isEmpty(request.getParameter("user_wx")) ? "" : request.getParameter("user_wx");
-		if (StringUtil.isEmpty(patentId) || StringUtil.isEmpty(patentType) || StringUtil.isEmpty(isBatch) || StringUtil.isEmpty(patentUrl)) {
+		
+		String sellerContact = StringUtil.isEmpty(request.getParameter("seller_contact")) ? "" : request.getParameter("seller_contact");
+		String patentee = StringUtil.isEmpty(request.getParameter("patentee")) ? "" : request.getParameter("patentee");
+		String salesStatus = StringUtil.isEmpty(request.getParameter("sales_status")) ? "" : request.getParameter("sales_status");
+		String contact = StringUtil.isEmpty(request.getParameter("contact")) ? "" : request.getParameter("contact");
+		if (StringUtil.isEmpty(patentId)) {
 			throw new ServerException(StatusCode.PARAM_ERROR);
 		}
 		PatentModel patentModel = new PatentModel(patentId, patentName,patentUrl, Integer.parseInt(patentType),patentTypeName, patentStatus,patentStatusName,
 				patentPrice, industry, industryName, Integer.parseInt(isBatch), isBatchName, publishYear, publishTime, userQQ,
-				userWX);
+				userWX,sellerContact,patentee,salesStatus,contact);
 		return patentModel;
 	}
 

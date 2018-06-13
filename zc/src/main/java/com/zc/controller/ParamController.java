@@ -22,7 +22,7 @@ public class ParamController {
 
 	@Autowired
 	private ParamDAO paramDAO;
-
+	
 	@RequestMapping("/get_publish_year_list")
 	public Object getPublishYearList(HttpServletRequest request, HttpServletResponse response) throws ServerException {
 		ParamRequest param = new ParamRequest();
