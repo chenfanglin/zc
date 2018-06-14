@@ -46,7 +46,7 @@ public class PatentController {
 		logger.info("查询专利列表:" + baseRequest);
 		PageDataModel pageDataModel = new PageDataModel();
 		List<PatentModel> list = patentDAO.queryPatentList(baseRequest);
-		int totalRecord = patentDAO.queryPatentCount();
+		int totalRecord = patentDAO.queryPatentCount(baseRequest);
 		pageDataModel.setTotalRecord(totalRecord);
 		pageDataModel.setData(list);
 		return pageDataModel;

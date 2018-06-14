@@ -13,7 +13,7 @@ public interface PatentDAO {
 
 	public List<PatentModel> queryPatentList(PatentParam baseRequest) throws ServerException;
 	
-	public int queryPatentCount() throws ServerException;
+	public int queryPatentCount(PatentParam patentParam) throws ServerException;
 	
 	public void insertPatent(PatentModel patentModel) throws ServerException;
 	

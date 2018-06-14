@@ -107,10 +107,6 @@
 								<th data-sortable="false" data-width="5%"
 									data-field="salesStatus">销售状态</th>
 								<th data-sortable="false" data-width="5%"
-									data-field="sellerContact">卖家联系人</th>
-								<th data-sortable="false" data-width="5%"
-									data-field="contact">联系人</th>
-								<th data-sortable="false" data-width="5%"
 									data-field="userQQ">联系QQ</th>
 									<th data-sortable="false" data-width="5%"
 									data-field="userWX">联系微信</th>
