@@ -71,3 +71,16 @@ create table t_params(
 	PRIMARY KEY (`param_id`)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='参数表';
 
+create table IF NOT EXISTS t_config_manager; 
+
+create table t_config_manager(
+	`id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'id',
+	`lable_name` varchar(20) NOT NULL  DEFAULT '' COMMENT '页签名称',
+	`lable_id` varchar(20) NOT NULL DEFAULT '' COMMENT '页签id',
+	`label_table_id` varchar(20) NOT NULL DEFAULT '' COMMENT '页签tableid',
+	`event` varchar(20) NOT NULL DEFAULT '' COMMENT '事件名称',
+	`url` varchar(20) NOT NULL DEFAULT '' COMMENT '请求表格数据url',
+	`enum_type_id` varchar(20) NOT NULL DEFAULT '' COMMENT '参数名称',
+	`visible` tinyint(4) NOT NULL DEFAULT '0' COMMENT '参数状态,0启用,1停用',
+	PRIMARY KEY (`id`)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='配置表';

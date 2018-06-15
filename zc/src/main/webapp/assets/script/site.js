@@ -12,7 +12,7 @@ function initPages() {
 // 初始化页签
 function initTags() {
 	$.ajax({
-		url : 'queryLabels.do',
+		url : 'query_lables.do',
 		method : "post",
 		async : true,
 		success : function(data) {

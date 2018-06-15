@@ -70,8 +70,10 @@ public class UploadService {
 				String patentStatus = getPatentStatus(patentStatusName);
 				Integer patentType = getPatentType(patentTypeName.trim());
 				String price = getPatentPrice(patentPrice);
-				if ("000".equals(price.trim())) {
+				if ("000".equals(price.trim()) || StringUtil.isEmpty(price.trim())) {
 					price = "0";
+				} else {
+					price = price.replaceAll(".", "").replaceAll("裸", "").replaceAll("w", "");
 				}
 				if (StringUtil.isNotEmpty(patentId)) {
 					PatentModel patentModel = new PatentModel(patentId, patentName, patentType, patentTypeName.trim(), patentStatus,

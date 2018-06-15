@@ -1,0 +1,17 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zc.dao.SiteDAO">
+	<resultMap id="baseResultMap" type="com.zc.model.ConfigManager">
+		<result property="labelName" column="lable_name" />
+		<result property="labelID" column="lable_id" />
+		<result property="labelTableID" column="label_table_id" />
+		<result property="event" column="event" />
+		<result property="url" column="url" />
+		<result property="enumTypeID" column="enum_type_id" />
+	</resultMap>
+	<select id="queryLables" resultMap="baseResultMap">
+		select lable_name,lable_id,label_table_id,event,url,enum_type_id from t_config_manager where visible = 0
+	</select>
+
+</mapper>
