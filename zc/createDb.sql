@@ -84,3 +84,11 @@ create table t_config_manager(
 	`visible` tinyint(4) NOT NULL DEFAULT '0' COMMENT '参数状态,0启用,1停用',
 	PRIMARY KEY (`id`)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='配置表';
+
+create table t_hot_words(
+	`id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'id',
+	`hot_word` varchar(20) NOT NULL  DEFAULT '' COMMENT '热门词汇',
+	`update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '修改时间',
+	UNIQUE KEY `hot_word` (`hot_word`),
+	PRIMARY KEY (`id`)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='热门搜索';

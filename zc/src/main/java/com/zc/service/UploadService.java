@@ -39,6 +39,9 @@ public class UploadService {
 	@Autowired
 	private ParamDAO paramDAO;
 	
+	@Autowired
+	private HotWordQueueService hotWordQueueService;
+	
 	/**
 	 * 异步解析excel数据
 	 * 
@@ -73,7 +76,7 @@ public class UploadService {
 				if ("000".equals(price.trim()) || StringUtil.isEmpty(price.trim())) {
 					price = "0";
 				} else {
-					price = price.replaceAll(".", "").replaceAll("裸", "").replaceAll("w", "");
+					price = price.replaceAll(".", "").replaceAll("裸", "").replaceAll("w", "").replaceAll("（）", "");
 				}
 				if (StringUtil.isNotEmpty(patentId)) {
 					PatentModel patentModel = new PatentModel(patentId, patentName, patentType, patentTypeName.trim(), patentStatus,
@@ -93,7 +96,7 @@ public class UploadService {
 					} catch (Exception e) {
 						logger.error("垃圾数据不入库:"+e);
 					}
-					
+					hotWordQueueService.putToQueue(patentName);
 				}
 			} catch (Exception e) {
 				logger.error("数据导入异常:"+e);

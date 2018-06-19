@@ -22,4 +22,6 @@ public interface PatentDAO {
 	public void updatePatent(PatentModel patentModel) throws ServerException;
 	
 	public void savePatents(PatentModel patentModel) throws ServerException;
+	
+	public List<String> getAllPatentName();
 }

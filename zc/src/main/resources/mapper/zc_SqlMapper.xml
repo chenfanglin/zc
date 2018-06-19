@@ -124,4 +124,8 @@
 		patent_status_name = #{patentStatusName},patent_price = #{patentPrice},
 		publish_year = #{publishYear},publish_time = #{publishTime},seller_contact = #{sellerContact},`patentee` = #{patentee},sales_status = #{salesStatus},`contact` = #{contact}
 	</update>
+	
+	<select id="getAllPatentName" resultType="java.lang.String">
+		select patent_name from t_patent;
+	</select>
 </mapper>

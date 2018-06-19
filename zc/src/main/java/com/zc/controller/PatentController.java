@@ -159,7 +159,7 @@ public class PatentController {
 			String patentStatus = request.getParameter("patent_status");
 			String minPatentPrice = request.getParameter("min_patent_price");
 			String maxPatentPrice = request.getParameter("max_patent_price");
-			String publishYear = request.getParameter("publish_year");
+			String publishYear = StringUtil.isEmpty(request.getParameter("publish_year")) ? null : request.getParameter("publish_year");
 			String industry = request.getParameter("industry");
 			String isBatch = request.getParameter("is_batch");
 			String keyword = StringUtil.isEmpty(request.getParameter("keyword")) ? null : request.getParameter("keyword");
