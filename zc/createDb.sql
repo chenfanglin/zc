@@ -79,7 +79,7 @@ create table t_config_manager(
 	`lable_id` varchar(20) NOT NULL DEFAULT '' COMMENT '页签id',
 	`label_table_id` varchar(20) NOT NULL DEFAULT '' COMMENT '页签tableid',
 	`event` varchar(20) NOT NULL DEFAULT '' COMMENT '事件名称',
-	`url` varchar(20) NOT NULL DEFAULT '' COMMENT '请求表格数据url',
+	`url` varchar(40) NOT NULL DEFAULT '' COMMENT '请求表格数据url',
 	`enum_type_id` varchar(20) NOT NULL DEFAULT '' COMMENT '参数名称',
 	`visible` tinyint(4) NOT NULL DEFAULT '0' COMMENT '参数状态,0启用,1停用',
 	PRIMARY KEY (`id`)

@@ -31,20 +31,20 @@ public class ApplicationLauch implements ApplicationListener {
 			if (refreshedEvent.getApplicationContext().getParent() != null) {
 				try {
 					ResourceHandler.reloadConfig();
-//					new Thread() {
-//						@Override
-//						public void run() {
-//							List<String> list = patentDAO.getAllPatentName();
-//							for (String patentName : list) {
-//								hotWordQueueService.putToQueue(patentName);
-//								try {
-//									Thread.sleep(3000);
-//								} catch (InterruptedException e) {
-//									e.printStackTrace();
-//								}
-//							}
-//						}
-//					}.start();
+					new Thread() {
+						@Override
+						public void run() {
+							List<String> list = patentDAO.getAllPatentName();
+							for (String patentName : list) {
+								hotWordQueueService.putToQueue(patentName);
+								try {
+									Thread.sleep(3000);
+								} catch (InterruptedException e) {
+									e.printStackTrace();
+								}
+							}
+						}
+					}.start();
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
