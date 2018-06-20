@@ -13,4 +13,8 @@ public interface ParamDAO {
 	public List<KeyValue> queryKeyValues(ParamRequest paramRequest);
 	
 	public void updateParams(ParamRequest paramRequest);
+	
+	public void delParam(Integer paramId);
+	
+	public void updateParam(ParamRequest paramRequest);
 }

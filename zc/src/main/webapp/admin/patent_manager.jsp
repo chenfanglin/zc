@@ -424,7 +424,7 @@
 	<%@ include file="../includes/footer.jsp"%>
 	<script src="../assets/bootstrap/js/bootstrap-datetimepicker.min.js"></script>
 	<script src="../assets/bootstrap/js/fileinput.js"></script>
-	<script src="../assets/script/patent_manager.js?v=20180613001"></script>
+	<script src="../assets/script/patent_manager.min.js"></script>
 </body>
 
 </html>

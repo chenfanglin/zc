@@ -74,6 +74,6 @@
 	</div>
 	<script src="../assets/jquery.min.js"></script>
 	<script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.js"></script>
-	<script type="text/javascript" src="../assets/script/login.js"></script>
+	<script type="text/javascript" src="../assets/script/login.min.js"></script>
 </body>
 </html>

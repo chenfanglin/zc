@@ -14,21 +14,21 @@
 					<div class="check-error"></div>
 					<form class="form-horizontal">
 						<div class="form-group">
-							<label for="oldPassword" class="col-sm-3 control-label">原密码</label>
+							<label for="oldPassword" class="col-sm-3 control-label">原密码:</label>
 							<div class="col-sm-6">
 								<input type="password" class="form-control" id="inputoldPassword"
 									placeholder="原密码">
 							</div>
 						</div>
 						<div class="form-group">
-							<label for="newPassword" class="col-sm-3 control-label">新密码</label>
+							<label for="newPassword" class="col-sm-3 control-label">新密码:</label>
 							<div class="col-sm-6">
 								<input type="password" class="form-control" id="inputnewPassword"
 									placeholder="新密码">
 							</div>
 						</div>
 						<div class="form-group">
-							<label for="confirmPassword" class="col-sm-3 control-label">确认密码</label>
+							<label for="confirmPassword" class="col-sm-3 control-label">确认密码:</label>
 							<div class="col-sm-6">
 								<input type="password" class="form-control" id="inputconfirmPassword"
 									placeholder="确认密码">
