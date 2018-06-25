@@ -45,6 +45,8 @@ public class PatentModel {
 	private String contact;
 
 	private Integer isShow;
+	
+	private Integer isTop;
 
 	public String getPatentId() {
 		return patentId;
@@ -288,6 +290,14 @@ public class PatentModel {
 
 	public void setIsShow(Integer isShow) {
 		this.isShow = isShow;
+	}
+
+	public Integer getIsTop() {
+		return isTop;
+	}
+
+	public void setIsTop(Integer isTop) {
+		this.isTop = isTop;
 	}
 
 }

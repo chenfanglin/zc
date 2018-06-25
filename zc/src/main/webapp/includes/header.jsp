@@ -20,7 +20,7 @@
 		<span class="icon-bar"></span> <span class="icon-bar"></span>
 	</button>
 	<a class="navbar-brand" href="patent_manager.jsp">
-	<img src="../assets/images/logo.png"></a>
+	<img class="logoStyle" src="../assets/images/ZCIP_logo.png"></a>
 </div>
 <ul class="nav navbar-right top-nav">
 	<li class="nav active"><a href="javascript:void(0)"><i

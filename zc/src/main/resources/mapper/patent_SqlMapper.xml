@@ -24,12 +24,19 @@
 		<result property="patentee" column="patentee" />
 		<result property="salesStatus" column="sales_status" />
 		<result property="isShow" column="is_show" />
+		<result property="isTop" column="is_top" />
 	</resultMap>
 	<select id="queryPatentList"
 		parameterType="com.zc.req.PatentParam" resultMap="baseResultMap">
-		select
+		select patent_id,patent_name,patent_url,patent_type,patent_type_name,patent_status,patent_status_name,patent_price,industry,industry_name,is_batch,is_batch_name,
+		publish_time,publish_year,user_qq,user_wx,seller_contact,`patentee`,sales_status,`contact`,is_show,is_top from t_patent where is_top = 1
+		<if test="flag == null">
+			AND `is_show` = 0
+		</if>
+		union
+		(select
 		patent_id,patent_name,patent_url,patent_type,patent_type_name,patent_status,patent_status_name,patent_price,industry,industry_name,is_batch,is_batch_name,
-		publish_time,publish_year,user_qq,user_wx,seller_contact,`patentee`,sales_status,`contact`,is_show from t_patent where 1 = 1
+		publish_time,publish_year,user_qq,user_wx,seller_contact,`patentee`,sales_status,`contact`,is_show,is_top from t_patent where is_top = 0
 		<if test="flag == null">
 			AND `is_show` = 0
 		</if>
@@ -58,7 +65,7 @@
 			AND patent_name like CONCAT('%','${keyword}','%')
 		</if>
 		order by ${sort} ${order}
-		limit #{pageIndex},#{pageSize}
+		limit #{pageIndex},#{pageSize})
 	</select>
 
 	<select id="queryPatentCount" parameterType="com.zc.req.PatentParam" resultType="java.lang.Integer">

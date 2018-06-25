@@ -33,6 +33,13 @@ body {
 	}
 }
 
+.logoStyle{
+	vertical-align: middle;
+    margin-left: 9%;
+    margin-top: -12px;
+    height: 45px;
+}
+
 /* Top Navigation */
 .top-nav {
 	padding: 0 15px;

@@ -9,7 +9,7 @@
 	</resultMap>
 
 	<select id="queryUserInfo"
-		parameterType="com.zc.model.UserModel" resultMap="baseResultMap">
+		parameterType="java.lang.String" resultMap="baseResultMap">
 		SELECT `user_id`,`user_name`,
 		`password` FROM `t_users` WHERE `user_name` = #{userName}
 	</select>

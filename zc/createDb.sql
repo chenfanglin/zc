@@ -27,9 +27,12 @@ create table t_patent(
 	`sales_status` varchar(30) NOT NULL DEFAULT '' COMMENT '销售状态',
 	`contact` varchar(30) NOT NULL DEFAULT '' COMMENT '联系人',
 	`is_show` tinyint(4) NOT NULL DEFAULT '0' COMMENT '是否显示:0显示,1不显示',
+	`is_top` tinyint(4) NOT NULL DEFAULT '0' COMMENT '是否置顶显示:0不置顶,1置顶',
 	PRIMARY KEY (`id`),
 	UNIQUE KEY `patentId` (`patent_id`)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='专利表';
+
+alter table t_patent add column `is_top` tinyint(4) NOT NULL DEFAULT '0' COMMENT '是否置顶显示:0不置顶,1置顶';
 
 create table IF NOT EXISTS t_users;
 
