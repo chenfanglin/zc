@@ -135,4 +135,9 @@
 	<select id="getAllPatentName" resultType="java.lang.String">
 		select patent_name from t_patent;
 	</select>
+	
+	<update id="makeTop" parameterType="com.zc.model.PatentModel">
+		update t_patent set is_top=#{isTop} where patent_id = #{patentId}
+	</update>
+	
 </mapper>

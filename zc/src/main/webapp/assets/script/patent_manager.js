@@ -364,3 +364,24 @@ function addPatent(){
 		}
 	});
 }
+
+/**
+ * 置顶
+ * @param patentId
+ * @returns
+ */
+function makeTop(patentId,isTop) {
+	$.ajax({
+		url : '../make_top.do',
+		data : {
+			"patent_id" : patentId,
+			"is_top":isTop
+		},
+		method : "post",
+		async : true,
+		success : function(data) {
+			$.messager.popup(data.content);
+			refreshTable($('#patentData'));
+		}
+	});
+}

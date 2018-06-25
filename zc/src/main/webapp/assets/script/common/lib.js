@@ -7,6 +7,9 @@ function updatePwd() {
 		backdrop : 'static',
 		keyboard : false
 	});
+	$('#inputoldPassword').val('');
+	$('#inputnewPassword').val('');
+	$('#inputconfirmPassword').val('');
 }
 // 修改密码
 function updatePassword() {
@@ -31,6 +34,16 @@ function updatePassword() {
 	if (inputnewPassword != inputconfirmPassword) {
 		$(".check-error").show();
 		$(".check-error").html("新密码和确认密码不一致");
+		return;
+	}
+	if (inputnewPassword.length < 6) {
+		$(".check-error").show();
+		$(".check-error").html("新密码长度不能少于6个字符。");
+		return;
+	}
+	if (inputconfirmPassword.length < 6) {
+		$(".check-error").show();
+		$(".check-error").html("确认密码长度不能少于6个字符。");
 		return;
 	}
 	$(".check-error").hide();
@@ -78,6 +91,13 @@ function formatterEdit(value, row, index) {
 	return '<a class="edit" href="javascript:void(0)" title="修改"><i class="glyphicon glyphicon-edit"></i></a>';
 }
 
+function formatterBtn(value, row, index) {
+	if (row.isTop == 0) {
+		return '<button onclick=makeTop("'+row.patentId+'","'+row.isTop+'") type="button" class="btn btn-primary btn-xs">置顶</button>';
+	} else {
+		return '<button onclick=makeTop("'+row.patentId+'","'+row.isTop+'") type="button" class="btn btn-primary btn-xs">取消置顶</button>';
+	}
+}
 
 function formatterLoginStatus(value, row, index) {
 	if (value > 0) {

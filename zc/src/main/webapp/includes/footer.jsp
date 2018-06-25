@@ -7,4 +7,4 @@
 <script src="../assets/bootstrap/js/bootstrap-switch.min.js"></script>
 <script src="../assets/highchart/highcharts.js"></script>
 <script src="../assets/highchart/exporting.js"></script>
-<script src="../assets/script/common/lib.js"></script>
+<script src="../assets/script/common/lib.js?v=1"></script>

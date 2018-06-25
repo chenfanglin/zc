@@ -113,6 +113,8 @@
 								<th data-sortable="false" data-align="center" data-width="5%"
 									data-formatter="formatterSwitch" data-events="showEvents">专利显示状态</th>
 								<th data-sortable="false" data-align="center" data-width="5%"
+									data-formatter="formatterBtn">置顶状态</th>
+								<th data-sortable="false" data-align="center" data-width="5%"
 									data-formatter="formatterEdit" data-events="patentEvents">操作</th>
 									
 							</tr>
@@ -232,18 +234,6 @@
 							<div class="col-sm-4">
 								<input type="text" class="form-control" id="inputSalesStatus"
 									placeholder="销售状态">
-							</div>
-						</div>
-						<div class="form-group">
-							<label for="inputSellerContact" class="col-sm-2 control-label">卖家联系人:</label>
-							<div class="col-sm-4">
-								<input type="text" class="form-control" id="inputSellerContact"
-									placeholder="卖家联系人">
-							</div>
-							<label for="inputContact" class="col-sm-2 control-label">联系人:</label>
-							<div class="col-sm-4">
-								<input type="text" class="form-control" id="inputContact"
-									placeholder="联系人">
 							</div>
 						</div>
 					</form>
@@ -370,18 +360,6 @@
 									placeholder="销售状态">
 							</div>
 						</div>
-						<div class="form-group">
-							<label for="inputSellerContact1" class="col-sm-2 control-label">卖家联系人:</label>
-							<div class="col-sm-4">
-								<input type="text" class="form-control" id="inputSellerContact1"
-									placeholder="卖家联系人">
-							</div>
-							<label for="inputContact1" class="col-sm-2 control-label">联系人:</label>
-							<div class="col-sm-4">
-								<input type="text" class="form-control" id="inputContact1"
-									placeholder="联系人">
-							</div>
-						</div>
 					</form>
 				</div>
 				<div class="modal-footer">
@@ -424,7 +402,7 @@
 	<%@ include file="../includes/footer.jsp"%>
 	<script src="../assets/bootstrap/js/bootstrap-datetimepicker.min.js"></script>
 	<script src="../assets/bootstrap/js/fileinput.js"></script>
-	<script src="../assets/script/patent_manager.min.js"></script>
+	<script src="../assets/script/patent_manager.js"></script>
 </body>
 
 </html>

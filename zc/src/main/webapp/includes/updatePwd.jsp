@@ -16,21 +16,21 @@
 						<div class="form-group">
 							<label for="oldPassword" class="col-sm-3 control-label">原密码:</label>
 							<div class="col-sm-6">
-								<input type="password" class="form-control" id="inputoldPassword"
+								<input type="password" class="form-control" id="inputoldPassword" onkeyup="value=value.replace(/[^\w\.\/]/ig,'')" maxlength="18"
 									placeholder="原密码">
 							</div>
 						</div>
 						<div class="form-group">
 							<label for="newPassword" class="col-sm-3 control-label">新密码:</label>
 							<div class="col-sm-6">
-								<input type="password" class="form-control" id="inputnewPassword"
+								<input type="password" class="form-control" id="inputnewPassword" onkeyup="value=value.replace(/[^\w\.\/]/ig,'')" maxlength="18"
 									placeholder="新密码">
 							</div>
 						</div>
 						<div class="form-group">
 							<label for="confirmPassword" class="col-sm-3 control-label">确认密码:</label>
 							<div class="col-sm-6">
-								<input type="password" class="form-control" id="inputconfirmPassword"
+								<input type="password" class="form-control" id="inputconfirmPassword" onkeyup="value=value.replace(/[^\w\.\/]/ig,'')" maxlength="18"
 									placeholder="确认密码">
 							</div>
 						</div>
