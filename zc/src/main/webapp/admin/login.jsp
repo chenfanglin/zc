@@ -6,9 +6,9 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1" />
 <meta name="viewport"
 	content="width=device-width,initial-scale=1,maximum-scale=1.0" />
-<meta name="keywords" content="江西集睿知识产权服务有限公司管理系统"/>
-<meta name="description" content="江西集睿知识产权服务有限公司管理系统"/>
-<title>江西集睿知识产权服务有限公司管理系统</title>
+<meta name="keywords" content="智产网管理系统"/>
+<meta name="description" content="智产网管理系统"/>
+<title>智产网管理系统</title>
 <link rel="shortcut icon"
 	href="../assets/images/favicon.ico"/>
 <link href="../assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">

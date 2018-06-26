@@ -6,7 +6,7 @@
 <meta name="renderer" content="webkit">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>江西集睿-专利管理</title>
+<title>智产网-专利管理</title>
 <%@ include file="../includes/head.jsp"%>
 <link href="../assets/bootstrap/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
 <link href="../assets/bootstrap/css/fileinput.css" rel="stylesheet">

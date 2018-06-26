@@ -6,7 +6,7 @@
 <meta name="renderer" content="webkit">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>DataEye-配置管理</title>
+<title>智产网-配置管理</title>
 <%@ include file="../includes/head.jsp"%>
 </head>
 <body>
