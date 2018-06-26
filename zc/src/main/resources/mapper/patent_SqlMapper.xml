@@ -47,10 +47,10 @@
 			AND patent_status = #{patentStatus}
 		</if>
 		<if test="minPatentPrice != null">
-			AND patent_price >= #{minPatentPrice}
+			AND patent_price &gt;= #{minPatentPrice}
 		</if>
 		<if test="maxPatentPrice != null">
-			AND patent_price >= #{maxPatentPrice}
+			AND patent_price &lt; #{maxPatentPrice}
 		</if>
 		<if test="industry != null">
 			AND industry = #{industry}
@@ -81,10 +81,10 @@
 			AND patent_status = #{patentStatus}
 		</if>
 		<if test="minPatentPrice != null">
-			AND patent_price >= #{minPatentPrice}
+			AND patent_price &gt;= #{minPatentPrice}
 		</if>
 		<if test="maxPatentPrice != null">
-			AND patent_price >= #{maxPatentPrice}
+			AND patent_price &lt; #{maxPatentPrice}
 		</if>
 		<if test="industry != null">
 			AND industry = #{industry}

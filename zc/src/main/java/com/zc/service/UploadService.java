@@ -72,11 +72,17 @@ public class UploadService {
 				String publishYear = getPublishYearByPatentId(patentId);
 				String patentStatus = getPatentStatus(patentStatusName);
 				Integer patentType = getPatentType(patentTypeName.trim());
-				String price = getPatentPrice(patentPrice);
+				String price = getPatentPrice(patentPrice).trim();
 				if ("000".equals(price.trim()) || StringUtil.isEmpty(price.trim())) {
 					price = "0";
 				} else {
 					price = price.replaceAll(".", "").replaceAll("裸", "").replaceAll("w", "").replaceAll("（）", "");
+					price = price.replace("（）", "").replace("裸", "").replace("w", "");
+				}
+				try {
+					price = String.valueOf(Integer.parseInt(price));
+				} catch (Exception e) {
+					price = "0";
 				}
 				if (StringUtil.isNotEmpty(patentId)) {
 					PatentModel patentModel = new PatentModel(patentId, patentName, patentType, patentTypeName.trim(), patentStatus,
