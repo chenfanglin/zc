@@ -113,7 +113,7 @@ public class PatentModel {
 	}
 
 	public String getPublishTime() {
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		try {
 			return sdf.format(sdf.parse(publishTime));
 		} catch (Exception e) {

@@ -193,8 +193,8 @@ public class PatentController {
 		try {
 			String patentType = request.getParameter("patent_type");
 			String patentStatus = request.getParameter("patent_status");
-			String minPatentPrice = request.getParameter("min_patent_price");
-			String maxPatentPrice = request.getParameter("max_patent_price");
+			String minPatentPrice = StringUtil.isEmpty(request.getParameter("min_patent_price")) ? null : request.getParameter("min_patent_price");
+			String maxPatentPrice = StringUtil.isEmpty(request.getParameter("max_patent_price")) ? null : request.getParameter("max_patent_price");
 			String publishYear = StringUtil.isEmpty(request.getParameter("publish_year")) ? null
 					: request.getParameter("publish_year");
 			String industry = request.getParameter("industry");
