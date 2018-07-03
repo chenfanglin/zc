@@ -10,3 +10,13 @@
 <link href="../assets/style/page_index.css?v=2" rel="stylesheet">
 <link href="../assets/font-awesome/css/font-awesome.min.css"
 	rel="stylesheet" type="text/css">
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?efe74c90d266c655a8495dcad21c9339";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+	

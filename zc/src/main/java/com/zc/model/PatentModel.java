@@ -235,7 +235,7 @@ public class PatentModel {
 	}
 
 	public PatentModel(String patentId, String patentName, Integer patentType, String patentTypeName,
-			String patentStatus, String patentStatusName, String patentPrice, String publishYear, String publishTime,
+			String patentStatus, String patentStatusName, String patentPrice, String publishYear, String publishTime,String userQQ,String userWX,
 			String sellerContact, String patentee, String salesStatus, String contact) {
 		this.patentId = patentId;
 		this.patentName = patentName;
@@ -246,6 +246,8 @@ public class PatentModel {
 		this.patentPrice = patentPrice;
 		this.publishYear = publishYear;
 		this.publishTime = publishTime;
+		this.userQQ = userQQ;
+		this.userWX = userWX;
 		this.sellerContact = sellerContact;
 		this.patentee = patentee;
 		this.salesStatus = salesStatus;

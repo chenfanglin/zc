@@ -173,17 +173,17 @@
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/com.sun.mail/javax.mail -->
 		<dependency>
-    		<groupId>com.sun.mail</groupId>
-    		<artifactId>javax.mail</artifactId>
-    		<version>${javax.mail}</version>
+			<groupId>com.sun.mail</groupId>
+			<artifactId>javax.mail</artifactId>
+			<version>${javax.mail}</version>
 		</dependency>
-	<!-- https://mvnrepository.com/artifact/org.apache.httpcomponents/httpclient -->
+		<!-- https://mvnrepository.com/artifact/org.apache.httpcomponents/httpclient -->
 		<dependency>
 			<groupId>org.apache.httpcomponents</groupId>
 			<artifactId>httpclient</artifactId>
 			<version>${httpclient.version}</version>
 		</dependency>
-		
+
 	</dependencies>
 	<build>
 		<plugins>

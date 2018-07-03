@@ -13,6 +13,16 @@
 	href="../assets/images/favicon.ico"/>
 <link href="../assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 <link href="../assets/style/login.css" rel="stylesheet">
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?efe74c90d266c655a8495dcad21c9339";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
 </head>
 <body>
 	<div class="box">

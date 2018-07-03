@@ -86,7 +86,7 @@ public class UploadService {
 				}
 				if (StringUtil.isNotEmpty(patentId)) {
 					PatentModel patentModel = new PatentModel(patentId, patentName, patentType, patentTypeName.trim(), patentStatus,
-							patentStatusName, price, publishYear, publishTime, sellerContact, patentee, salesStatus, contact);
+							patentStatusName, price, publishYear, publishTime, ResourceHandler.get("user_qq"),ResourceHandler.get("user_wx"),sellerContact, patentee, salesStatus, contact);
 					logger.info("清洗过后的专利数据:" + patentModel);
 					patentDAO.savePatents(patentModel);
 					try {
