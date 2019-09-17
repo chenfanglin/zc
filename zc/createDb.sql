@@ -2,7 +2,6 @@ create database IF NOT EXISTS test_db default character set utf8mb4 collate utf8
 
 use test_db;
 
-create table IF NOT EXISTS t_patent; 
 
 create table t_patent(
 	`id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '主键,和业务无关,提高存取效率',
@@ -32,9 +31,6 @@ create table t_patent(
 	UNIQUE KEY `patentId` (`patent_id`)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='专利表';
 
-alter table t_patent add column `is_top` tinyint(4) NOT NULL DEFAULT '0' COMMENT '是否置顶显示:0不置顶,1置顶';
-
-create table IF NOT EXISTS t_users;
 
 create table t_users(
 	`user_id` int(11) NOT NULL AUTO_INCREMENT COMMENT '主键,和业务无关,提高存取效率',
@@ -49,7 +45,6 @@ create table t_users(
 
 insert into t_users(`user_name`,`password`) values('luojun','123456');
 
-create table IF NOT EXISTS t_menu; 
 
 create table t_menu(
 	`menu_id` int(11) NOT NULL AUTO_INCREMENT COMMENT '菜单id',
@@ -61,7 +56,6 @@ create table t_menu(
 
 insert into t_menu(`menu_logo`,`menu_name`,`menu_path`) values('user','专利管理','patent_manager.jsp');
 
-create table IF NOT EXISTS t_params; 
 
 create table t_params(
 	`param_id` int(11) NOT NULL AUTO_INCREMENT COMMENT '参数id',
@@ -74,7 +68,6 @@ create table t_params(
 	PRIMARY KEY (`param_id`)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='参数表';
 
-create table IF NOT EXISTS t_config_manager; 
 
 create table t_config_manager(
 	`id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'id',

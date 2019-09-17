@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, user-scalable=yes, initial-scale=0.5, maximum-scale=2, target-densityDpi=device-dpi">
+    <link href="/assets/images/favicon.ico" rel="icon">
+    <link rel="stylesheet" type="text/css" href="css/reset.css"/>
+    <link rel="stylesheet" type="text/css" href="css/jquery.page.css"/>
+    <link rel="stylesheet" type="text/css" href="css/index.css"/>
+    <title>江西集睿知识产权服务网站</title>
+	</head>
+	<body>
+		<div class="maskload">
+			<div class="spinner"></div>
+		</div>
+		<div class="header">
+			<div class="headerCon clearfix">
+				<div class="logo">
+					<img class="img" src="img/headBack.png"/>
+				</div>
+				<ul class="home clearfix">
+					<!--<li>首页</li>-->
+				</ul>
+			</div>
+		</div>
+		<div class="wrap">
+			<!--条件搜索-->
+			<div class="serch clearfix">
+				<input type="text" id="" placeholder="请输入搜索条件" />
+				<div class="icon-search"></div>
+			</div>
+			
+			<div class="searchs">
+					<div class="select-con search-opt">
+					<dl class="searchLabel clearfix">
+						<dt>热搜</dt>
+						<dd><span>看见看见</span></dd>
+						<dd><span>看见看见</span></dd>
+						<dd><span>看见看见</span></dd>
+					</dl>
+				</div>
+				<div class="select-con search-opt sel">
+					<dl data-type = "1" class="searchLabel clearfix re1">
+						<dt>类型</dt>
+						<dd><span>发明</span></dd>
+						<dd><span>实用</span></dd>
+						<dd><span>外观</span></dd>
+					</dl>
+				</div>
+				<div class="select-con search-opt sel">
+					<dl data-type = "2" class="searchLabel clearfix re2">
+						<dt>状态</dt>
+						<dd><span>未下证</span></dd>
+						<dd><span>下证</span></dd>
+						<dd><span>未授权</span></dd>
+					</dl>
+				</div>
+				<div class="select-con search-opt sel">
+					<dl data-type = "3" class="searchLabel clearfix re3">
+						<dt>价格</dt>
+						<dd><span>1万以下</span></dd>
+						<dd><span>1-2万</span></dd>
+						<dd><span>2-3万</span></dd>
+						<dd><span>3-5万</span></dd>
+						<dd><span>5万以上</span></dd>
+					</dl>
+					<div class="price-handle other-price clearfix">
+            <div class="box">
+                <input type="text" name="price_s" id="price_s" value="" class="txt" maxlength="12">万
+            </div>
+            <em>-</em>
+            <div class="box">
+                <input type="text" class="txt" name="price_e" id="price_e" value="">万
+            </div>
+            <a id="customer_price" class="confirm-btn" maxlength="12">确定</a><span id="other-price-error" class="error" style="display:none">请输入正确的价格区间</span>
+        </div>
+				</div>
+				<div class="select-con search-opt">
+					<dl class="searchLabel clearfix select1">
+						<dt>其他</dt>
+						<dd><span class="re4">年份</span>
+							<strong class="arrow"></strong>
+							<ul class="year_all year" data-type = "4">
+								<!--<li>2011</li>
+								<li>2010</li>
+								<li>2009</li>-->
+								 <script id="template" type="text/html">
+                          	      {{each list as value i }}
+                          			     <li class="option">{{value.value.toString()}}</li>
+					                   {{/each}}
+					             </script>
+								
+							</ul>
+						</dd>
+						<dd>
+							<span class="re5">行业</span>
+							<strong class="arrow"></strong>
+							<ul class="year_all hangye" data-type = "5">
+								 <script id="template" type="text/html">
+                          	      {{each list as value i }}
+                          			     <li class="option">{{value.value}}</li>
+					                   {{/each}}
+					             </script>
+							</ul>
+						</dd>
+						<dd>
+							<span class="re6">是否批量</span>
+							<strong class="arrow"></strong>
+							<ul class="year_all none" data-type = "6">
+								<li class="option">不限</li>
+								<li class="option">批量</li>
+								<li class="option">不批量</li>
+							</ul>
+							
+						</dd>
+					</dl>
+				</div>
+				<div class="select-con search-opt choice">
+					<dl class="searchLabel clearfix">
+						<dt>已选</dt>
+						<ol class="cancle">
+						<!--<li class="cancle1">
+							<span>2010</span>
+							<strong class="delet">X</strong>
+						</li>
+						<li class="cancle2">
+							<span>2010</span>
+							<strong class="delet">X</strong>
+						</li>-->
+					</ol>
+					<div class="reset">重置条件</div>
+					
+					</dl>
+					<div class="go">检索</div>
+				</div>
+				
+			</div>
+			
+			<!--排序-->
+		<div class="select-con search-opt sort">
+					<dl class="searchLabel clearfix">
+						<!--<dt>排序</dt>-->
+						<dd><span class="br ss spanClass">默认排序</span></dd>
+						<dd><span class="br ss">价格最高</span></dd>
+						<dd><span class="br ss">价格最低</span></dd>
+						<dd><span class="ss">年份最近</span></dd>
+					</dl>
+				</div>
+				<!--表格-->
+				<div class="boxx">
+					<div class="tabs">
+						<table class="table" cellspacing="0" cellpadding="0">
+					<thead>
+						<tr>
+						<th>申请号</th>
+						<th>专利名称</th>
+						<th>专利类型</th>
+						<th>状态</th>
+						<th>价格</th>
+						<th>行业</th>
+						<th>批量</th>
+						<th>发布时间</th>
+						<th>购买</th>
+					</tr>
+					</thead>
+					<tbody class="lists">
+						<script id="template1" type="text/html">
+                          	      {{each list as value i }}
+                          	      <tr>
+									<td>{{value.patentId}}</td>
+									<td>{{value.patentName}}</td>
+									<td>{{value.patentTypeName}}</td>
+									<td>{{value.patentStatusName}}</td>
+									<td>{{value.patentPrice}}</td>
+									<td>{{value.industryName}}</td>
+									<td>{{value.isBatchName}}</td>
+									<td>{{value.publishTime}}</td>
+									<td>
+										<button class="btn">购买</button>
+									</td>
+								  </tr>
+					                   {{/each}}
+					             </script>
+						
+					</tbody>
+
+				</table>
+				<div id="page" class="page"></div>
+					</div>
+					<div class="null">十分抱歉！没有你所需要的专利哦~</div>
+				</div>
+				
+
+		</div>
+		<div class="mask">
+			<div class="dialog">
+				<div class="close"></div>
+				<span>--</span>
+				<strong>--</strong>
+			</div>
+		</div>
+	</body>
+	<!--JQ-->
+	<script src="js/lib/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+	<!--模板引擎-->
+	<script src="js/lib/template.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/lib/jquery.page.js" type="text/javascript" charset="utf-8"></script>
+	<!--JS-->
+	<script src="js/index.js" type="text/javascript" charset="utf-8"></script>
+</html>
