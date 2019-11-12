@@ -101,19 +101,27 @@ var tools = {
 		$.ajax({
              type: "post",
              crossDomain: true,
-             url: "http://127.0.0.1:8080/zc/get_hot_words.do",
+             url: "https://www.jxjrip.com/get_hot_words.do",
              data: {},
              dataType: "json",
              success: function(res){
              	console.log(res)
-//               if(res.statusCode == "200"){
-//               	$(".maskload").hide();
-////               	res.content.unshift({'key':'', 'value': '不限'})
-////                  $(".hangye").html(template('template', { list: res.content }));
-//               }else{
-//               	$(".maskload").hide()
-//               	alert(res.content)
-//               }
+                 if(res.statusCode == "200"){
+                 	$(".maskload").hide();
+                 	var arr = res.content;
+                 	if(res.content == ''){
+                 		$(".moreRou").hide();
+                 	}else{
+                 		$(".moreRou").show();
+                 	}
+                 	var arr1 = arr.slice(0,8);
+                 	var arr2 = arr.slice(8,100);
+                    $("#resou").html(template('template', { list: arr1 }));
+                    $(".resouDialog").html(template('templatedd', { list: arr2 }));
+                 }else{
+                 	$(".maskload").hide()
+                 	alert(res.content)
+                 }
 
               },
               error:function(){
@@ -126,7 +134,7 @@ var tools = {
 		$.ajax({
              type: "post",
              crossDomain: true,
-             url: "http://127.0.0.1:8080/zc/get_industry_list.do",
+             url: "https://www.jxjrip.com/get_industry_list.do",
              data: {},
              dataType: "json",
              success: function(res){
@@ -135,7 +143,7 @@ var tools = {
                  	res.content.unshift({'key':'', 'value': '不限'})
                  	tools.industryList = res.content;
                  	console.log(tools.industryList)
-                    $(".hangye").html(template('template', { list: res.content }));
+                    $(".hangye").html(template('templatehangye', { list: res.content }));
                  }else{
                  	$(".maskload").hide()
                  	alert(res.content)
@@ -152,7 +160,7 @@ var tools = {
 		$.ajax({
              type: "post",
              crossDomain: true,
-             url: "http://127.0.0.1:8080/zc/get_publish_year_list.do",
+             url: " https://www.jxjrip.com/get_publish_year_list.do",
              data: {},
              dataType: "json",
              success: function(res){
@@ -160,7 +168,7 @@ var tools = {
                          if(res.statusCode == "200"){
                          	$(".maskload").hide();
                          	res.content.unshift({'key':'', 'value': '不限'})
-                          $(".year").html(template('template', { list:res.content }));
+                          $(".year").html(template('templateyear', { list:res.content }));
                          }else{
 				     		$(".maskload").hide()	
 				     		      alert(res.content)
@@ -198,7 +206,7 @@ var tools = {
 		$.ajax({
              type: "post",
              crossDomain: true,
-             url: "http://127.0.0.1:8080/zc/query_patent_list.do",
+             url: " https://www.jxjrip.com/query_patent_list.do",
              data: params,
              dataType: "json",
              success: function(res){
@@ -215,10 +223,10 @@ var tools = {
                              tools.contactList.push(obj)
                          }
              		 if(res.content.data.length == 0){
-                         	$(".null").show();
+                         	$(".nullF").show();
                          	$(".tabs").hide();
                          }else{
-                         	$(".null").hide();
+                         	$(".nullF").hide();
                          	$(".tabs").show();
                          	 $(".lists").html(template('template1', { list:res.content.data }));
                      	    tools.totalPages = Math.ceil(res.content.totalRecord/tools.page_size);
@@ -254,11 +262,12 @@ var tools = {
              	page_num:tools.page_num,
              	page_size:tools.page_size
              }
-		console.log(params)
+//		console.log(params)
+		$(".maskload").hide()
 		$.ajax({
              type: "post",
              crossDomain: true,
-             url: "http://127.0.0.1:8080/zc/query_patent_list.do",
+             url: " https://www.jxjrip.com/query_patent_list.do",
              data: params,
              dataType: "json",
              success: function(res){
@@ -276,10 +285,10 @@ var tools = {
                              tools.contactList.push(obj)
                          }
              		 if(res.content.data.length == 0){
-                         	$(".null").show();
+                         	$(".nullF").show();
                          	$(".tabs").hide();
                          }else{
-                         	$(".null").hide();
+                         	$(".nullF").hide();
                          	$(".tabs").show();
                          	 $(".lists").html(template('template1', { list:res.content.data }));
                      	    tools.totalPages = Math.ceil(res.content.totalRecord/tools.page_size);
@@ -316,6 +325,7 @@ $(".dialog strong").html("QQ："+tools.contactList[index].userQQ);
 })
 $(document).on("click",".close",function(){
 	$(".mask").hide();
+	$(".mask1").hide();
 })
 
 $("body").on("click",".option",function(){
@@ -373,10 +383,16 @@ $("body").on("click",".option",function(){
 		$(".reset").show();
 	}
 })
-$(".sel span").on("click",function(){
+$("body").on("click",".sel span",function(){
 	var index = $(this).parent().index();
-	    $(this).parent().parent().find("span").removeClass("spanClass");
+	if($(this).parent().parent().hasClass("resouDialog")){
+		$(".maskDialog").hide();
+		$("#resou span").removeClass("spanClass");
+	}else{
+		$(this).parent().parent().find("span").removeClass("spanClass");
 		$(this).addClass("spanClass");
+	}
+//	 console.log($(this).parent().parent().data("type"))
 //	console.log($(this).parent().parent().data("type"))
 	if($(this).parent().parent().data("type") == 1){
 		tools.selCon1 = $(this).html();
@@ -396,6 +412,7 @@ $(".sel span").on("click",function(){
 		
 	}else if($(this).parent().parent().data("type") == 2){
 	tools.selCon2 = $(this).html();
+	console.log(index)
 	if(index == 1){
 			tools.selCon2Index = 0;
 		}else if(index == 2){
@@ -433,6 +450,13 @@ $(".sel span").on("click",function(){
 			$("body").find(".cancle3 span").html(tools.selCon3);
 		}else{
 			$(".cancle").append("<li class=\"cancle3\"><span>"+tools.selCon3+"</span><strong class=\"delet\">X</strong></li>");
+		}
+	}else if($(this).parent().parent().data("type") == 7){
+	    tools.keyword = $(this).html();
+		if($(".cancle").children().hasClass("cancle7")){
+			$("body").find(".cancle7 span").html(tools.keyword);
+		}else{
+			$(".cancle").append("<li class=\"cancle7\"><span>"+tools.keyword+"</span><strong class=\"delet\">X</strong></li>");
 		}
 	}
 		if($(".cancle").children().length==0){
@@ -474,6 +498,11 @@ $("body").on("click",".delet",function(){
 	}else if($(this).parent().hasClass("cancle6")){
 		tools.selCon6 = '';
 		$(".re6").html("是否批量");
+	}else if($(this).parent().hasClass("cancle7")){
+		console.log(7)
+		$(".serch input").val("");
+		tools.keyword = '';
+		$(".re7").find("span").removeClass("spanClass");
 	}
 	$(this).parent().remove();
 	if($(".cancle").children().length==0){
@@ -491,14 +520,17 @@ $(".reset").on("click",function(){
 	$(".re1").find("span").removeClass("spanClass");
 	$(".re2").find("span").removeClass("spanClass");
 	$(".re3").find("span").removeClass("spanClass");
+	$(".re7").find("span").removeClass("spanClass");
 	tools.selCon1 = '';
 	tools.selCon2 = '';
 	tools.selCon3 = '';
 	tools.selCon4 = '';
 	tools.selCon5 = '';
 	tools.selCon6 = '';
+	tools.keyword = '',
+	$(".serch input").val("");
 	$("#price_s").val("");
-	$("#price_e").val("")
+	$("#price_e").val("");
 	tools.min_patent_price = "";
 	tools.max_patent_price = "";
 })
@@ -571,15 +603,24 @@ $(".confirm-btn").on("click",function(){
 	
 })
 $(".go").on("click",function(){
+//	if($(".serch input").val() == ""){
+//		tools.keyword = '';
+//  	  	$(".cancle7").remove();
+//  	  }
 	tools.page_num = 1;
 	if(tools.selCon1 == ''){
 		tools.selCon1Index = '';
 	}
-	if(tools.selCon1 == ''){
+	if(tools.selCon2 == ''){
 		tools.selCon2Index = '';
 	}
 	if(tools.selCon5 == ""){
 		tools.industryIndex = '';
+	}
+	if($(".cancle").children().length==0){
+		$(".reset").hide();
+	}else{
+		$(".reset").show();
 	}
   tools.getData();
 })
@@ -606,18 +647,58 @@ $(".ss").on("click",function(){
 })
 document.onkeyup = function (e) {//搜索关键字  
     var code = e.charCode || e.keyCode; 
+    $("#resou span").removeClass("spanClass");
     if (code == 13) {  
     	  tools.keyword = $(".serch input").val();
+    	  if(tools.keyword == ""){
+	$(".cancle7").remove();
+    	  }else{
+    	  	if($(".cancle").children().hasClass("cancle7")){
+			$("body").find(".cancle7 span").html(tools.keyword);
+		}else{
+			$(".cancle").append("<li class=\"cancle7\"><span>"+tools.keyword+"</span><strong class=\"delet\">X</strong></li>");
+		}
+    	  }
+		if($(".cancle").children().length==0){
+		$(".reset").hide();
+	}else{
+		$(".reset").show();
+	}
         tools.getData();
     }  
 } 
 $(".icon-search").on("click",function(){
+	$("#resou span").removeClass("spanClass");
 	tools.keyword = $(".serch input").val();
+		if(tools.keyword == ""){
+    	  	$(".cancle7").remove();
+    	  }else{
+    	  	if($(".cancle").children().hasClass("cancle7")){
+			$("body").find(".cancle7 span").html(tools.keyword);
+		}else{
+			$(".cancle").append("<li class=\"cancle7\"><span>"+tools.keyword+"</span><strong class=\"delet\">X</strong></li>");
+		}
+    	  }
+		if($(".cancle").children().length==0){
+		$(".reset").hide();
+	}else{
+		$(".reset").show();
+	}
         tools.getData();
 })
-$(".serch input").on("input",function(){
-	if($(this).val().length == 0){
-		tools.keyword = '';
-	}
+//$(".serch input").on("input",function(){
+//	if($(this).val().length == 0){
+//		tools.keyword = '';
+//	}
+//})
+$(".moreRou").on("click",function(){
+	$(".maskDialog").show();
+})
+$(".maskDialog").on("click",function(){
+	$(this).hide();
+})
+$(".contact img").on("click",function(){
+//	console.log(1111)
+	$(".mask1").show();
 })
 tools.init();

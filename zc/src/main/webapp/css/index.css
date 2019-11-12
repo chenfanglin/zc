@@ -1,7 +1,19 @@
+body,html{
+	height: 100%;
+	background: #f5f2ef;
+}
+.cancelSel{
+	-moz-user-select: none; /*火狐*/
+    -webkit-user-select: none;  /*webkit浏览器*/
+    -ms-user-select: none;   /*IE10*/
+    -khtml-user-select: none; /*早期浏览器*/
+    user-select: none;
+}
 .header{
 	width: 100%;
-	height: 70px;
+	height: 80px;
 	border-bottom: 1px solid #CCCCCC;
+	background: #FFFFFF;
 }
 .headerCon{
 	width: 1200px;
@@ -10,7 +22,7 @@
 	overflow: hidden;
 }
 .logo{
-	width: 100px;
+	width: 160px;
 	margin-top: 10px;
 	float: left;
 }
@@ -23,18 +35,19 @@
 }
 .home li{
 	float: left;
-	margin-left: 20px;
+	margin-left: 60px;
 }
 .wrap{
 	width: 1200px;
-	height: 400px;
+	min-height: 100%;
+	/*height: 400px;*/
 	/*background: red;*/
 	margin: 0 auto;
 	/*position: relative;*/
 }
 .serch{
-	width: 350px;
-    height: 32px;
+	width: 600px;
+    height: 50px;
     border: 1px solid #e5e5e5;
     border-radius: 1px;
     -webkit-border-radius: 1px;
@@ -44,13 +57,15 @@
     left: 0;
     z-index: 9;
     /*float: right;*/
-   margin-left: 850px;
+   margin: 0 auto;
+   border-radius: 30px;
 }
 .serch input{
 	border: 0;
+	border-radius: 30px;
     text-indent: 10px;
-    width: 260px;
-    height: 30px;
+    width: 100%;
+    height: 100%;
     font: 400 14px/32px "Microsoft Yahei";
     color: #333;
     position: absolute;
@@ -59,8 +74,8 @@
 }
 .icon-search{
 	position: absolute;
-    right: 10px;
-    top: 7px;
+    right: 38px;
+    top: 15px;
     display: block;
     width: 16px;
     height: 16px;
@@ -89,6 +104,7 @@ background-color: #000;
 	font-size: 13px;
     border-radius: 0;
     margin-top: 30px;
+   background: #FFFFFF;
 }
 .search-opt {
     min-height: 44px;
@@ -261,11 +277,11 @@ dd span:hover{
 }
 .sort dl{
 	position: absolute;
-	right: 0;
+	left: -104px;
 }
 .boxx{
 	width: 100%;
-	position: relative;
+	/*position: relative;*/
 }
 .table{
 	width: 100%;
@@ -274,11 +290,13 @@ dd span:hover{
 	/*position: absolute;
 	left: 0;
 	top: 405px;*/
+   background: #FFFFFF;
 	border: 1px solid #f4f4f4;
+	/*display: none;*/
 }
 .page{
-	position: absolute;
-	right: 50px;
+	/*position: absolute;*/
+	/*right: 50px;*/
 }
 #page{
 	height: 30px;
@@ -324,7 +342,7 @@ dd span:hover{
 	background: red;
 	cursor: pointer;
 }
-.mask {
+.mask,.mask1 {
     width: 100%;
     height: 100%;
     position: fixed;
@@ -334,7 +352,10 @@ dd span:hover{
     z-index: 99999;
      display: none; 
 }
-.dialog{
+/*.mask1{
+	display: block;
+}*/
+.dialog,.dialog1{
 	/*display: none;*/
 	width: 400px;
 	height: 300px;
@@ -346,14 +367,14 @@ dd span:hover{
 	background: #fff;
 	border-radius: 5px;
 }
-.dialog span{
+.dialog span,.dialog1 span{
 	margin-top: 80px;
 }
-.dialog span,.dialog strong{
+.dialog span,.dialog strong,.dialog1 span,.dialog1 strong{
 	text-align: center;
 	line-height: 60px;
 	width: 100%;
-	font-size: 30px;
+	font-size: 24px;
 	display: block;
 }
 .close{
@@ -492,13 +513,153 @@ dd span:hover{
 .tabs{
 	/*display: none;*/
 }
+.nullF{
+	position: relative;
+	background: #FFFFFF;
+	width: 100%;
+	border-radius: 10px;
+}
+.nullF img{
+	display: block;
+	width: 100px;
+	position: absolute;
+	left: 200px;
+	top: 30px;
+}
 .null{
-	display: none;
+	/*display: none;*/
 	width: 100%;
 	height: 200px;
 	line-height: 200px;
 	text-align: center;
-	font-size: 30px;
-	background: #CCCCCC;
+	font-size: 16px;
+	/*background: #CCCCCC;*/
 	border-radius: 10px;
+}
+.null span{
+	color: #FF5A37;
+}
+/**
+ *招聘 *
+ */
+.home li{
+	cursor: pointer;
+}
+.addli{
+	color: #FF5837;
+}
+.con{
+	width: 600px;
+	margin: 60px auto 0;
+}
+.responsibility{
+	width: 600px;
+	margin: 25px auto 0;
+}
+.headTit{
+	font-size: 25px;
+	font-weight: bold;
+}
+.responsibility li{
+	font-size: 14px;
+	margin-top: 6px;
+}
+.responsibility li:nth-of-type(1){
+	font-size: 20px;
+	/*margin-top: 10px;*/
+}
+.con p{
+	font-size: 16px;
+	font-weight: bold;
+	text-indent: 20px;
+	/*height: 30px;*/
+	line-height: 30px;
+}
+.con p:nth-of-type(1){
+	margin-top: 20px;
+}
+.foot{
+	margin-top: 40px;
+	width: 100%;
+    text-align: center;
+    background: #F9F9F9;
+    font-size: 12px;
+    color: #959595;
+    padding: 40px 0 20px;
+}
+.foot1{
+	margin-top: 64px;
+}
+.din{
+	padding: 3px;
+	background: #FF5A37;
+	color: #fff;
+	margin-left: 6px;
+	border-radius: 2px;
+	font-size: 14px;
+	margin-right: 6px;
+}
+/**
+ *热搜弹窗 *
+ */
+.maskDialog{
+	width: 100%;
+    height: 100%;
+    position: fixed;
+    background: rgba(0, 0, 0, 0.3);
+    top: 0;
+    left: 0;
+    z-index: 99998;
+     display: none; 
+}
+.maskDialog ol{
+	width: 600px;
+	max-height: 400px;
+	background: #FFFFFF;
+	margin: 60px auto 0;
+	border-radius: 10px;
+	padding: 30px;
+	font-size: 16px;
+	overflow: auto;
+	/*position: absolute;
+	top: 60px;*/
+}
+.maskDialog ol li{
+	float: left;
+	/*height: 30px;
+	line-height: 30px;*/
+	margin-left: 10px;
+	margin-top: 10px;
+	padding: 5px 10px;
+	cursor: pointer;
+	border-radius: 5px;
+	border: 1px solid #ff7d63;
+	background: #fdf4e6;
+}
+.maskDialog ol li:hover{
+	color: #FFFFFF;
+	background: #ff7d63;
+	
+}
+.moreRou{
+	display: block;
+    float: left;
+    color: #428bca;
+    padding: 0 13px;
+    line-height: 28px;
+    text-align: center;
+    margin: 4px 10px 0;
+    cursor: pointer;
+}
+.contact{
+	width: 50px;
+	height: 50px;
+	position: fixed;
+	right: 20px;
+	bottom: 300px;
+	cursor: pointer;
+	z-index: 99999;
+}
+.contact img{
+	width: 100%;
 }

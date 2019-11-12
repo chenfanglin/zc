@@ -3,23 +3,37 @@
 	<head>
 	<meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, user-scalable=yes, initial-scale=0.5, maximum-scale=2, target-densityDpi=device-dpi">
-    <link href="/assets/images/favicon.ico" rel="icon">
-    <link rel="stylesheet" type="text/css" href="css/reset.css"/>
+    <meta name="keywords" content="专利买卖,发明专利,实用新型,高新申报,知识产权,江西集睿,智产网,集睿网,江西集睿知识产权,广东专利买卖,北京专利买卖,想买专利,江西专利买卖,专利多少钱,专利买卖靠谱吗,专利价格,大量专利资源,专业服务"/>
+    <link href="./img/logo.ico" rel="icon">
+    <link rel="stylesheet" type="text/css" href="css/reset.css?v=1.0.0"/>
     <link rel="stylesheet" type="text/css" href="css/jquery.page.css"/>
-    <link rel="stylesheet" type="text/css" href="css/index.css"/>
-    <title>江西集睿知识产权服务网站</title>
+    <link rel="stylesheet" type="text/css" href="css/index.css?v=1.0.0"/>
+    <title>智产网</title>
 	</head>
 	<body>
+		<div class="mask1">
+			<div class="dialog1">
+				<div class="close"></div>
+				<span>客服电话(微信)：18779182230</span>
+				<strong>客服QQ：1546237144</strong>
+			</div>
+		</div>
+		<div class="contact">
+			<img src="img/phone.png"/>
+			
+		</div>
 		<div class="maskload">
 			<div class="spinner"></div>
 		</div>
 		<div class="header">
 			<div class="headerCon clearfix">
 				<div class="logo">
-					<img class="img" src="img/logo.png"/>
+					<img class="img" src="img/headBack.png"/>
 				</div>
 				<ul class="home clearfix">
-					<!--<li>首页</li>-->
+					<li class="addli"><a href="index.html">首页</a></li>
+					<li><a href="recruit.html">人才招聘</a></li>
+					<li><a href="introduce.html">公司简介</a></li>
 				</ul>
 			</div>
 		</div>
@@ -29,15 +43,43 @@
 				<input type="text" id="" placeholder="请输入搜索条件" />
 				<div class="icon-search"></div>
 			</div>
-			
-			<div class="searchs">
-					<div class="select-con search-opt">
-					<dl class="searchLabel clearfix">
+			<div class="maskDialog">
+				<ol data-type = "7" class="resouDialog sel clearfix">
+					<script id="templatedd" type="text/html">
+                          	      {{each list as value i }}
+                          			     <li><span>{{value}}</span></li>
+					                   {{/each}}
+					</script>
+					<!--<li><span>还是</span></li>
+					<li><span>哈哈</span></li>
+					<li><span>偶尔</span></li>
+					<li><span>看见</span></li>
+					<li><span>看看</span></li>
+					<li><span>人人</span></li>-->
+				</ol>
+			</div>
+			<div class="searchs cancelSel">
+					<div class="select-con search-opt sel">
+					<dl class="searchLabel clearfix re7">
 						<dt>热搜</dt>
-						<dd><span>看见看见</span></dd>
-						<dd><span>看见看见</span></dd>
-						<dd><span>看见看见</span></dd>
+						<div id="resou" data-type = "7">
+							<script id="template" type="text/html">
+                          	      {{each list as value i }}
+                          			     <dd><span>{{value}}</span></dd>
+					                   {{/each}}
+					        </script>
+						<!--<dd><span>11</span></dd>
+						<dd><span>22</span></dd>
+						<dd><span>33</span></dd>
+						<dd><span>44</span></dd>
+						<dd><span>55</span></dd>
+						<dd><span>66</span></dd>
+						<dd><span>77</span></dd>
+						<dd><span>88</span></dd>-->
+						</div>
+						<dd class="moreRou cancelSel">更多...</dd>
 					</dl>
+					
 				</div>
 				<div class="select-con search-opt sel">
 					<dl data-type = "1" class="searchLabel clearfix re1">
@@ -72,7 +114,7 @@
             <div class="box">
                 <input type="text" class="txt" name="price_e" id="price_e" value="">万
             </div>
-            <a id="customer_price" class="confirm-btn" maxlength="12">确定</a><span id="other-price-error" class="error" style="display:none">请输入正确的价格区间</span>
+            <a id="customer_price" class="confirm-btn cancelSel" maxlength="12">确定</a><span id="other-price-error" class="error" style="display:none">请输入正确的价格区间</span>
         </div>
 				</div>
 				<div class="select-con search-opt">
@@ -84,7 +126,7 @@
 								<!--<li>2011</li>
 								<li>2010</li>
 								<li>2009</li>-->
-								 <script id="template" type="text/html">
+								 <script id="templateyear" type="text/html">
                           	      {{each list as value i }}
                           			     <li class="option">{{value.value.toString()}}</li>
 					                   {{/each}}
@@ -96,7 +138,7 @@
 							<span class="re5">行业</span>
 							<strong class="arrow"></strong>
 							<ul class="year_all hangye" data-type = "5">
-								 <script id="template" type="text/html">
+								 <script id="templatehangye" type="text/html">
                           	      {{each list as value i }}
                           			     <li class="option">{{value.value}}</li>
 					                   {{/each}}
@@ -131,14 +173,14 @@
 					<div class="reset">重置条件</div>
 					
 					</dl>
-					<div class="go">检索</div>
+					<div class="go cancelSel">检索</div>
 				</div>
 				
 			</div>
 			
 			<!--排序-->
 		<div class="select-con search-opt sort">
-					<dl class="searchLabel clearfix">
+					<dl class="searchLabel clearfix cancelSel">
 						<!--<dt>排序</dt>-->
 						<dd><span class="br ss spanClass">默认排序</span></dd>
 						<dd><span class="br ss">价格最高</span></dd>
@@ -168,15 +210,21 @@
                           	      {{each list as value i }}
                           	      <tr>
 									<td>{{value.patentId}}</td>
-									<td>{{value.patentName}}</td>
+									<td>
+										{{if value.isTop == "1"}}
+											<span class="din">顶</span>
+											{{/if}}
+										<strong class="dinPos">{{value.patentName}}
+										</strong>
+									</td>
 									<td>{{value.patentTypeName}}</td>
-									<td>{{value.patentStatusName}}</td>
+									<td class="centerLeft">{{value.patentStatusName}}</td>
 									<td>{{value.patentPrice}}</td>
 									<td>{{value.industryName}}</td>
 									<td>{{value.isBatchName}}</td>
 									<td>{{value.publishTime}}</td>
 									<td>
-										<button class="btn">购买</button>
+										<button class="btn cancelSel">购买</button>
 									</td>
 								  </tr>
 					                   {{/each}}
@@ -187,7 +235,10 @@
 				</table>
 				<div id="page" class="page"></div>
 					</div>
-					<div class="null">十分抱歉！没有你所需要的专利哦~</div>
+					<div class="nullF">
+						<img src="img/search_blank.png"/>
+					<div class="null">十分抱歉，没有你需要的专利，联系<span>智产专利顾问</span>，高效匹配到您想要的专利</div>
+					</div>
 				</div>
 				
 
@@ -199,6 +250,11 @@
 				<strong>--</strong>
 			</div>
 		</div>
+		  <div class="foot foot1">
+		  	<dt><a style="display: inline-block;padding: 5px 10px;" href="recruit.html">人才招聘</a>|<a href="introduce.html" style="display: inline-block;padding: 5px 10px;">公司简介</a></dt>
+      <dt>Copyright © 2018 江西集睿知识产权服务有限公司 版权所有</dt>
+      <dt>备案号：赣ICP备18008249号</dt> 
+    </div>
 	</body>
 	<!--JQ-->
 	<script src="js/lib/jquery.min.js" type="text/javascript" charset="utf-8"></script>
@@ -206,5 +262,5 @@
 	<script src="js/lib/template.js" type="text/javascript" charset="utf-8"></script>
 	<script src="js/lib/jquery.page.js" type="text/javascript" charset="utf-8"></script>
 	<!--JS-->
-	<script src="js/index.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/index.js?v=1.0.0" type="text/javascript" charset="utf-8"></script>
 </html>
