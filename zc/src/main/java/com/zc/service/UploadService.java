@@ -1,6 +1,8 @@
 package com.zc.service;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -11,6 +13,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 
 import com.zc.common.MailTemplate;
@@ -52,9 +55,11 @@ public class UploadService {
 	public void parseUploadData(String realPath) throws ServerException {
 		long start = System.currentTimeMillis();
 		logger.info("开始解析excel数据:" + realPath);
-		List<Map<String, String>> datalist = ExcelUtil.readExcelData(realPath);
+		List<Map<String, String>> datalist = ExcelUtil.readExcelData2(realPath);
 		logger.info("解析excel数据完毕,总记录数={},耗时={}",datalist.size(),(System.currentTimeMillis()-start));
 		start = System.currentTimeMillis();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		String now = sdf.format(new Date());
 		logger.info("excel数据开始入库......");
 		for (Map<String, String> map : datalist) {
 			String patentId = map.get(Constant.PATENT_ID);
@@ -63,7 +68,7 @@ public class UploadService {
 			String patentPrice = map.get(Constant.PATENT_PRICE) == null ? "" : map.get(Constant.PATENT_PRICE);
 			String sellerContact = map.get(Constant.SELLER_CONTACT) == null ? "" : map.get(Constant.SELLER_CONTACT);
 			String patentTypeName = map.get(Constant.PATENT_TYPE) == null ? "" : map.get(Constant.PATENT_TYPE);
-			String publishTime = map.get(Constant.PUBLISH_TIME) == null ? "" : map.get(Constant.PUBLISH_TIME);
+			String publishTime = map.get(Constant.PUBLISH_TIME) == null ? now : map.get(Constant.PUBLISH_TIME);
 			String patentee = map.get(Constant.PATENTEE) == null ? "" : map.get(Constant.PATENTEE);
 			String salesStatus = map.get(Constant.SALES_STATUS) == null ? "" : map.get(Constant.SALES_STATUS);
 			String contact = map.get(Constant.CONTACT) == null ? "" : map.get(Constant.CONTACT);
@@ -103,6 +108,7 @@ public class UploadService {
 						logger.error("垃圾数据不入库:"+e);
 					}
 					hotWordQueueService.putToQueue(patentName);
+					patentModel = null;
 				}
 			} catch (Exception e) {
 				logger.error("数据导入异常:"+e);
@@ -112,7 +118,7 @@ public class UploadService {
 		try {
 			String[] adminEmails = StringUtils.commaDelimitedListToStringArray(ResourceHandler.get("admin_email"));
 			mailTemplate.sendTextMail(adminEmails, "江西集睿系统邮件", "数据已经导入完成.");
-			logger.info("系统通知邮件发送成功{}", adminEmails.toString());
+			logger.info("系统通知邮件发送成功{}", CollectionUtils.arrayToList(adminEmails));
 		} catch (Exception e) {
 			logger.error("系统通知邮件发送失败:" + e);
 		}

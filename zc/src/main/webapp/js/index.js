@@ -101,7 +101,7 @@ var tools = {
 		$.ajax({
              type: "post",
              crossDomain: true,
-             url: "https://www.jxjrip.com/get_hot_words.do",
+             url: "http://127.0.0.1:8080/zc/get_hot_words.do",
              data: {},
              dataType: "json",
              success: function(res){
@@ -134,7 +134,7 @@ var tools = {
 		$.ajax({
              type: "post",
              crossDomain: true,
-             url: "https://www.jxjrip.com/get_industry_list.do",
+             url: "http://127.0.0.1:8080/zc/get_industry_list.do",
              data: {},
              dataType: "json",
              success: function(res){
@@ -160,7 +160,7 @@ var tools = {
 		$.ajax({
              type: "post",
              crossDomain: true,
-             url: " https://www.jxjrip.com/get_publish_year_list.do",
+             url: "http://127.0.0.1:8080/zc/get_publish_year_list.do",
              data: {},
              dataType: "json",
              success: function(res){
@@ -206,7 +206,7 @@ var tools = {
 		$.ajax({
              type: "post",
              crossDomain: true,
-             url: " https://www.jxjrip.com/query_patent_list.do",
+             url: "http://127.0.0.1:8080/zc/query_patent_list.do",
              data: params,
              dataType: "json",
              success: function(res){
@@ -267,7 +267,7 @@ var tools = {
 		$.ajax({
              type: "post",
              crossDomain: true,
-             url: " https://www.jxjrip.com/query_patent_list.do",
+             url: "http://127.0.0.1:8080/zc/query_patent_list.do",
              data: params,
              dataType: "json",
              success: function(res){

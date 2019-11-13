@@ -2,6 +2,7 @@ package com.zc.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -20,6 +21,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import com.zc.common.ResourceHandler;
 import com.zc.constant.StatusCode;
 import com.zc.exception.ServerException;
+import com.zc.model.ConfigManager;
 import com.zc.service.UploadService;
 
 @Controller
@@ -45,11 +47,21 @@ public class UploadController {
 						new File(realPath, myfile.getOriginalFilename()));
 				String filePath =  realPath + "/" + myfile.getOriginalFilename();
 				logger.info("文件存储目录:" + filePath);
+				String extString = realPath.substring(realPath.lastIndexOf("."));
+				if (".xls".equals(extString)) {
+					return "请上传xlsx格式的excel文件。";
+				}
 				uploadService.parseUploadData(filePath);
 			} catch (IOException e) {
 				logger.info("专利列表上传异常:" + e);
 			}
 		}
 		return ResourceHandler.get(String.valueOf(StatusCode.READY_UPLOAD));
+	}
+	
+	@RequestMapping("/admin/test")
+	public Object queryLables(HttpServletRequest request, HttpServletResponse response) throws ServerException {
+		uploadService.parseUploadData("/Users/jiatui/胡经理相关专利清单.xlsx");
+		return "success";
 	}
 }
