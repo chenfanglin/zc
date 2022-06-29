@@ -17,7 +17,7 @@
 		<druid.version>1.0.18</druid.version>
 		<mapper.version>3.5.3</mapper.version>
 		<jacksondata.version>2.9.4</jacksondata.version>
-		<poi.version>3.17</poi.version>
+		<poi.version>4.1.1</poi.version>
 		<javax.mail>1.6.1</javax.mail>
 		<logback.version>1.1.7</logback.version>
 		<slf4j.version>1.7.21</slf4j.version>
